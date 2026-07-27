@@ -22,7 +22,7 @@ Cả hai là prototype giao diện: dữ liệu minh hoạ, chưa nối backend 
 | Tài liệu | Nội dung | File |
 |---|---|---|
 | **KOVIA Branding** | Sổ tay nhận diện song ngữ VI–KO · logo, màu, chữ, SORI, file xuất | [`Branding/`](Branding/) · [HTML](Branding/KOVIA%20Brand%20Book%20(VI-KO).html) · [PDF](Branding/KOVIA%20Brand%20Book%20(VI-KO).pdf) |
-| **KOVIA Tổng quan** | Đề án v2.5 — 17 chương: chiến lược, thị trường, 9 trụ, BETA, Portal, Chợ, kỹ thuật, lộ trình 30 tháng, tài chính, pháp lý | [HTML](kovia-hangil-v2.html) · [Markdown](kovia-hangil-v2.md) |
+| **KOVIA Tổng quan** | Đề án v2.5 — 17 chương: chiến lược, thị trường, kiến trúc sản phẩm, BETA, Portal, Chợ, kỹ thuật, lộ trình 30 tháng, tài chính, pháp lý | [HTML](kovia-hangil-v2.html) · [Markdown](kovia-hangil-v2.md) |
 | **Chi tiết Phase 1** | Kế hoạch thực thi BETA 9 tháng: 5 nhóm việc, 3 nhịp, đường găng, lịch đầu ra, bảng chỉ số | [HTML](kovia-g1-chi-tiet.html) · [Markdown](kovia-g1-chi-tiet.md) |
 | Nhận diện v2.1 (bản rút gọn) | Bản trình bày nhanh phương án "Con dấu" | [`kovia-hangil-nhan-dien.html`](kovia-hangil-nhan-dien.html) |
 
@@ -30,7 +30,7 @@ Cả hai là prototype giao diện: dữ liệu minh hoạ, chưa nối backend 
 
 **Ba luận điểm.** ① Không bán dịch vụ — bán niềm tin có thể kiểm chứng. ② Bất đối xứng hai chiều: miễn phí chiều Việt → Hàn để xây mật độ và dữ liệu, bán đắt cho chiều Hàn → Việt. ③ Vòng tròn khép kín — người hồi hương là tài sản bị bỏ quên.
 
-**Chín trụ.** P1 Learn · P2 Culture · P3 Market — bật trong BETA. P4 Store — cuối BETA. P5 Passport · P6 Rights · P7 Career · P8 Business · P9 Return — giai đoạn sau.
+**Kiến trúc sản phẩm.** P1 Learn · P2 Culture · P3 Market — bật trong BETA. P4 Store — cuối BETA. P5 Passport · P6 Rights · P7 Career · P8 Business · P9 Return — giai đoạn sau.
 
 **BETA 9 tháng, quảng cáo 0 đồng.** Mục tiêu tháng thứ 9: 150.000 người theo dõi · 30.000 Zalo OA · 5.000 WAU · D30 > 22% · 500 đơn Chợ/tháng · 25–40 cửa hàng riêng.
 
