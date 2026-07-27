@@ -88,7 +88,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;pad
 h1.big{margin:0 0 10px;font-size:var(--f1);font-weight:800;letter-spacing:-.03em;
   line-height:1.2;color:var(--ink)}
 h1.big em{font-style:normal;color:var(--accent)}
-h2.sec{margin:0 0 2px;font-size:var(--f2);font-weight:800;letter-spacing:-.022em;color:var(--ink)}
+/* padding:0 — h2 mang luôn class .sec nên bị ăn thêm 20px lề, lệch với hàng thẻ bên dưới */
+h2.sec{padding:0;margin:0 0 2px;font-size:var(--f2);font-weight:800;letter-spacing:-.022em;color:var(--ink)}
 p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 .strip{display:flex;align-items:center;gap:9px;background:var(--chip);border-radius:12px;
   padding:10px 13px;font-size:var(--f3);color:var(--muted);margin-bottom:14px}
@@ -127,8 +128,9 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 .hero p{margin:0;font-size:var(--f4);color:#B9C6E2}
 
 /* ---------- hàng cuộn ngang ---------- */
-.rail{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;padding:1px 20px 4px;
-  margin:0 -20px 16px;scroll-snap-type:x mandatory}
+/* không tràn ra mép màn hình: hàng cuộn nằm gọn trong lề 20px của .sec */
+.rail{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;padding:1px 0 4px;
+  margin:0 0 16px;scroll-snap-type:x mandatory}
 .rail::-webkit-scrollbar{height:0}
 .vcard{flex:none;width:132px;scroll-snap-align:start;text-align:left;
   display:flex;flex-direction:column;align-items:stretch}
@@ -203,7 +205,7 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 .news .d{font-family:var(--mono);font-size:9.5px;color:var(--muted);flex:none;padding-top:2px}
 
 /* ---------- chip ---------- */
-.chips{display:flex;gap:6px;overflow-x:auto;padding:0 20px 2px;margin:0 -20px 12px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:0 0 2px;margin:0 0 12px}
 .chips::-webkit-scrollbar{height:0}
 .chip{flex:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surf);
   font-size:var(--f3);font-weight:600;color:var(--muted);white-space:nowrap}
@@ -340,8 +342,11 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
   font-size:var(--f4);font-weight:500;color:var(--ink)}
 
 /* ---------- tab bar chỉ icon ---------- */
+/* thanh menu đáy: luôn cố định ở đáy khung, nổi lên trên nội dung cuộn */
 .tabs{display:flex;align-items:center;justify-content:space-around;background:var(--surf);
-  border-top:1px solid var(--line);padding:9px 8px 13px;flex:none;position:relative;transition:background .25s}
+  border-top:1px solid var(--line);padding:9px 8px 13px;flex:none;position:relative;z-index:20;
+  box-shadow:0 -8px 22px rgba(20,24,31,.10);transition:background .25s}
+[data-theme="dem"] .tabs{box-shadow:0 -8px 22px rgba(0,0,0,.34)}
 .tab{width:46px;height:40px;display:flex;align-items:center;justify-content:center;
   position:relative;border-radius:12px}
 .tab.on::after{content:"";position:absolute;bottom:-4px;width:16px;height:3px;border-radius:2px;background:var(--accent)}
@@ -352,9 +357,12 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 
 .hint{max-width:392px;font-size:11px;color:#77746A;text-align:center;line-height:1.6;margin:0}
 @media(max-width:470px){
-  .stage{padding:0;gap:0}
-  .phone{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none;transform:none;margin:0}
+  /* 100dvh: Safari iOS tính 100vh theo lúc ẩn thanh công cụ, khiến menu đáy bị đẩy khỏi màn hình */
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+  .stage{padding:0;gap:0;height:100vh;height:100dvh;min-height:0;justify-content:flex-start}
+  .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none;transform:none;margin:0}
   .inner{width:100%;height:100%;border-radius:0}
+  .tabs{padding-bottom:calc(13px + env(safe-area-inset-bottom))}
   .hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
