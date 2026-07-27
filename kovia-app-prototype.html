@@ -327,6 +327,15 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
   background:#F4F2EC;border:1.5px solid rgba(20,43,95,.14);display:flex;align-items:center;
   justify-content:center;z-index:30;box-shadow:0 7px 20px rgba(11,23,58,.22);transition:transform .16s}
 .sori:active{transform:scale(.93)}
+.sori.off,.mic.off{display:none}
+
+/* ---------- micro: nằm ngay trên SORI ---------- */
+.mic{position:absolute;right:16px;bottom:142px;width:44px;height:44px;border-radius:15px;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;z-index:30;
+  box-shadow:0 6px 16px rgba(186,117,23,.36);transition:transform .16s}
+.mic:active{transform:scale(.92)}
+.mic::after{content:"";position:absolute;right:-1px;top:-1px;width:9px;height:9px;border-radius:50%;
+  background:var(--ok);border:2px solid var(--surf)}
 .sori .dot{position:absolute;right:-2px;top:-2px;width:11px;height:11px;border-radius:50%;
   background:var(--accent);border:2px solid var(--surf)}
 .sheet{position:absolute;left:12px;right:12px;bottom:74px;background:var(--surf);border:1px solid var(--line);
@@ -341,10 +350,50 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 .qa button{text-align:left;background:var(--chip);border-radius:11px;padding:9px 12px;
   font-size:var(--f4);font-weight:500;color:var(--ink)}
 
+/* ---------- Explore: bảng tiện ích mở từ nút + ---------- */
+.scrim2{position:absolute;inset:0;background:rgba(6,13,34,.42);z-index:31;opacity:0;
+  pointer-events:none;transition:opacity .24s}
+.scrim2.on{opacity:1;pointer-events:auto}
+.exp{position:absolute;left:0;right:0;bottom:0;z-index:32;background:var(--surf);
+  border-radius:24px 24px 0 0;border-top:1px solid var(--line);
+  padding:9px 16px calc(88px + env(safe-area-inset-bottom));
+  max-height:78%;overflow-y:auto;overscroll-behavior:contain;
+  box-shadow:0 -18px 46px rgba(11,23,58,.3);
+  transform:translateY(102%);transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.exp.on{transform:none}
+.exp::-webkit-scrollbar{width:0}
+.exp .grab{width:38px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 11px}
+.exp .eh{display:flex;align-items:baseline;gap:8px;margin-bottom:2px}
+.exp .eh h4{margin:0;font-size:var(--f2);font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.exp .eh span{font-size:var(--f4);color:var(--muted)}
+.exp .note{margin:0 0 13px;font-size:var(--f4);color:var(--muted);line-height:1.5}
+.expg{font-family:var(--disp);font-size:var(--f4);font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--accent);margin:13px 0 8px}
+.expgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.expitem{display:flex;flex-direction:column;align-items:center;gap:6px;padding:9px 1px 8px;
+  border-radius:14px;transition:background .15s}
+.expitem:active{background:var(--chip)}
+.expitem .ic{width:42px;height:42px;border-radius:14px;background:var(--chip);flex:none;
+  display:flex;align-items:center;justify-content:center;color:var(--brand)}
+[data-theme="dem"] .expitem .ic{color:var(--ink)}
+.expitem .lb{font-size:var(--f4);font-weight:600;color:var(--ink);text-align:center;line-height:1.25}
+.expitem .kr{font-family:var(--ko);font-size:calc(var(--f4) - 1px);color:var(--muted);
+  text-align:center;line-height:1.2;margin-top:-3px}
+.expitem.soon .ic{opacity:.5}.expitem.soon .lb{color:var(--muted)}
+
+/* ---------- công tắc bật/tắt ---------- */
+.sw2{width:40px;height:24px;border-radius:999px;background:var(--line);position:relative;
+  flex:none;transition:background .18s}
+.sw2 i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.28);transition:transform .18s}
+.sw2.on{background:var(--accent)}
+.sw2.on i{transform:translateX(16px)}
+.rowline .sub2{display:block;font-size:var(--f4);color:var(--muted);font-weight:400;margin-top:2px}
+
 /* ---------- tab bar chỉ icon ---------- */
 /* thanh menu đáy: luôn cố định ở đáy khung, nổi lên trên nội dung cuộn */
 .tabs{display:flex;align-items:center;justify-content:space-around;background:var(--surf);
-  border-top:1px solid var(--line);padding:9px 8px 13px;flex:none;position:relative;z-index:20;
+  border-top:1px solid var(--line);padding:9px 8px 13px;flex:none;position:relative;z-index:34;
   box-shadow:0 -8px 22px rgba(20,24,31,.10);transition:background .25s}
 [data-theme="dem"] .tabs{box-shadow:0 -8px 22px rgba(0,0,0,.34)}
 .tab{width:46px;height:40px;display:flex;align-items:center;justify-content:center;
@@ -354,6 +403,8 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
   align-items:center;justify-content:center;margin-top:-22px;
   box-shadow:0 8px 18px rgba(186,117,23,.34);transition:transform .16s}
 .fab:active{transform:scale(.94)}
+.fab.open{transform:rotate(45deg)}          /* + xoay thành × khi bảng tiện ích mở */
+.fab.open:active{transform:rotate(45deg) scale(.94)}
 
 .hint{max-width:392px;font-size:11px;color:#77746A;text-align:center;line-height:1.6;margin:0}
 @media(max-width:470px){
@@ -603,6 +654,22 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
           </div>
         </div>
 
+        <div class="setrow">
+          <span class="lb" data-i="set_as">Trợ lý trên màn hình</span>
+          <div style="padding:0 1px">
+            <div class="rowline">
+              <span class="l" style="flex:1;padding-right:12px"><span data-i="sw_sori">Trợ lý SORI</span>
+                <span class="sub2" data-i="sw_sori_s">Bong bóng hỏi nhanh ở góc phải</span></span>
+              <button class="sw2 on" id="swSori" onclick="togSori(this)" role="switch" aria-checked="true" aria-label="SORI"><i></i></button>
+            </div>
+            <div class="rowline">
+              <span class="l" style="flex:1;padding-right:12px"><span data-i="sw_mic">Nút micro nhanh</span>
+                <span class="sub2" data-i="sw_mic_s">Bấm là vào luyện nói ngay</span></span>
+              <button class="sw2 on" id="swMic" onclick="togMic(this)" role="switch" aria-checked="true" aria-label="Micro"><i></i></button>
+            </div>
+          </div>
+        </div>
+
         <div style="background:var(--surf);border:1px solid var(--line);border-radius:15px;padding:2px 14px">
           <div class="rowline"><span class="l" data-i="r1">Ngôn ngữ ứng dụng</span><span class="r" data-i="r1v">Đang học</span></div>
           <div class="rowline"><span class="l" data-i="r2">Đã xác minh danh tính</span><span class="r" data-i="r2v">Chưa</span></div>
@@ -614,6 +681,15 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
     </div>
 
     </div><!-- /screen -->
+
+    <!-- micro nhanh: nằm ngay trên SORI -->
+    <button class="mic" id="micbtn" onclick="go('v-noi')" aria-label="Nói nhanh">
+      <svg width="21" height="21" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="25" y="9" width="14" height="27" rx="7" fill="#fff"/>
+        <path d="M17 30 a15 15 0 0 0 30 0" fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round"/>
+        <path d="M32 45 L32 55" stroke="#fff" stroke-width="4.6" stroke-linecap="round"/>
+      </svg>
+    </button>
 
     <!-- SORI nổi -->
     <button class="sori" id="sori" onclick="toggleSori()" aria-label="SORI">
@@ -643,6 +719,15 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
       </div>
       <p data-i="sori_p">Cần nói gấp mà chưa biết nói sao? Hỏi mình.</p>
       <div class="qa" id="qa"></div>
+    </div>
+
+    <!-- Explore: bảng tiện ích -->
+    <div class="scrim2" id="scrim2" onclick="toggleExp()"></div>
+    <div class="exp" id="exp" role="dialog" aria-label="Tiện ích">
+      <div class="grab"></div>
+      <div class="eh"><h4 data-i="ex_t">Tiện ích</h4><span class="ko" data-i="ex_t2">편의 기능</span></div>
+      <p class="note" data-i="ex_n">Chạm một lần là tới đúng thứ đang cần. Mục có dấu mờ sẽ mở ở giai đoạn sau.</p>
+      <div id="expbody"></div>
     </div>
 
     <nav class="tabs" id="tabs" aria-label="Điều hướng chính"></nav>
@@ -679,7 +764,10 @@ vi:{kp_eb:'Khám phá · 탐색',kp_t1:'Mỗi ngày',kp_t2:'một câu thật',
  m1:'Tình huống xong',m2:'Lần dùng thật',m3:'Điểm kính ngữ',m4:'Phút luyện nói',
  set_th:'Giao diện',th1:'Con Dấu',th2:'Ca Đêm',th3:'Giấy Dó',set_fs:'Cỡ chữ',fs1:'Nhỏ',fs2:'Vừa',fs3:'Lớn',
  r1:'Ngôn ngữ ứng dụng',r1v:'Đang học',r2:'Đã xác minh danh tính',r2v:'Chưa',r3:'Đơn hàng trên Chợ',r4:'Thành viên từ',
- sori_p:'Cần nói gấp mà chưa biết nói sao? Hỏi mình.'},
+ sori_p:'Cần nói gấp mà chưa biết nói sao? Hỏi mình.',
+ ex_t:'Tiện ích',ex_t2:'편의 기능',ex_n:'Chạm một lần là tới đúng thứ đang cần. Mục để mờ sẽ mở ở giai đoạn sau.',
+ set_as:'Trợ lý trên màn hình',sw_sori:'Trợ lý SORI',sw_sori_s:'Bong bóng hỏi nhanh ở góc phải',
+ sw_mic:'Nút micro nhanh',sw_mic_s:'Bấm là vào luyện nói ngay'},
 ko:{kp_eb:'탐색 · KHÁM PHÁ',kp_t1:'매일',kp_t2:'진짜 한 문장',
  kp_strip:'프로필 기반 — <b>안산, 제조 근로자</b>',kp_live:'신규 · 90초',
  kp_eb2:'주요 상황',kp_h:'급여가 잘못 공제됐을 때 묻는 법',kp_p:'자막 있음 · 오늘 바로 쓸 수 있어요',
@@ -705,7 +793,10 @@ ko:{kp_eb:'탐색 · KHÁM PHÁ',kp_t1:'매일',kp_t2:'진짜 한 문장',
  m1:'완료한 상황',m2:'실전 사용',m3:'높임말 점수',m4:'말하기 시간(분)',
  set_th:'테마',th1:'도장',th2:'야간',th3:'한지',set_fs:'글자 크기',fs1:'작게',fs2:'보통',fs3:'크게',
  r1:'실전 한국어',r1v:'학습 중',r2:'신원 확인',r2v:'미완료',r3:'마켓 주문',r4:'가입일',
- sori_p:'급한데 뭐라고 할지 모르겠나요? 저에게 물어보세요.'}};
+ sori_p:'급한데 뭐라고 할지 모르겠나요? 저에게 물어보세요.',
+ ex_t:'편의 기능',ex_t2:'Tiện ích',ex_n:'필요한 기능으로 한 번에 이동합니다. 흐리게 표시된 항목은 다음 단계에서 열립니다.',
+ set_as:'화면 위 도우미',sw_sori:'SORI 도우미',sw_sori_s:'오른쪽 아래 빠른 질문 버튼',
+ sw_mic:'빠른 마이크 버튼',sw_mic_s:'누르면 바로 말하기 연습'}};
 
 var L='vi', cur='v-kp';
 var IMG={
@@ -755,6 +846,40 @@ var PR=[['화장품',['Kem chống nắng dịu nhẹ 50ml','순한 선크림 50
 var QA=[['Sếp gọi mà mình chưa hiểu','반장님이 불렀는데 못 알아들었어요'],
  ['Muốn xin đổi ca','근무 교대를 바꾸고 싶어요'],['Bị đau, cần đi khám','아파서 병원에 가야 해요']];
 var TB=[{id:'v-kp',t:'logo'},{id:'v-th',t:'book'},{fab:1},{id:'v-cho',t:'shop'},{id:'v-toi',t:'me'}];
+
+/* ---- Explore: tiện ích, gắn theo 6 nhóm khách hàng và 9 trụ của đề án ----
+   cột cuối: 1 = mở ở giai đoạn sau (hiện mờ), 0 = có trong BETA */
+var EIC={
+ trans:'<path d="M32 9 C18 9 7 17.5 7 28 c0 5.7 3.3 10.9 8.6 14.3 -.6 3.8 -2.3 7 -4.8 9.5 5.4 -.6 10.3 -2.6 14.3 -5.7 2.1 .4 4.4 .6 6.9 .6 14 0 25 -8.5 25 -19S46 9 32 9 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M21 25 h22 M21 33 h14" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ transit:'<rect x="14" y="7" width="36" height="37" rx="9" fill="none" stroke="currentColor" stroke-width="5"/><path d="M14 27 h36" stroke="currentColor" stroke-width="5"/><circle cx="24" cy="36" r="3.4" fill="currentColor"/><circle cx="40" cy="36" r="3.4" fill="currentColor"/><path d="M23 45 L15 57 M41 45 L49 57" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ health:'<rect x="8" y="8" width="48" height="48" rx="13" fill="none" stroke="currentColor" stroke-width="5"/><path d="M32 20 v24 M20 32 h24" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ home:'<path d="M9 30 L32 10 L55 30" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 27 v27 h32 V27" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>',
+ fx:'<path d="M11 24 h34 l-10 -10 M53 40 H19 l10 10" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+ remit:'<circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="5"/><path d="M21 32 h21 M34 23 l9 9 -9 9" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+ tax:'<path d="M15 7 h21 l13 13 v37 a4 4 0 0 1 -4 4 H15 a4 4 0 0 1 -4 -4 V11 a4 4 0 0 1 4 -4 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M22 35 h20 M22 45 h13" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ gift:'<rect x="8" y="25" width="48" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="5"/><path d="M5 25 h54 M32 25 v30" stroke="currentColor" stroke-width="5"/><path d="M32 25 c-11 0 -15 -15 -5 -15 c6 0 5 15 5 15 Z M32 25 c11 0 15 -15 5 -15 c-6 0 -5 15 -5 15 Z" fill="none" stroke="currentColor" stroke-width="4.6" stroke-linejoin="round"/>',
+ job:'<rect x="8" y="22" width="48" height="31" rx="6" fill="none" stroke="currentColor" stroke-width="5"/><path d="M22 22 v-4 a5 5 0 0 1 5 -5 h10 a5 5 0 0 1 5 5 v4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M8 34 h48" stroke="currentColor" stroke-width="4.6"/>',
+ hire:'<circle cx="25" cy="21" r="10" fill="none" stroke="currentColor" stroke-width="5"/><path d="M8 53 a17 17 0 0 1 34 0" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M51 25 v16 M43 33 h16" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ visa:'<rect x="12" y="6" width="40" height="52" rx="7" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="25" r="8" fill="none" stroke="currentColor" stroke-width="5"/><path d="M22 44 h20" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ rights:'<path d="M32 6 L54 15 v17 c0 13 -9 21.5 -22 25 c-13 -3.5 -22 -12 -22 -25 V15 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M23 31 l6 6 12 -13" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+ tips:'<path d="M32 7 a18 18 0 0 0 -11 32 v6 h22 v-6 a18 18 0 0 0 -11 -32 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M26 53 h12" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ fun:'<circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="5"/><path d="M26 21 L45 32 L26 43 Z" fill="currentColor"/>',
+ mart:'<rect x="10" y="22" width="44" height="32" rx="8" fill="none" stroke="currentColor" stroke-width="5"/><path d="M22 26 v-4 a10 10 0 0 1 20 0 v4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>',
+ biz:'<rect x="9" y="13" width="26" height="45" rx="4" fill="none" stroke="currentColor" stroke-width="5"/><path d="M35 30 h20 v28 H35" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M17 25 h10 M17 35 h10 M17 45 h10 M43 41 h5" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/>'};
+
+var EXP=[
+ ['Hằng ngày','일상',[
+  ['trans','Phiên dịch','통역',0],['transit','Đi lại','교통',0],
+  ['health','Y tế','의료',1],['home','Tìm nhà','집 구하기',1]]],
+ ['Tiền','금융',[
+  ['fx','Tỷ giá','환율',0],['remit','Chuyển tiền','송금',1],
+  ['tax','Thuế & lương','세금·급여',1],['gift','Gửi quà về nhà','본가 선물',1]]],
+ ['Việc & giấy tờ','일·행정',[
+  ['job','Tìm việc','일자리',1],['hire','Tuyển dụng','채용',1],
+  ['visa','Visa & giấy tờ','비자·행정',1],['rights','Quyền lợi','권익·긴급',1]]],
+ ['Cộng đồng','커뮤니티',[
+  ['tips','Kinh nghiệm','경험 공유',0],['fun','Giải trí','엔터테인먼트',0],
+  ['mart','Mua sắm','쇼핑',0],['biz','Hàn tại Việt Nam','베트남 생활',1]]]];
 var IC={
  logo:'<path d="M14 44 L32 15 L50 44" fill="none" stroke="CUR" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="50" width="18" height="5" rx="2.5" fill="ACC"/>',
  book:'<path d="M10 14 h18 a8 8 0 0 1 8 8 v30 a6 6 0 0 0 -6 -6 H10 Z" fill="CUR"/><path d="M54 14 H36 a8 8 0 0 0 -8 8 v30 a6 6 0 0 1 6 -6 h20 Z" fill="CUR" opacity=".55"/>',
@@ -806,12 +931,19 @@ function lists(){
       '<span class="vbadge">'+tk+(L==='vi'?'ĐÃ KIỂM ĐỊNH':'검증 완료')+'</span>'+
       '<h4>'+p[1][j]+'</h4><div class="pr">'+p[2]+'</div></div></div>';}).join('');
   document.getElementById('qa').innerHTML=QA.map(function(q){return '<button>'+q[j]+'</button>';}).join('');
+  document.getElementById('expbody').innerHTML=EXP.map(function(g){
+    return '<div class="expg">'+(L==='vi'?g[0]:g[1])+'</div><div class="expgrid">'+g[2].map(function(it){
+      return '<button class="expitem'+(it[3]?' soon':'')+'" onclick="expGo(this)">'+
+        '<span class="ic"><svg width="21" height="21" viewBox="0 0 64 64" aria-hidden="true">'+EIC[it[0]]+'</svg></span>'+
+        '<span class="lb">'+(L==='vi'?it[1]:it[2])+'</span>'+
+        (L==='vi'?'<span class="kr">'+it[2]+'</span>':'')+'</button>';}).join('')+'</div>';}).join('');
 }
 function tabs(c2){
   var ink=css('--ink'), mut=css('--muted'), acc=css('--accent'), br=css('--brand');
   document.getElementById('tabs').innerHTML=TB.map(function(t){
-    if(t.fab) return '<button class="fab" onclick="go(\'v-noi\')" aria-label="Mic">'+
-      '<svg width="23" height="23" viewBox="0 0 64 64" aria-hidden="true"><rect x="25" y="9" width="14" height="27" rx="7" fill="#fff"/><path d="M17 30 a15 15 0 0 0 30 0" fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round"/><path d="M32 45 L32 55" stroke="#fff" stroke-width="4.6" stroke-linecap="round"/></svg></button>';
+    if(t.fab){var eo=document.getElementById('exp').classList.contains('on');
+      return '<button class="fab'+(eo?' open':'')+'" onclick="toggleExp()" aria-label="Tiện ích" aria-expanded="'+eo+'">'+
+      '<svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 15 V49 M15 32 H49" stroke="#fff" stroke-width="6.5" stroke-linecap="round"/></svg></button>';}
     var on=t.id===c2, c=on?(t.t==='logo'?br:ink):mut;
     if(t.t==='logo'&&!on) c=mut;
     return '<button class="tab'+(on?' on':'')+'" onclick="go(\''+t.id+'\')" aria-label="'+t.id+'" aria-current="'+(on?'page':'false')+'">'+
@@ -824,9 +956,32 @@ function repaint(){text();lists();marks();chev();tabs(cur);}
 window.go=function(id){
   document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===id)});
   document.getElementById('screen').scrollTop=0;
+  document.getElementById('exp').classList.remove('on');
+  document.getElementById('scrim2').classList.remove('on');
   cur=(id==='v-scene')?'v-th':(id==='v-noi'?cur:id); tabs(cur);
   document.getElementById('sheet').classList.remove('on');
 };
+window.toggleExp=function(){
+  var e=document.getElementById('exp'), on=!e.classList.contains('on');
+  e.classList.toggle('on',on);
+  document.getElementById('scrim2').classList.toggle('on',on);
+  document.getElementById('sheet').classList.remove('on');
+  if(on) e.scrollTop=0;
+  tabs(cur);
+};
+window.expGo=function(b){
+  if(b.classList.contains('soon')) return;          /* mục giai đoạn sau: chưa mở */
+  var t=b.querySelector('.lb').textContent;
+  if(t==='Mua sắm'||t==='쇼핑') return go('v-cho');
+  if(t==='Phiên dịch'||t==='통역') return go('v-noi');
+  go('v-kp');
+};
+/* hai công tắc trong tab Tôi */
+function tog(b,el){var on=!b.classList.contains('on');
+  b.classList.toggle('on',on); b.setAttribute('aria-checked',on);
+  document.getElementById(el).classList.toggle('off',!on); return on;}
+window.togSori=function(b){ if(!tog(b,'sori')) document.getElementById('sheet').classList.remove('on'); };
+window.togMic=function(b){ tog(b,'micbtn'); };
 window.lang=function(l,b){
   L=l;document.querySelectorAll('.lang').forEach(function(g){
     g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',(x.textContent==='VI')===(l==='vi'))});});
