@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bộ nhận diện KOVIA · HANGIL 한길 — v2.0 Con dấu</title>
+<meta name="description" content="Hệ thống nhận diện hoàn chỉnh dựng trên biểu tượng Con dấu: logo, biến thể, màu, chữ, hệ thống hình, nhân vật SORI và ứng dụng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#142B5F; --night-deep:#0B173A; --night-300:#7A90C0; --night-100:#D6DEEE;
+  --rice:#BA7517; --rice-300:#E0A951; --rice-100:#F5E4C6; --mint:#35C6A5; --mint-100:#C9EFE5;
+  --paper:#F4F2EC; --ink:#22221F; --alert:#B3261E;
+  --line:rgba(20,43,95,.14); --muted:#5C6478;
+  --sans:"Be Vietnam Pro",system-ui,sans-serif;
+  --disp:"Bricolage Grotesque",var(--sans);
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --ko:"Noto Sans KR",var(--sans);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2.5px solid var(--rice);outline-offset:3px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 30px}
+.ko{font-family:var(--ko)}
+
+nav.top{position:sticky;top:0;z-index:40;background:rgba(244,242,236,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:22px;height:56px;overflow-x:auto}
+nav.top b{font-family:var(--disp);font-size:12px;letter-spacing:.16em;color:var(--night);
+  text-transform:uppercase;white-space:nowrap}
+nav.top a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap}
+nav.top a:hover{color:var(--rice)}
+
+header.hero{padding:80px 0 56px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--disp);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--rice);font-weight:700;margin-bottom:18px}
+h1{font-size:clamp(32px,4.8vw,50px);line-height:1.06;font-weight:800;letter-spacing:-.03em;
+  margin:0 0 20px;color:var(--night)}
+.lede{font-size:18px;color:var(--muted);max-width:640px;margin:0}
+.herorow{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin-top:36px}
+
+section{padding:70px 0;border-bottom:1px solid var(--line)}
+h2{font-size:12px;font-family:var(--disp);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--rice);font-weight:700;margin:0 0 10px}
+h3{font-size:clamp(23px,3vw,30px);font-weight:800;letter-spacing:-.025em;color:var(--night);
+  margin:0 0 16px;line-height:1.2}
+h4{font-size:16px;font-weight:700;color:var(--night);margin:36px 0 10px}
+p{margin:0 0 15px;max-width:660px}
+.note{font-size:14px;color:var(--muted);max-width:650px}
+b{color:var(--night);font-weight:600}
+code{font-family:var(--mono);font-size:12.5px;background:rgba(20,43,95,.06);padding:2px 6px;border-radius:4px}
+
+.grid{display:grid;gap:16px;margin:26px 0}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.card.c{display:flex;flex-direction:column;align-items:center;text-align:center;gap:13px;justify-content:center}
+.cap{font-size:11.5px;color:var(--muted);letter-spacing:.03em;line-height:1.45}
+.cap b{color:var(--night);font-weight:600}
+.dark{background:var(--night-deep);border-color:transparent}
+.dark .cap{color:var(--night-300)}
+.dark .cap b{color:#F4F2EC}
+.warm{background:var(--rice);border-color:transparent}
+.warm .cap{color:#4A2E08}
+.warm .cap b{color:#3A2306}
+.av{width:66px;height:66px;border-radius:50%;background:var(--night);
+  display:flex;align-items:center;justify-content:center}
+
+.wm{font-weight:800;letter-spacing:-.045em;color:var(--night);line-height:1;font-size:38px}
+.wm.inv{color:#F4F2EC}
+.wm-ko{font-family:var(--ko);font-weight:700;color:var(--rice)}
+.lock{display:flex;align-items:center;gap:14px}
+.tag{font-size:10.5px;letter-spacing:.13em;color:var(--muted);font-weight:600;margin-top:6px}
+
+.sub{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em;font-size:21px;color:var(--night)}
+.sub i{width:14px;height:4px;border-radius:2px;background:var(--rice);flex:none}
+.sub em{font-style:normal;font-weight:500;color:var(--muted)}
+
+.sw{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .chip{height:86px}
+.sw .info{padding:11px 13px}
+.sw .nm{font-size:13px;font-weight:600;color:var(--night)}
+.sw .hx{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px}
+.sw .use{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.45}
+
+.spec{border-top:1px solid var(--line);padding:18px 0;display:flex;gap:24px;flex-wrap:wrap;align-items:baseline}
+.spec .lbl{font-family:var(--disp);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);width:145px;flex:none;font-weight:700;padding-top:8px}
+.spec .sample{flex:1;min-width:230px;color:var(--night)}
+
+table{border-collapse:collapse;width:100%;font-size:14px;margin:20px 0;background:#fff;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:rgba(20,43,95,.045);font-weight:600;color:var(--night);font-size:12.5px}
+tr:last-child td{border-bottom:none}
+
+.rule{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff;display:flex;gap:12px}
+.rule .mk{font-size:16px;flex:none;font-weight:700}
+.rule.no .mk{color:var(--alert)}
+.rule.yes .mk{color:#0F7A63}
+.rule p{margin:0;font-size:13.8px;line-height:1.6}
+
+.fix{background:var(--mint-100);border:1px solid var(--mint);border-radius:12px;padding:20px 24px;margin:26px 0}
+.fix h4{margin:0 0 8px;font-size:14px;color:#0B5647}
+.fix p{margin:0;font-size:14.5px;color:#0B5647;max-width:none}
+.fix p b{color:#083A2E}
+
+footer{padding:56px 0 100px}
+@media(max-width:640px){.wrap{padding:0 20px}.wm{font-size:28px}.spec .lbl{width:100%}}
+@media print{nav.top{display:none}section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <b>KOVIA</b>
+  <a href="#bieutuong">Biểu tượng</a><a href="#thunho">Thu nhỏ</a><a href="#kientruc">Kiến trúc</a>
+  <a href="#mau">Màu</a><a href="#chu">Chữ</a><a href="#hethong">Hệ thống hình</a>
+  <a href="#sori">SORI</a><a href="#ungdung">Ứng dụng</a><a href="#quytac">Quy tắc</a><a href="#xuatfile">Xuất file</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Bộ nhận diện v2.0 · phương án đã chốt · 27/07/2026</div>
+  <h1>Con dấu</h1>
+  <p class="lede">Một mái che, một nền đất, đóng trong khung dấu. Cả hệ thống nhận diện — biểu tượng, biểu tượng phụ, hoạ tiết, nhãn kiểm định, nhân vật — đều sinh ra từ ba yếu tố của hình này.</p>
+  <div class="herorow">
+    <svg width="128" height="128" viewBox="0 0 64 64" role="img" aria-label="Biểu tượng KOVIA">
+      <rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/>
+      <path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/>
+    </svg>
+    <div>
+      <div class="wm" style="font-size:52px">KOVIA</div>
+      <div class="tag">YOUR WAY BETWEEN VIETNAM AND KOREA</div>
+    </div>
+  </div>
+</div></header>
+
+<!-- ============ BIEU TUONG ============ -->
+<section id="bieutuong"><div class="wrap">
+  <h2>01 · Biểu tượng</h2>
+  <h3>Ba yếu tố, ba tầng nghĩa</h3>
+
+  <table>
+    <tr><th>Yếu tố</th><th>Đọc là gì</th><th>Vai trò trong hệ thống</th></tr>
+    <tr><td><b>Khung dấu</b><br>hình vuông bo góc</td><td>Con dấu — đã xác nhận, đã chứng thực</td><td>Khuôn cho biểu tượng sản phẩm, ảnh, nhãn, app icon</td></tr>
+    <tr><td><b>Mũi chóp</b><br>nét gấp hướng lên</td><td>Mái che · ngọn núi · nón lá · phụ âm <span class="ko">ㅅ</span> · mũi tên đi lên</td><td>Dấu đầu dòng, mốc tiến độ, chỉ hướng</td></tr>
+    <tr><td><b>Vạch xác nhận</b><br>thanh vàng nằm ngang</td><td>Nền đất · đường chân trời · gạch xác nhận</td><td>Gạch chân mục đang chọn, đường chia, trạng thái đã duyệt</td></tr>
+  </table>
+
+  <p>Một chi tiết đáng kể ra khi giới thiệu thương hiệu: <b>cách xếp của hình đi theo đúng logic ghép âm tiết tiếng Hàn</b> — phụ âm nằm trên, nguyên âm ngang nằm dưới, tất cả gói trong một ô vuông. Người Hàn nhìn vào sẽ thấy quen mà không nói được vì sao. Đó là loại chi tiết làm nên sự khác nhau giữa một logo và một thương hiệu.</p>
+
+  <h4>Bốn biến thể chính thức</h4>
+  <div class="grid g4">
+    <div class="card c">
+      <svg width="92" height="92" viewBox="0 0 64 64" role="img" aria-label="Bản chính">
+        <rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/>
+        <path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/>
+      </svg>
+      <div class="cap"><b>A. Bản chính</b><br>Mặc định, dùng ở mọi nơi</div>
+    </div>
+    <div class="card c dark">
+      <svg width="92" height="92" viewBox="0 0 64 64" role="img" aria-label="Bản đảo màu">
+        <rect x="7" y="7" width="50" height="50" rx="13" fill="#F4F2EC"/>
+        <path d="M19 42 L32 21 L45 42" fill="none" stroke="#142B5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/>
+      </svg>
+      <div class="cap"><b>B. Đảo màu</b><br>Nền tối, ảnh tối</div>
+    </div>
+    <div class="card c">
+      <svg width="92" height="92" viewBox="0 0 64 64" role="img" aria-label="Bản một màu">
+        <rect x="7" y="7" width="50" height="50" rx="13" fill="#22221F"/>
+        <path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="24" y="47" width="16" height="4" rx="2" fill="#F4F2EC"/>
+      </svg>
+      <div class="cap"><b>C. Một màu</b><br>Dập nổi, thêu, khắc, fax</div>
+    </div>
+    <div class="card c">
+      <svg width="92" height="92" viewBox="0 0 64 64" role="img" aria-label="Bản không khung">
+        <path d="M14 44 L32 15 L50 44" fill="none" stroke="#142B5F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="23" y="50" width="18" height="5" rx="2.5" fill="#BA7517"/>
+      </svg>
+      <div class="cap"><b>D. Không khung</b><br>Khi đã có khuôn khác bao ngoài</div>
+    </div>
+  </div>
+
+  <div class="fix">
+    <h4>Một lỗi trong bản đã duyệt — đã sửa</h4>
+    <p>Trong bản anh xem, ô <b>Avatar OA</b> đặt nguyên bản chính vào trong hình tròn, thành ra <b>một hình vuông nằm trong một hình tròn</b> — hai khuôn chồng nhau, biểu tượng bị co lại và mất sức. Quy tắc đúng: <b>khi đã có khuôn bao ngoài (tròn hoặc vuông), luôn dùng biến thể D — không khung.</b> Xem so sánh ngay dưới.</p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card c">
+      <div class="av"><svg width="46" height="46" viewBox="0 0 64 64" role="img" aria-label="Avatar sai"><rect x="7" y="7" width="50" height="50" rx="13" fill="#F4F2EC"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#142B5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg></div>
+      <div class="cap" style="color:var(--alert)"><b style="color:var(--alert)">✕ Sai</b><br>Vuông trong tròn</div>
+    </div>
+    <div class="card c">
+      <div class="av"><svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="Avatar đúng"><path d="M13 45 L32 14 L51 45" fill="none" stroke="#F4F2EC" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="51" width="18" height="5" rx="2.5" fill="#E0A951"/></svg></div>
+      <div class="cap" style="color:#0F7A63"><b style="color:#0F7A63">✓ Đúng</b><br>Biến thể D trong tròn</div>
+    </div>
+    <div class="card c">
+      <div style="width:66px;height:66px;border-radius:16px;background:var(--night);display:flex;align-items:center;justify-content:center">
+        <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="App icon"><path d="M13 45 L32 14 L51 45" fill="none" stroke="#F4F2EC" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="51" width="18" height="5" rx="2.5" fill="#E0A951"/></svg>
+      </div>
+      <div class="cap"><b>App icon</b><br>Khuôn của hệ điều hành</div>
+    </div>
+  </div>
+
+  <h4>Khoá chữ</h4>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lock">
+        <svg width="52" height="52" viewBox="0 0 64 64" role="img" aria-label="Khoá chữ ngang"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg>
+        <div><div class="wm" style="font-size:34px">KOVIA</div><div class="tag">VIETNAM · KOREA PLATFORM</div></div>
+      </div>
+      <p class="cap" style="margin-top:18px">Ngang — mặc định. Khoảng cách mark ↔ chữ = <b>1/4 chiều cao khung dấu</b></p>
+    </div>
+    <div class="card c">
+      <svg width="58" height="58" viewBox="0 0 64 64" role="img" aria-label="Khoá chữ dọc"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg>
+      <div class="wm" style="font-size:30px">KOVIA</div>
+      <p class="cap">Dọc — dùng khi không gian hẹp theo chiều ngang: đứng biển, áo, tem dán</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ THU NHO ============ -->
+<section id="thunho"><div class="wrap">
+  <h2>02 · Thu nhỏ và vùng an toàn</h2>
+  <h3>Rút gọn theo ba nấc</h3>
+  <p>Biểu tượng này sống chủ yếu ở cỡ 40 px trong danh sách chat Zalo và Kakao. Mọi quyết định thu nhỏ ưu tiên <b>còn nhận ra được</b>, không ưu tiên giữ đủ chi tiết.</p>
+
+  <div class="grid g4">
+    <div class="card c"><svg width="80" height="80" viewBox="0 0 64 64" aria-label="80 px"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg><div class="cap"><b>≥ 48 px</b><br>Đầy đủ ba yếu tố</div></div>
+    <div class="card c"><svg width="40" height="40" viewBox="0 0 64 64" aria-label="40 px"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47.5" width="16" height="4.5" rx="2.25" fill="#BA7517"/></svg><div class="cap"><b>32 – 47 px</b><br>Nét dày thêm 12%</div></div>
+    <div class="card c"><svg width="24" height="24" viewBox="0 0 64 64" aria-label="24 px"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 44 L32 21 L45 44" fill="none" stroke="#F4F2EC" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="cap"><b>20 – 31 px</b><br>Bỏ vạch vàng</div></div>
+    <div class="card c"><svg width="16" height="16" viewBox="0 0 64 64" aria-label="16 px"><rect x="5" y="5" width="54" height="54" rx="14" fill="#142B5F"/><path d="M18 45 L32 20 L46 45" fill="none" stroke="#F4F2EC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="cap"><b>16 – 19 px</b><br>Khung nở, nét 8</div></div>
+  </div>
+  <p class="note"><b>Nhỏ hơn 16 px: không dùng biểu tượng.</b> Dùng chữ K đơn hoặc bỏ hẳn.</p>
+
+  <h4>Vùng an toàn</h4>
+  <div class="card" style="display:flex;align-items:center;gap:30px;flex-wrap:wrap">
+    <svg width="200" height="200" viewBox="0 0 128 128" role="img" aria-label="Sơ đồ vùng an toàn">
+      <rect x="2" y="2" width="124" height="124" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <rect x="27" y="27" width="74" height="74" rx="19" fill="#142B5F"/>
+      <path d="M45 79 L64 48 L83 79" fill="none" stroke="#F4F2EC" stroke-width="7.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="52" y="86" width="24" height="6" rx="3" fill="#BA7517"/>
+      <rect x="8" y="56" width="14" height="16" rx="3" fill="#D6DEEE"/>
+      <text x="15" y="68" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="11" font-weight="700" fill="#142B5F">x</text>
+    </svg>
+    <div style="flex:1;min-width:240px">
+      <p><b>x = chiều cao vạch xác nhận.</b> Không đặt bất cứ thứ gì — chữ, ảnh, đường viền, logo khác — vào trong vùng cách biểu tượng dưới <code>2x</code> ở cả bốn phía.</p>
+      <p class="note">Trên nền ảnh, ngoài vùng an toàn còn phải có lớp phủ đặc hoặc mảng màu; không đặt biểu tượng trực tiếp lên ảnh nhiều chi tiết.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ KIEN TRUC ============ -->
+<section id="kientruc"><div class="wrap">
+  <h2>03 · Kiến trúc thương hiệu</h2>
+  <h3>Trong dấu và ngoài dấu</h3>
+  <p>Hai tầng thương hiệu dùng <b>chung một mũi chóp</b>, khác nhau ở chỗ có khung dấu hay không. Đây là quy tắc dễ nhớ và tự nó mang nghĩa:</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="lock">
+        <svg width="50" height="50" viewBox="0 0 64 64" aria-label="KOVIA"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg>
+        <div><div class="wm" style="font-size:30px">KOVIA</div><div class="tag">TRONG DẤU — CHÍNH THỨC</div></div>
+      </div>
+      <p class="cap" style="margin-top:16px">Nền tảng, hợp đồng, hồ sơ, dashboard doanh nghiệp, nhãn kiểm định. <b>Có khung = có bảo chứng.</b></p>
+    </div>
+    <div class="card">
+      <div class="lock">
+        <svg width="50" height="50" viewBox="0 0 64 64" aria-label="HANGIL"><path d="M14 44 L32 15 L50 44" fill="none" stroke="#BA7517" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="50" width="18" height="5" rx="2.5" fill="#142B5F"/></svg>
+        <div><div class="wm" style="font-size:30px">HANGIL <span class="wm-ko">한길</span></div><div class="tag">NGOÀI DẤU — CỘNG ĐỒNG</div></div>
+      </div>
+      <p class="cap" style="margin-top:16px">TikTok, YouTube, Facebook, Zalo OA, offline. <b>Không khung, màu đảo lại</b> — mở, gần, con người.</p>
+    </div>
+  </div>
+
+  <h4>Nhánh sản phẩm</h4>
+  <div class="grid g2">
+    <div class="card"><div class="sub">KOVIA<i></i><em>Learn</em></div><p class="cap" style="margin-top:10px">Tiếng Hàn thực chiến · <b>ra mắt ngay</b></p></div>
+    <div class="card"><div class="sub">KOVIA<i></i><em>Market</em></div><p class="cap" style="margin-top:10px">Chợ Hàn – Việt · <b>ra mắt ngay</b></p></div>
+    <div class="card"><div class="sub">KOVIA<i></i><em>Store</em></div><p class="cap" style="margin-top:10px">Cửa hàng online · <b>cuối BETA</b></p></div>
+    <div class="card" style="opacity:.5"><div class="sub">KOVIA<i></i><em>Verified</em></div><p class="cap" style="margin-top:10px">Hồ sơ năng lực · giai đoạn 2</p></div>
+  </div>
+  <p class="note">Gạch nối giữa hai chữ là <b>vạch xác nhận</b> lấy nguyên từ biểu tượng — không phải một dấu gạch bất kỳ.</p>
+</div></section>
+
+<!-- ============ MAU ============ -->
+<section id="mau"><div class="wrap">
+  <h2>04 · Màu sắc</h2>
+  <h3>Ba màu phẳng, không gradient</h3>
+  <div class="grid g4">
+    <div class="sw"><div class="chip" style="background:#142B5F"></div><div class="info"><div class="nm">Xanh đêm</div><div class="hx">#142B5F</div><div class="use">Khung dấu, chữ tiêu đề, nền B2B</div></div></div>
+    <div class="sw"><div class="chip" style="background:#BA7517"></div><div class="info"><div class="nm">Vàng lúa</div><div class="hx">#BA7517</div><div class="use">Vạch xác nhận, nút hành động, HANGIL</div></div></div>
+    <div class="sw"><div class="chip" style="background:#35C6A5"></div><div class="info"><div class="nm">Bạc hà</div><div class="hx">#35C6A5</div><div class="use">AI, đã kiểm định, trạng thái tốt</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F4F2EC;border-bottom:1px solid var(--line)"></div><div class="info"><div class="nm">Giấy</div><div class="hx">#F4F2EC</div><div class="use">Mũi chóp trong khung, nền sáng</div></div></div>
+  </div>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="sw"><div class="chip" style="background:#0B173A;height:56px"></div><div class="info"><div class="nm">Xanh đêm sâu</div><div class="hx">#0B173A</div></div></div>
+    <div class="sw"><div class="chip" style="background:#7A90C0;height:56px"></div><div class="info"><div class="nm">Xanh 300</div><div class="hx">#7A90C0</div></div></div>
+    <div class="sw"><div class="chip" style="background:#D6DEEE;height:56px"></div><div class="info"><div class="nm">Xanh 100</div><div class="hx">#D6DEEE</div></div></div>
+    <div class="sw"><div class="chip" style="background:#E0A951;height:56px"></div><div class="info"><div class="nm">Vàng 300</div><div class="hx">#E0A951</div><div class="use">Vạch xác nhận trên nền tối</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F5E4C6;height:56px"></div><div class="info"><div class="nm">Vàng 100</div><div class="hx">#F5E4C6</div></div></div>
+    <div class="sw"><div class="chip" style="background:#C9EFE5;height:56px"></div><div class="info"><div class="nm">Bạc hà 100</div><div class="hx">#C9EFE5</div></div></div>
+    <div class="sw"><div class="chip" style="background:#22221F;height:56px"></div><div class="info"><div class="nm">Mực</div><div class="hx">#22221F</div></div></div>
+    <div class="sw"><div class="chip" style="background:#B3261E;height:56px"></div><div class="info"><div class="nm">Cảnh báo</div><div class="hx">#B3261E</div><div class="use">Chỉ lỗi và hàng cấm</div></div></div>
+  </div>
+  <p class="note" style="margin-top:20px"><b>Tỷ lệ 60 / 25 / 10 / 5</b> — giấy, xanh đêm, vàng lúa, bạc hà. Vàng lúa là gia vị, không phải nền.</p>
+</div></section>
+
+<!-- ============ CHU ============ -->
+<section id="chu"><div class="wrap">
+  <h2>05 · Chữ</h2>
+  <h3>Ba vai, không hơn</h3>
+  <div class="spec"><div class="lbl">Tiêu đề lớn</div><div class="sample" style="font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.1">Một con đường,<br>hai quê hương</div></div>
+  <div class="spec"><div class="lbl">Tiêu đề mục</div><div class="sample" style="font-size:23px;font-weight:700;letter-spacing:-.02em">Học tiếng Hàn để sống, không phải để thi</div></div>
+  <div class="spec"><div class="lbl">Nhãn · số<br>Bricolage</div><div class="sample" style="font-family:var(--disp);font-size:15px;font-weight:700;letter-spacing:.2em">KOVIA MARKET · DA KIEM DINH</div></div>
+  <div class="spec"><div class="lbl">Thân bài</div><div class="sample" style="font-size:16px;line-height:1.75;max-width:540px">Hành lang Việt – Hàn hôm nay chạy trên niềm tin phi cấu trúc. Nền tảng này biến niềm tin đó thành thứ kiểm chứng được.</div></div>
+  <div class="spec"><div class="lbl">Tiếng Hàn<br>Pretendard</div><div class="sample ko" style="font-size:25px;font-weight:700">한 길 위에, 두 나라</div></div>
+  <div class="spec"><div class="lbl">Số liệu<br>JetBrains Mono</div><div class="sample" style="font-family:var(--mono);font-size:15px">VSC 1,284 · GMV 512.000.000 ₫</div></div>
+  <p class="note" style="margin-top:22px"><b>Quy tắc bắt buộc:</b> mọi giao diện phải kiểm thử song ngữ trong cùng khối văn bản. Chữ Hàn cao hơn chữ Latin — không đặt <code>line-height</code> riêng thì người Hàn sẽ luôn thấy giao diện sai mà không chỉ ra được vì sao.</p>
+</div></section>
+
+<!-- ============ HE THONG HINH ============ -->
+<section id="hethong"><div class="wrap">
+  <h2>06 · Hệ thống hình</h2>
+  <h3>Ba yếu tố, dùng lại ở mọi nơi</h3>
+  <p>Không tạo hoa văn mới. Mọi hoạ tiết, khung, dấu đầu dòng, trạng thái đều lấy từ ba yếu tố của biểu tượng — đó là thứ khiến một thương hiệu nhỏ trông có hệ thống.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4 style="margin-top:0">Khung dấu — làm khuôn</h4>
+      <div style="display:flex;gap:12px;margin:18px 0;flex-wrap:wrap">
+        <div style="width:56px;height:56px;border-radius:15px;background:var(--night-100)"></div>
+        <div style="width:56px;height:56px;border-radius:15px;background:var(--rice-100)"></div>
+        <div style="width:56px;height:56px;border-radius:15px;background:var(--mint-100)"></div>
+        <div style="width:56px;height:56px;border-radius:15px;border:2px solid var(--night)"></div>
+      </div>
+      <p class="cap">Tỷ lệ bo góc cố định <b>26% cạnh</b>. Dùng cho ảnh đại diện người bán, ảnh sản phẩm, biểu tượng chức năng, thẻ danh mục.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Mũi chóp — làm dấu</h4>
+      <div style="margin:18px 0;font-size:15px;line-height:2.1">
+        <div style="display:flex;gap:10px;align-items:center"><svg width="15" height="15" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 46 L32 18 L52 46" fill="none" stroke="#BA7517" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg> Đã hoàn thành Scene này</div>
+        <div style="display:flex;gap:10px;align-items:center"><svg width="15" height="15" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 46 L32 18 L52 46" fill="none" stroke="#D6DEEE" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg> Chưa mở khoá</div>
+      </div>
+      <p class="cap">Thay cho dấu chấm tròn và dấu tích. Dùng cho danh sách, mốc lộ trình, nút chỉ hướng.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Vạch xác nhận — làm gạch</h4>
+      <div style="margin:20px 0">
+        <div style="display:flex;gap:22px;font-size:14px;font-weight:600;color:var(--muted)">
+          <span style="color:var(--night);border-bottom:3px solid var(--rice);padding-bottom:7px">Chợ</span>
+          <span style="padding-bottom:7px">Học</span>
+          <span style="padding-bottom:7px">Cửa hàng</span>
+        </div>
+        <div style="height:1px;background:var(--line);margin-top:-1px"></div>
+      </div>
+      <p class="cap">Gạch chân mục đang chọn, đường chia mục, thanh tiến độ, trạng thái đã duyệt.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Hoạ tiết nền</h4>
+      <div style="height:78px;border-radius:10px;margin:18px 0;background:
+        repeating-linear-gradient(135deg,rgba(20,43,95,.07) 0 2px,transparent 2px 16px),
+        repeating-linear-gradient(45deg,rgba(20,43,95,.07) 0 2px,transparent 2px 16px),var(--paper)"></div>
+      <p class="cap">Lưới chéo lấy góc từ hai cạnh mũi chóp. Dùng rất nhạt, chỉ cho nền bìa và mảng trống lớn.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ SORI ============ -->
+<section id="sori"><div class="wrap">
+  <h2>07 · Nhân vật</h2>
+  <h3>SORI · <span class="ko">소리</span></h3>
+  <p><span class="ko">소리</span> nghĩa là <b>âm thanh, tiếng nói</b>. SORI không phải giáo viên — SORI là <b>người bạn đi cùng</b>. Mái che trên đầu SORI chính là mũi chóp của biểu tượng, nên nhân vật và logo thuộc cùng một thế giới thay vì là hai thứ ghép vào nhau.</p>
+
+  <div class="grid g3">
+    <div class="card c">
+      <svg width="126" height="142" viewBox="0 0 64 72" role="img" aria-label="SORI đầy đủ">
+        <path d="M16 30 L32 12 L48 30" fill="none" stroke="#142B5F" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 72 Q32 56 47 72" fill="#142B5F"/>
+        <path d="M21 55 Q32 60 43 55" fill="none" stroke="#BA7517" stroke-width="5.5" stroke-linecap="round"/>
+        <circle cx="32" cy="38" r="13" fill="#F4F2EC" stroke="#142B5F" stroke-width="2.4"/>
+        <circle cx="27" cy="38.5" r="2" fill="#142B5F"/>
+        <circle cx="37" cy="38.5" r="2" fill="#142B5F"/>
+        <path d="M28 44 Q32 47.5 36 44" fill="none" stroke="#142B5F" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div class="cap"><b>SORI đầy đủ</b><br>Video, cộng đồng, hướng dẫn</div>
+    </div>
+    <div class="card c">
+      <svg width="116" height="116" viewBox="0 0 64 64" role="img" aria-label="SORI dạng đầu">
+        <path d="M14 26 L32 8 L50 26" fill="none" stroke="#142B5F" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="32" cy="38" r="17" fill="#F4F2EC" stroke="#142B5F" stroke-width="2.8"/>
+        <circle cx="25.5" cy="38.5" r="2.6" fill="#142B5F"/>
+        <circle cx="38.5" cy="38.5" r="2.6" fill="#142B5F"/>
+        <path d="M27 45.5 Q32 50 37 45.5" fill="none" stroke="#142B5F" stroke-width="2.8" stroke-linecap="round"/>
+      </svg>
+      <div class="cap"><b>Dạng đầu</b><br>Avatar, nhãn dán, biểu tượng cảm xúc</div>
+    </div>
+    <div class="card c dark">
+      <svg width="126" height="142" viewBox="0 0 64 72" role="img" aria-label="SORI nền tối">
+        <path d="M16 30 L32 12 L48 30" fill="none" stroke="#D6DEEE" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 72 Q32 56 47 72" fill="#D6DEEE"/>
+        <path d="M21 55 Q32 60 43 55" fill="none" stroke="#E0A951" stroke-width="5.5" stroke-linecap="round"/>
+        <circle cx="32" cy="38" r="13" fill="#0B173A" stroke="#D6DEEE" stroke-width="2.4"/>
+        <circle cx="27" cy="38.5" r="2" fill="#D6DEEE"/>
+        <circle cx="37" cy="38.5" r="2" fill="#D6DEEE"/>
+        <path d="M28 44 Q32 47.5 36 44" fill="none" stroke="#D6DEEE" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div class="cap"><b>Nền tối</b><br>Video, giao diện tối</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>SORI là</th><th>SORI không phải</th></tr>
+    <tr><td>Bạn đồng hành, người đã đi trước một bước</td><td>Giáo viên đứng lớp, người trên cơ</td></tr>
+    <tr><td>Bình tĩnh, thẳng thắn, có chút hài hước</td><td>Dễ thương quá mức, giọng trẻ con</td></tr>
+    <tr><td>Thừa nhận khi không biết và chỉ chỗ hỏi</td><td>Biết tuốt, cam kết chắc nịch</td></tr>
+  </table>
+  <p class="note"><b>Ranh giới:</b> SORI không bao giờ nói về visa, pháp lý hay y tế bằng giọng chắc chắn — chỉ dẫn người dùng tới Trung tâm Quyền lợi, nơi có người thật.</p>
+</div></section>
+
+<!-- ============ UNG DUNG ============ -->
+<section id="ungdung"><div class="wrap">
+  <h2>08 · Ứng dụng</h2>
+  <h3>Nơi thương hiệu thật sự sống</h3>
+
+  <div class="grid g3">
+    <div class="card c">
+      <div class="av" style="width:88px;height:88px"><svg width="52" height="52" viewBox="0 0 64 64" aria-label="Avatar Zalo OA"><path d="M13 45 L32 14 L51 45" fill="none" stroke="#F4F2EC" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="51" width="18" height="5" rx="2.5" fill="#E0A951"/></svg></div>
+      <div class="cap"><b>Zalo OA · Kakao Channel</b><br>Biến thể D, nền xanh đêm đặc</div>
+    </div>
+    <div class="card c">
+      <div style="display:flex;gap:14px;align-items:flex-end">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--night);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 64 64" aria-label="Favicon 32"><path d="M15 45 L32 18 L49 45" fill="none" stroke="#F4F2EC" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="width:16px;height:16px;border-radius:4px;background:var(--night);display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 64 64" aria-label="Favicon 16"><path d="M15 45 L32 18 L49 45" fill="none" stroke="#F4F2EC" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="cap"><b>Favicon 32 · 16 px</b><br>Chỉ mũi chóp, không vạch</div>
+    </div>
+    <div class="card c">
+      <div style="background:var(--mint-100);border:1.5px solid var(--mint);border-radius:999px;padding:8px 16px;display:flex;align-items:center;gap:9px">
+        <svg width="16" height="16" viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="15" fill="#0F6B57"/><path d="M18 42 L32 21 L46 42" fill="none" stroke="#C9EFE5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:12.5px;font-weight:700;color:#0F6B57;letter-spacing:.02em">ĐÃ KIỂM ĐỊNH</span>
+      </div>
+      <div class="cap"><b>Nhãn Chợ Hàn – Việt</b><br>Chính biểu tượng là con dấu — nhãn này dùng lại nguyên hình, đổi màu bạc hà</div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:20px">
+    <div class="card c dark" style="padding:28px">
+      <div style="width:148px;height:262px;border-radius:14px;background:var(--night);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.045) 0 2px,transparent 2px 16px),repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 2px,transparent 2px 16px)"></div>
+        <svg width="46" height="46" viewBox="0 0 64 64" style="position:relative" aria-hidden="true"><path d="M13 45 L32 14 L51 45" fill="none" stroke="#F4F2EC" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="23" y="51" width="18" height="5" rx="2.5" fill="#E0A951"/></svg>
+        <div style="position:relative;text-align:center">
+          <div style="color:#F4F2EC;font-weight:800;font-size:17px;letter-spacing:-.02em">HANGIL <span class="ko">한길</span></div>
+          <div style="color:#E0A951;font-size:10px;font-weight:500;margin-top:5px">Luyện nói với AI · miễn phí</div>
+        </div>
+      </div>
+      <div class="cap">Thẻ kết video — TikTok, Reels, Shorts</div>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Danh thiếp · chữ ký email</h4>
+      <div style="border:1px solid var(--line);border-radius:10px;padding:20px;background:var(--paper);margin:16px 0">
+        <div class="lock" style="margin-bottom:14px">
+          <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="7" width="50" height="50" rx="13" fill="#142B5F"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#F4F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg>
+          <div class="wm" style="font-size:21px">KOVIA</div>
+        </div>
+        <div style="width:38px;height:4px;border-radius:2px;background:var(--rice);margin-bottom:12px"></div>
+        <div style="font-size:14px;font-weight:700;color:var(--night)">Tên · <span class="ko">이름</span></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7">Nhà sáng lập · <span class="ko">창업자</span><br>kovia.vn · hangil.vn</div>
+      </div>
+      <p class="cap">Doanh nghiệp Hàn coi trọng ấn phẩm vật lý. Danh thiếp <b>bắt buộc có mặt tiếng Hàn</b> — thiếu là mất điểm ngay lần gặp đầu.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ QUY TAC ============ -->
+<section id="quytac"><div class="wrap">
+  <h2>09 · Quy tắc</h2>
+  <h3>Sáu điều không được làm</h3>
+  <div class="grid g2">
+    <div class="rule no"><span class="mk">✕</span><p><b>Không đặt bản có khung vào trong một khuôn khác</b> (tròn, vuông, thẻ). Đã có khuôn bao ngoài thì dùng biến thể D.</p></div>
+    <div class="rule no"><span class="mk">✕</span><p><b>Không gradient, không bóng đổ, không viền thêm</b> cho khung dấu.</p></div>
+    <div class="rule no"><span class="mk">✕</span><p><b>Không đổi tỷ lệ bo góc.</b> Luôn 26% cạnh — bo tròn hơn thành logo ứng dụng chung chung, bo vuông hơn thành khối cứng.</p></div>
+    <div class="rule no"><span class="mk">✕</span><p><b>Không xoay, nghiêng hay kéo giãn</b> biểu tượng. Con dấu đóng thẳng.</p></div>
+    <div class="rule no"><span class="mk">✕</span><p><b>Không đổi màu vạch xác nhận</b> sang màu ngoài bảng. Chỉ vàng lúa, vàng 300, hoặc giấy.</p></div>
+    <div class="rule no"><span class="mk">✕</span><p><b>Không dùng ảnh người nổi tiếng, cảnh phim Hàn hay MV K-pop</b> trong bất kỳ ấn phẩm nào. Vi phạm bản quyền một lần là mất kênh.</p></div>
+  </div>
+
+  <h3 style="margin-top:40px">Bốn điều luôn làm</h3>
+  <div class="grid g2">
+    <div class="rule yes"><span class="mk">✓</span><p><b>Kiểm tra ở 40 px và 16 px</b> trước khi duyệt bất kỳ thay đổi nào.</p></div>
+    <div class="rule yes"><span class="mk">✓</span><p><b>Mọi ấn phẩm chạm tới đối tác Hàn đều có bản tiếng Hàn</b> — không phải bản dịch máy chưa qua người kiểm.</p></div>
+    <div class="rule yes"><span class="mk">✓</span><p><b>Giữ tỷ lệ màu 60/25/10/5.</b> Vàng lúa dùng nhiều sẽ mất tác dụng gọi hành động.</p></div>
+    <div class="rule yes"><span class="mk">✓</span><p><b>Dùng lại ba yếu tố</b> thay vì tạo hoạ tiết mới. Đó là toàn bộ hệ thống.</p></div>
+  </div>
+</div></section>
+
+<!-- ============ XUAT FILE ============ -->
+<section id="xuatfile"><div class="wrap">
+  <h2>10 · Danh sách file cần xuất</h2>
+  <h3>Bàn giao cho đội phát triển và nhà in</h3>
+  <table>
+    <tr><th>Nhóm</th><th>File</th><th>Định dạng</th></tr>
+    <tr><td rowspan="4"><b>Biểu tượng</b></td><td>kovia-mark-primary</td><td>SVG · PNG @1x @2x @3x</td></tr>
+    <tr><td>kovia-mark-inverse</td><td>SVG · PNG</td></tr>
+    <tr><td>kovia-mark-mono</td><td>SVG · EPS (cho nhà in)</td></tr>
+    <tr><td>kovia-mark-bare (biến thể D)</td><td>SVG · PNG</td></tr>
+    <tr><td rowspan="2"><b>Khoá chữ</b></td><td>kovia-lockup-horizontal</td><td>SVG · PNG · EPS</td></tr>
+    <tr><td>kovia-lockup-vertical</td><td>SVG · PNG · EPS</td></tr>
+    <tr><td><b>HANGIL</b></td><td>hangil-mark · hangil-lockup</td><td>SVG · PNG</td></tr>
+    <tr><td rowspan="3"><b>Nền tảng</b></td><td>favicon.ico (16/32/48) · apple-touch-icon (180)</td><td>ICO · PNG</td></tr>
+    <tr><td>zalo-oa-avatar · kakao-channel-avatar</td><td>PNG 500×500</td></tr>
+    <tr><td>og-image (chia sẻ mạng xã hội)</td><td>PNG 1200×630</td></tr>
+    <tr><td><b>Chợ</b></td><td>badge-verified (3 cỡ)</td><td>SVG · PNG</td></tr>
+    <tr><td><b>SORI</b></td><td>sori-full · sori-head · sori-dark</td><td>SVG · PNG nền trong</td></tr>
+    <tr><td><b>Video</b></td><td>endcard 9:16 · 1:1 · 16:9</td><td>PNG · dự án dựng</td></tr>
+    <tr><td><b>In ấn</b></td><td>danh thiếp 2 mặt · letterhead · phong bì</td><td>PDF chuẩn in, CMYK</td></tr>
+  </table>
+  <p class="note"><b>Chuyển hệ màu cho nhà in:</b> xanh đêm <code>#142B5F</code> ≈ Pantone 289 C; vàng lúa <code>#BA7517</code> ≈ Pantone 145 C. Bắt buộc in thử trước khi in loạt — hai màu này lệch khá rõ giữa màn hình và giấy.</p>
+</div></section>
+
+<footer><div class="wrap">
+  <div style="width:56px;height:4px;border-radius:2px;background:var(--rice);margin-bottom:22px"></div>
+  <p class="note">Bộ nhận diện v2.0 · phương án Con dấu · 27/07/2026 · đi kèm Đề án v2.3 — Nền tảng hành lang Việt – Hàn.<br>
+  Toàn bộ biểu tượng, nhân vật và hoạ tiết trong tài liệu này là <b>SVG vector</b>, tách ra dùng trực tiếp được trong sản phẩm và ấn phẩm in.</p>
+</div></footer>
+
+</body>
+</html>

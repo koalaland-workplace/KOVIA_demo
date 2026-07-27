@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOVIA ADMIN Portal — Prototype BETA 1.0</title>
+<meta name="description" content="Portal quản trị KOVIA: luồng agentic bảy chặng, cổng phê duyệt bắt buộc, nguồn dữ liệu và định tuyến SORI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sans:"Be Vietnam Pro",system-ui,sans-serif;
+  --disp:"Bricolage Grotesque",var(--sans);
+  --ko:"Noto Sans KR",var(--sans);
+  --mono:"JetBrains Mono",monospace;
+  --f1:20px;--f2:14.5px;--f3:12.6px;--f4:10.6px;
+}
+/* ba theme dùng chung hệ biến với KOVIA APP */
+[data-theme="dau"]{
+  --bg:#F4F2EC; --surf:#FFFFFF; --surf2:#EDF1F8; --ink:#22221F; --muted:#5C6478;
+  --brand:#142B5F; --deep:#0B173A; --onbrand:#FFFFFF; --brandsoft:#8FA3CC;
+  --accent:#BA7517; --acc-s:#F5E4C6; --ok:#35C6A5; --ok-s:#C9EFE5; --ok-d:#0F6B57;
+  --warn:#B3261E; --warn-s:#FADCD9; --line:rgba(20,43,95,.12);
+}
+[data-theme="dem"]{
+  --bg:#0B173A; --surf:#152449; --surf2:rgba(214,222,238,.07); --ink:#E9EEF8; --muted:#93A5C9;
+  --brand:#08122E; --deep:#060D22; --onbrand:#E9EEF8; --brandsoft:#7A90C0;
+  --accent:#E0A951; --acc-s:rgba(224,169,81,.15); --ok:#4FD9B8; --ok-s:rgba(79,217,184,.14); --ok-d:#4FD9B8;
+  --warn:#F08A82; --warn-s:rgba(240,138,130,.14); --line:rgba(214,222,238,.14);
+}
+[data-theme="giay"]{
+  --bg:#EFE8D7; --surf:#FBF7EC; --surf2:#E4DAC2; --ink:#231D0F; --muted:#6B5E42;
+  --brand:#142B5F; --deep:#0B173A; --onbrand:#FBF7EC; --brandsoft:#8FA3CC;
+  --accent:#A05F0C; --acc-s:#F0DFBE; --ok:#2FA98C; --ok-s:#CFEDE3; --ok-d:#0D5B4A;
+  --warn:#9C2018; --warn-s:#F3D9D6; --line:rgba(35,29,15,.15);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:13.6px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:5px}
+.ko{font-family:var(--ko)} .mono{font-family:var(--mono)}
+
+.app{display:flex;min-height:100vh}
+
+/* ---------- rail ---------- */
+.rail{width:222px;flex:none;background:var(--deep);color:#fff;padding:20px 0 16px;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;transition:background .25s}
+.rail .brand{display:flex;align-items:center;gap:9px;padding:0 18px 20px}
+.rail .brand .nm{font-weight:800;letter-spacing:-.04em;font-size:16px;color:#fff}
+.rail .brand .tag{font-family:var(--disp);font-size:8.5px;letter-spacing:.18em;color:var(--accent);
+  display:block;margin-top:1px;font-weight:700}
+.navgrp{padding:0 11px}
+.navlbl{font-family:var(--disp);font-size:8.5px;letter-spacing:.2em;color:#4E6494;
+  text-transform:uppercase;font-weight:700;padding:13px 8px 5px}
+.nav{display:flex;align-items:center;gap:9px;width:100%;padding:8px;border-radius:8px;
+  color:#AEBEDC;font-size:var(--f3);font-weight:500;text-align:left;position:relative;transition:background .14s}
+.nav:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav.on{background:rgba(255,255,255,.09);color:#fff;font-weight:600}
+.nav.on::before{content:"";position:absolute;left:-11px;top:8px;bottom:8px;width:3px;
+  border-radius:0 2px 2px 0;background:var(--accent)}
+.nav .cnt{margin-left:auto;font-family:var(--mono);font-size:9.5px;background:var(--accent);
+  color:#fff;padding:1px 6px;border-radius:999px;font-weight:500}
+.rail .foot{margin-top:auto;padding:14px 18px 0;border-top:1px solid rgba(255,255,255,.09);
+  font-size:10.5px;color:#4E6494}
+
+/* ---------- main ---------- */
+main{flex:1;min-width:0}
+.top{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 28px;
+  display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;transition:background .25s}
+.top h1{margin:0;font-size:17.5px;font-weight:800;letter-spacing:-.025em;color:var(--ink)}
+.top .crumb{font-family:var(--disp);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:1px}
+.tools{margin-left:auto;display:flex;align-items:center;gap:12px}
+.seg{display:flex;background:var(--surf2);border-radius:9px;padding:3px;gap:2px}
+.seg button{width:30px;padding:6px 0;border-radius:7px}
+.seg button .sw{display:block;height:14px;border-radius:5px;box-shadow:0 0 0 1px rgba(0,0,0,.07) inset}
+.seg button.on{box-shadow:0 0 0 2px var(--accent)}
+.who{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted)}
+.who .av{width:28px;height:28px;border-radius:8px;background:var(--brand);color:var(--onbrand);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.wrap{padding:22px 28px 60px;max-width:1160px}
+.page{display:none}.page.on{display:block}
+
+/* ---------- chung ---------- */
+.eyebrow{font-family:var(--disp);font-size:var(--f4);font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+h2.sec{margin:0 0 3px;font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+p.sub{margin:0 0 16px;font-size:var(--f3);color:var(--muted);max-width:640px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:13px}
+.pad{padding:18px}
+.grid{display:grid;gap:13px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(172px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+.kpi{background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:15px 16px}
+.kpi .k{font-family:var(--disp);font-size:var(--f4);font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-size:26px;font-weight:800;letter-spacing:-.035em;color:var(--ink);margin-top:4px;line-height:1}
+.kpi .v em{font-style:normal;font-size:12px;font-weight:600;color:var(--muted)}
+.kpi .d{font-size:11px;margin-top:5px;font-weight:600}
+.kpi .d.up{color:var(--ok-d)}.kpi .d.dn{color:var(--warn)}
+
+/* ---------- pipeline ---------- */
+.pipe{background:var(--deep);border-radius:13px;padding:22px 20px;color:#fff;position:relative;overflow:hidden}
+.pipe::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 2px,transparent 2px 15px),
+             repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 2px,transparent 2px 15px)}
+.pipe h3{margin:0 0 2px;font-size:14px;font-weight:700;position:relative;z-index:1;color:#fff}
+.pipe .note{margin:0 0 18px;font-size:11.5px;color:#8FA3CC;position:relative;z-index:1}
+.stages{display:flex;align-items:stretch;gap:6px;position:relative;z-index:1;overflow-x:auto;padding-bottom:4px}
+.stages::-webkit-scrollbar{height:5px}
+.stages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:3px}
+.stg{flex:1;min-width:98px;border-radius:9px;padding:10px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09)}
+.stg .n{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.14em;color:#8FA3CC}
+.stg .t{font-size:11.8px;font-weight:600;margin-top:3px;line-height:1.35;color:#fff}
+.stg .s{font-family:var(--mono);font-size:9.5px;margin-top:6px;color:var(--ok)}
+.stg.auto .n{color:var(--ok)}
+.stg.gate{background:var(--accent);border-color:rgba(255,255,255,.35);flex:1.5;min-width:142px;
+  box-shadow:0 0 0 4px rgba(186,117,23,.24)}
+.stg.gate .n{color:#4A2E08}
+.stg.gate .t{color:#fff;font-weight:800;font-size:13px}
+.stg.gate .s{color:#FDF0D8}
+.stg.gate .q{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.03em;margin-top:5px;line-height:1}
+
+/* ---------- bảng ---------- */
+table{border-collapse:collapse;width:100%;font-size:var(--f3)}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{background:var(--surf2);font-family:var(--disp);font-size:var(--f4);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);font-weight:700}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--acc-s)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--surf)}
+
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;
+  font-size:10.5px;font-weight:600;white-space:nowrap}
+.pill.mint{background:var(--ok-s);color:var(--ok-d)}
+.pill.gold{background:var(--acc-s);color:var(--accent)}
+.pill.grey{background:var(--surf2);color:var(--muted)}
+.pill.red{background:var(--warn-s);color:var(--warn)}
+
+/* ---------- cổng phê duyệt ---------- */
+.lanes{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;align-items:start}
+.lane h3{margin:0;font-size:13.5px;font-weight:800;color:var(--ink);letter-spacing:-.015em}
+.lane .lh{display:flex;align-items:baseline;gap:8px;margin-bottom:11px}
+.lane .lh .c{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.item{background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:14px 15px;
+  margin-bottom:11px;position:relative;overflow:hidden}
+.item.go{animation:slide .55s ease forwards}
+@keyframes slide{0%,55%{opacity:1}100%{opacity:0;transform:translateX(24px) scale(.97);
+  margin-bottom:-4px;max-height:0;padding-top:0;padding-bottom:0;border-width:0}}
+.item .hd{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}
+.item .thumb{width:56px;height:56px;border-radius:15px;background:var(--deep);flex:none;
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.item .thumb::after{content:"";position:absolute;inset:0;z-index:1;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 2px,transparent 2px 12px)}
+.item .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  opacity:0;transition:opacity .3s}
+.item .thumb img.ok{opacity:1}
+.item h4{margin:0 0 2px;font-size:13.5px;font-weight:700;color:var(--ink);letter-spacing:-.015em;line-height:1.35}
+.item .kr{font-family:var(--ko);font-size:11.5px;color:var(--muted);margin:0}
+.item .row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.item .acts{display:flex;gap:7px;flex-wrap:wrap}
+.stampmark{position:absolute;right:14px;top:11px;opacity:0;z-index:4}
+.item.go .stampmark{animation:press .5s cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes press{0%{opacity:0;transform:scale(1.7) rotate(-16deg)}
+  45%{opacity:1;transform:scale(.94) rotate(-9deg)}100%{opacity:1;transform:scale(1) rotate(-9deg)}}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;
+  font-size:12px;font-weight:700;letter-spacing:-.01em;transition:transform .12s,filter .12s}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:var(--brand);color:var(--onbrand)}
+.btn.gold{background:var(--accent);color:#fff}
+.btn.gold:hover{filter:brightness(1.08)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--accent)}
+.btn.sm{padding:6px 10px;font-size:11.5px}
+
+.empty{border:1.5px dashed var(--line);border-radius:13px;padding:28px 20px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+
+/* ---------- soạn kịch bản ---------- */
+.beat{border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:10px;background:var(--surf)}
+.beat .bh{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.beat .bh .lb{font-family:var(--disp);font-size:var(--f4);font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent)}
+.beat textarea{width:100%;border:none;resize:vertical;font:inherit;font-size:var(--f3);line-height:1.6;
+  color:var(--ink);background:transparent;min-height:40px}
+.beat textarea:focus{outline:none}
+.aihint{background:var(--surf2);border-radius:8px;padding:9px 11px;font-size:11.5px;color:var(--muted);
+  margin-top:8px;display:flex;gap:8px}
+
+/* ---------- gói xuất bản ---------- */
+.mode{display:inline-flex;background:var(--surf2);border-radius:9px;padding:3px;gap:2px;margin-bottom:14px}
+.mode button{padding:7px 13px;border-radius:7px;font-size:11.8px;font-weight:600;color:var(--muted)}
+.mode button.on{background:var(--surf);color:var(--ink);box-shadow:0 1px 3px rgba(20,43,95,.12)}
+.chan{display:flex;align-items:center;gap:12px;padding:12px 15px;border-bottom:1px solid var(--line)}
+.chan:last-child{border-bottom:none}
+.chan .ic{width:32px;height:32px;border-radius:10px;background:var(--surf2);flex:none;
+  display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;
+  font-size:10px;color:var(--ink)}
+.chan .nm{font-weight:600;font-size:12.5px;color:var(--ink)}
+.chan .hk{font-size:11px;color:var(--muted);margin-top:1px}
+.chan .rt{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+/* ---------- quota ---------- */
+.qbar{height:6px;border-radius:3px;background:var(--surf2);overflow:hidden;margin-top:6px;min-width:100px}
+.qbar i{display:block;height:100%;border-radius:3px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(90px);
+  background:var(--brand);color:var(--onbrand);padding:11px 18px;border-radius:11px;font-size:12.5px;
+  font-weight:600;box-shadow:0 12px 34px rgba(11,23,58,.32);transition:transform .3s;z-index:60;
+  display:flex;align-items:center;gap:9px}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:1000px){.lanes{grid-template-columns:1fr}}
+@media(max-width:820px){
+  .rail{display:none}
+  .wrap{padding:18px}
+  .top{padding:12px 18px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
+  .item.go{display:none}}
+</style>
+</head>
+<body data-theme="dau">
+<div class="app">
+
+<nav class="rail" aria-label="Điều hướng Portal">
+  <div class="brand">
+    <svg width="30" height="30" viewBox="0 0 64 64" aria-label="KOVIA"><rect x="7" y="7" width="50" height="50" rx="13" fill="#F4F2EC"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#142B5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"/></svg>
+    <div><span class="nm">KOVIA</span><span class="tag">ADMIN PORTAL</span></div>
+  </div>
+  <div class="navgrp" id="nav"></div>
+  <div class="foot">BETA 1.0 · dữ liệu mẫu<br>Bản dựng 27/07/2026</div>
+</nav>
+
+<main>
+  <div class="top">
+    <div><span class="crumb" id="crumb">Tổng quan</span><h1 id="ttl">Bảng điều khiển</h1></div>
+    <div class="tools">
+      <div class="seg" id="segtheme" role="group" aria-label="Giao diện">
+        <button class="on" onclick="theme('dau',this)" aria-label="Con Dấu"><span class="sw" style="background:linear-gradient(90deg,#F4F2EC 0 34%,#142B5F 34% 72%,#BA7517 72%)"></span></button>
+        <button onclick="theme('dem',this)" aria-label="Ca Đêm"><span class="sw" style="background:linear-gradient(90deg,#0B173A 0 34%,#152449 34% 72%,#E0A951 72%)"></span></button>
+        <button onclick="theme('giay',this)" aria-label="Giấy Dó"><span class="sw" style="background:linear-gradient(90deg,#EFE8D7 0 34%,#142B5F 34% 72%,#A05F0C 72%)"></span></button>
+      </div>
+      <div class="who"><span>Minh · Biên tập</span><div class="av">M</div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+  <!-- ===== BẢNG ĐIỀU KHIỂN ===== -->
+  <div class="page on" id="p-dash">
+    <div class="pipe">
+      <h3>Luồng sản xuất — bảy chặng</h3>
+      <p class="note">Sáu chặng chạy tự động. Chặng 4 là cổng bắt buộc — không tác nhân nào được vượt.</p>
+      <div class="stages" id="stages"></div>
+    </div>
+
+    <div class="grid g4" style="margin-top:14px">
+      <div class="kpi"><div class="k">Mảnh tuần này</div><div class="v">47</div><div class="d up">↑ 9 so với tuần trước</div></div>
+      <div class="kpi"><div class="k">Chi phí / mảnh</div><div class="v">118<em>k ₫</em></div><div class="d up">↓ 22% so với T3</div></div>
+      <div class="kpi"><div class="k">Chờ phê duyệt</div><div class="v" id="kq">6</div><div class="d dn">2 quá 24 giờ</div></div>
+      <div class="kpi"><div class="k">Zalo OA</div><div class="v">8.412</div><div class="d up">↑ 8,4% / tháng</div></div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="eyebrow">Cần bạn xử lý</div>
+      <h2 class="sec">Ba việc đang tắc</h2>
+      <p class="sub">Xếp theo thứ tự chặn nhiều việc khác nhất</p>
+      <div class="tw"><table>
+        <thead><tr><th>Việc</th><th>Chặng</th><th>Chờ</th><th>Chặn</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><b>Xin nghỉ ốm giữa ca</b><br><span class="mono" style="font-size:10.5px;color:var(--muted)">SCN-0142</span></td>
+              <td><span class="pill gold">Chờ bản ngữ duyệt</span></td><td class="mono">31 giờ</td><td>4 biến thể</td>
+              <td><button class="btn ghost sm" onclick="nav('p-approve')">Mở</button></td></tr>
+          <tr><td><b>Thương lượng tiền cọc phòng trọ</b><br><span class="mono" style="font-size:10.5px;color:var(--muted)">SCN-0139</span></td>
+              <td><span class="pill gold">Chờ biên tập duyệt</span></td><td class="mono">26 giờ</td><td>4 biến thể</td>
+              <td><button class="btn ghost sm" onclick="nav('p-approve')">Mở</button></td></tr>
+          <tr><td><b>Khai báo tai nạn lao động</b><br><span class="mono" style="font-size:10.5px;color:var(--muted)">SCN-0151</span></td>
+              <td><span class="pill red">Cần người thật viết</span></td><td class="mono">4 giờ</td><td>1 biến thể</td>
+              <td><button class="btn ghost sm" onclick="nav('p-script')">Mở</button></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ===== KHO CHỦ ĐỀ ===== -->
+  <div class="page" id="p-topics">
+    <div class="eyebrow">Chặng 1 · Ý tưởng</div>
+    <h2 class="sec">Kho chủ đề</h2>
+    <p class="sub">Tác nhân Ý tưởng gom từ bình luận, câu hỏi cộng đồng, xu hướng Naver và từ khoá tìm kiếm. Điểm nhu cầu = số người hỏi × độ khó tìm câu trả lời × khả năng chuyển đổi.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Chủ đề</th><th>Người đối thoại</th><th>Nguồn</th><th>Điểm</th><th>Trạng thái</th><th></th></tr></thead>
+      <tbody id="topics"></tbody>
+    </table></div>
+  </div>
+
+  <!-- ===== SOẠN KỊCH BẢN ===== -->
+  <div class="page" id="p-script">
+    <div class="eyebrow">Chặng 2 · Kịch bản</div>
+    <h2 class="sec">Xin nghỉ ốm giữa ca</h2>
+    <p class="sub">Tác nhân Kịch bản đã dựng nháp theo công thức 5 nhịp. Sửa trực tiếp, rồi gửi sang cổng phê duyệt.</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+      <span class="pill grey mono">SCN-0142</span>
+      <span class="pill grey">Với quản đốc · <span class="ko">반장</span></span>
+      <span class="pill gold">Kính ngữ 4/5</span>
+      <span class="pill mint">Nguồn đã đối chiếu</span>
+    </div>
+    <div class="beat"><div class="bh"><span class="chv"></span><span class="lb">Nhịp 1 · Hook</span></div>
+      <textarea>Đang giữa ca mà chóng mặt. Nói sai một chữ là bị nhớ mặt cả tháng.</textarea></div>
+    <div class="beat"><div class="bh"><span class="chv"></span><span class="lb">Nhịp 2 · Mẫu câu</span></div>
+      <textarea class="ko">반장님, 몸이 좀 안 좋은데 조퇴해도 괜찮을까요?</textarea></div>
+    <div class="beat"><div class="bh"><span class="chv"></span><span class="lb">Nhịp 3 · Giải mã văn hoá</span></div>
+      <textarea>Đừng nói thẳng 조퇴할게요 — đó là báo, không phải xin. Với quản đốc phải hỏi bằng -을까요? để họ giữ quyền quyết định.</textarea>
+      <div class="aihint"><span class="soricon"></span><span>Tác nhân đề xuất thêm cảnh báo về việc bỏ <span class="ko">님</span> sau <span class="ko">반장</span> — lỗi này xuất hiện trong 34 bình luận tháng qua.</span></div></div>
+    <div class="beat"><div class="bh"><span class="chv"></span><span class="lb">Nhịp 4 · Luyện tập</span></div>
+      <textarea>Nói theo, chậm hai lần. Chú ý xuống giọng ở 까요.</textarea></div>
+    <div class="beat"><div class="bh"><span class="chv"></span><span class="lb">Nhịp 5 · Hành động</span></div>
+      <textarea>Luyện với quản đốc AI trong app — miễn phí.</textarea></div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn pri" onclick="toast('Đã gửi sang cổng phê duyệt')">Gửi sang phê duyệt</button>
+      <button class="btn ghost" onclick="toast('Đã lưu nháp')">Lưu nháp</button>
+    </div>
+  </div>
+
+  <!-- ===== PHÊ DUYỆT ===== -->
+  <div class="page" id="p-approve">
+    <div class="eyebrow">Chặng 4 · Cổng bắt buộc</div>
+    <h2 class="sec">Hàng đợi phê duyệt</h2>
+    <p class="sub">Không nội dung nào ra khỏi hệ thống mà không có người đóng dấu. Mỗi lần duyệt được ghi vào nhật ký: ai duyệt, lúc nào, sửa gì.</p>
+    <div class="lanes">
+      <div class="lane">
+        <div class="lh"><h3>Chờ biên tập duyệt</h3><span class="c" id="c-bt">3 mục</span></div>
+        <div id="lane-bt"></div>
+      </div>
+      <div class="lane">
+        <div class="lh"><h3>Chờ bản ngữ Hàn duyệt kính ngữ</h3><span class="c" id="c-bn">3 mục</span></div>
+        <div id="lane-bn"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GÓI XUẤT BẢN ===== -->
+  <div class="page" id="p-publish">
+    <div class="eyebrow">Chặng 5 · Đăng</div>
+    <h2 class="sec">Gói xuất bản</h2>
+    <p class="sub">Một tài sản gốc, năm nền tảng, hook viết lại riêng cho từng nơi. BETA 1.0 chạy chế độ thủ công vì API các nền tảng còn chờ duyệt.</p>
+    <div class="mode" role="tablist">
+      <button class="on" onclick="mode(this,1)" role="tab">Thủ công · đang dùng</button>
+      <button onclick="mode(this,0)" role="tab">Tự động qua API</button>
+    </div>
+    <div id="modenote" class="card pad" style="margin-bottom:14px;font-size:var(--f3);color:var(--muted)">
+      <b style="color:var(--ink)">Chế độ thủ công.</b> Portal dựng sẵn video đúng tỷ lệ, phụ đề, thumbnail và caption cho từng nền tảng. Bạn tải về rồi đăng tay. Khi API được duyệt, bật chế độ tự động — không phải làm lại gì.
+    </div>
+    <div class="card" style="overflow:hidden">
+      <div style="padding:15px 15px 3px"><b style="color:var(--ink)">SCN-0142 · Xin nghỉ ốm giữa ca</b>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">Đã duyệt 27/07 · Minh (biên tập) và Jiwon (bản ngữ)</div></div>
+      <div id="chans"></div>
+      <div style="padding:13px 15px;border-top:1px solid var(--line);display:flex;gap:8px">
+        <button class="btn gold" onclick="toast('Đã tải gói 5 nền tảng')">Tải cả gói</button>
+        <button class="btn ghost" onclick="toast('Đã đặt lịch nhắc đăng')">Đặt lịch nhắc</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ĐO LƯỜNG ===== -->
+  <div class="page" id="p-measure">
+    <div class="eyebrow">Chặng 6 và 7 · Đo lường và tối ưu</div>
+    <h2 class="sec">Scene nào sinh ra người trả tiền</h2>
+    <p class="sub">Xếp theo giá trị sinh ra, không xếp theo lượt xem. Đây là bảng quyết định sản xuất tháng sau.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Scene</th><th>Lượt xem</th><th>Sang Zalo OA</th><th>Đăng ký</th><th>D30</th><th>Hạng</th></tr></thead>
+      <tbody id="roi"></tbody>
+    </table></div>
+    <div class="card pad" style="margin-top:14px;display:flex;gap:11px;align-items:flex-start">
+      <span class="soricon"></span>
+      <div style="font-size:var(--f3)"><b style="color:var(--ink)">Tác nhân Tối ưu đề xuất:</b> nhóm “Với cơ quan, xuất nhập cảnh” có lượt xem thấp nhất nhưng tỷ lệ sang Zalo OA cao gấp 3 lần trung bình. Đề nghị tăng sản lượng nhóm này lên gấp đôi trong tháng 8.
+        <div style="margin-top:9px;display:flex;gap:7px"><button class="btn pri sm" onclick="toast('Đã thêm 12 chủ đề vào kho')">Chấp nhận</button><button class="btn ghost sm" onclick="toast('Đã bỏ qua')">Bỏ qua</button></div></div>
+    </div>
+  </div>
+
+  <!-- ===== NGUỒN DỮ LIỆU ===== -->
+  <div class="page" id="p-sources">
+    <div class="eyebrow">Hệ thống</div>
+    <h2 class="sec">Nguồn dữ liệu</h2>
+    <p class="sub">Mọi nguồn đều là API chính thức. Không cào dữ liệu, không dùng công cụ không chính thức — đây là điều khoản cứng, không phải khuyến nghị.</p>
+    <div class="grid g2" id="srcs"></div>
+    <div class="card pad" style="margin-top:14px;border-left:3px solid var(--warn)">
+      <b style="color:var(--warn);font-size:var(--f3)">Naver Clip — không khả thi</b>
+      <p style="margin:5px 0 0;font-size:var(--f3);color:var(--muted);max-width:640px">Naver không mở API cho Clip, và tải video về dùng lại là xâm phạm bản quyền. Feed video ngắn của KOVIA vì thế gồm hai thứ: nội dung tự sản xuất, và playlist YouTube đã tuyển chọn nhúng qua IFrame Player.</p>
+    </div>
+  </div>
+
+  <!-- ===== SORI ===== -->
+  <div class="page" id="p-sori">
+    <div class="eyebrow">Hệ thống</div>
+    <h2 class="sec">SORI · <span class="ko">소리</span></h2>
+    <p class="sub">Trợ lý trong app. Không dùng một model duy nhất — định tuyến theo loại việc để giữ chi phí thấp mà vẫn đúng ở chỗ cần đúng.</p>
+
+    <h2 class="sec" style="font-size:13.5px;margin-top:4px">Định tuyến theo loại việc</h2>
+    <p class="sub">Ước tính chi phí mỗi triệu token, cập nhật 7/2026</p>
+    <div class="tw" style="margin-bottom:18px"><table>
+      <thead><tr><th>Loại việc</th><th>Tầng model</th><th>Chi phí vào/ra</th><th>Người duyệt</th><th>Tỷ trọng</th></tr></thead>
+      <tbody id="routes"></tbody>
+    </table></div>
+
+    <h2 class="sec" style="font-size:13.5px">Hàng rào — không có ngoại lệ</h2>
+    <p class="sub">Áp cho mọi tầng model, mọi tác nhân</p>
+    <div class="grid g2" id="guards"></div>
+  </div>
+
+  <!-- ===== PHÂN QUYỀN ===== -->
+  <div class="page" id="p-people">
+    <div class="eyebrow">Hệ thống</div>
+    <h2 class="sec">Người dùng và phân quyền</h2>
+    <p class="sub">Sáu vai. Quyền duyệt ở chặng 4 chỉ cấp cho biên tập và bản ngữ — không cấp cho tác nhân, không cấp cho người bán.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Người</th><th>Vai</th><th>Duyệt chặng 4</th><th>Xuất bản</th><th>Hoạt động cuối</th></tr></thead>
+      <tbody id="people"></tbody>
+    </table></div>
+  </div>
+
+  </div>
+</main>
+</div>
+
+<div class="toast" id="toast"><svg width="14" height="14" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 36 L26 50 L52 16" fill="none" stroke="#35C6A5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="tmsg"></span></div>
+
+<script>
+(function(){
+var C='https://commons.wikimedia.org/wiki/Special:FilePath/';
+var PAGES={'p-dash':['Tổng quan','Bảng điều khiển'],'p-topics':['Chặng 1','Kho chủ đề'],
+ 'p-script':['Chặng 2','Soạn kịch bản'],'p-approve':['Chặng 4','Hàng đợi phê duyệt'],
+ 'p-publish':['Chặng 5','Gói xuất bản'],'p-measure':['Chặng 6 và 7','Đo lường'],
+ 'p-sources':['Hệ thống','Nguồn dữ liệu'],'p-sori':['Hệ thống','SORI'],
+ 'p-people':['Hệ thống','Người dùng và phân quyền']};
+var NAV=[{g:'Tổng quan',items:[['p-dash','Bảng điều khiển']]},
+ {g:'Luồng sản xuất',items:[['p-topics','Kho chủ đề'],['p-script','Soạn kịch bản'],['p-approve','Phê duyệt',1],['p-publish','Gói xuất bản']]},
+ {g:'Kết quả',items:[['p-measure','Đo lường']]},
+ {g:'Hệ thống',items:[['p-sources','Nguồn dữ liệu'],['p-sori','SORI'],['p-people','Người dùng']]}];
+
+function css(v){return getComputedStyle(document.body).getPropertyValue(v).trim()}
+function chev(c,w){return '<svg width="'+(w||14)+'" height="'+(w||14)+'" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 44 L32 20 L50 44" fill="none" stroke="'+c+'" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+function sori(w){w=w||20;return '<svg width="'+w+'" height="'+w+'" viewBox="0 0 64 64" style="flex:none" aria-hidden="true">'+
+ '<path d="M13 46 Q13 30 32 30 Q51 30 51 46 Z" fill="#142B5F"/>'+
+ '<path d="M14 27 L32 10 L50 27" fill="none" stroke="#BA7517" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'+
+ '<circle cx="32" cy="35" r="13" fill="#F4F2EC" stroke="#142B5F" stroke-width="2.6"/>'+
+ '<circle cx="27" cy="35" r="2.3" fill="#142B5F"/><circle cx="37" cy="35" r="2.3" fill="#142B5F"/>'+
+ '<path d="M27.5 41 Q32 45 36.5 41" fill="none" stroke="#142B5F" stroke-width="2.6" stroke-linecap="round"/>'+
+ '<path d="M52 30 Q56 36 52 42" fill="none" stroke="#35C6A5" stroke-width="3" stroke-linecap="round"/></svg>'}
+
+var ST=[{n:'01',t:'Ý tưởng',s:'12 chủ đề'},{n:'02',t:'Kịch bản',s:'4 nháp'},
+ {n:'03',t:'Sản xuất',s:'2 đang dựng'},{n:'04',gate:1},
+ {n:'05',t:'Đăng',s:'thủ công'},{n:'06',t:'Đo lường',s:'đang chạy'},{n:'07',t:'Tối ưu',s:'1 đề xuất'}];
+function paintPipe(q){
+  document.getElementById('stages').innerHTML=ST.map(function(x){
+    if(x.gate) return '<div class="stg gate"><div class="n">04 · CỔNG NGƯỜI</div><div class="t">Phê duyệt</div>'+
+      '<div class="q">'+q+'</div><div class="s">đang chờ · agent không vượt</div></div>';
+    return '<div class="stg auto"><div class="n">'+x.n+' · TỰ ĐỘNG</div><div class="t">'+x.t+'</div><div class="s">'+x.s+'</div></div>';}).join('');
+  document.getElementById('kq').textContent=q;
+}
+
+var Q=[
+ {id:'SCN-0142',t:'Xin nghỉ ốm giữa ca',k:'반장님, 몸이 좀 안 좋은데 조퇴해도 괜찮을까요?',lane:'bn',
+  im:C+'Korea-Seoul-Subway-inside-01.jpg?width=200',tags:[['gold','Kính ngữ 4/5'],['grey','4 biến thể'],['red','Chờ 31 giờ']]},
+ {id:'SCN-0139',t:'Thương lượng tiền cọc phòng trọ',k:'보증금을 조금 낮춰 주실 수 있을까요?',lane:'bt',
+  im:'https://picsum.photos/seed/kovia-room/200/200',tags:[['gold','Kính ngữ 3/5'],['grey','4 biến thể'],['red','Chờ 26 giờ']]},
+ {id:'SCN-0147',t:'Báo lỗi sản phẩm trên chuyền',k:'라인에 불량이 나왔습니다. 확인 부탁드립니다.',lane:'bn',
+  im:'https://picsum.photos/seed/kovia-factory/200/200',tags:[['gold','Kính ngữ 4/5'],['grey','4 biến thể'],['mint','Nguồn đã đối chiếu']]},
+ {id:'SCN-0150',t:'Đặt lịch khám ở phòng khám nội',k:'목이 아프고 열이 나요.',lane:'bt',
+  im:'https://picsum.photos/seed/kovia-clinic/200/200',tags:[['gold','Kính ngữ 3/5'],['grey','3 biến thể']]},
+ {id:'SCN-0153',t:'Xin gia hạn nộp bài với giáo sư',k:'교수님, 제출 기한을 조금 연장해 주실 수 있을까요?',lane:'bn',
+  im:'https://picsum.photos/seed/kovia-campus/200/200',tags:[['gold','Kính ngữ 5/5'],['grey','4 biến thể']]},
+ {id:'SCN-0155',t:'Hỏi đường ở ga tàu điện',k:'2호선 갈아타는 곳이 어디예요?',lane:'bt',
+  im:C+'Seoul_Subway_map_(English)_(4259059378).jpg?width=200',tags:[['gold','Kính ngữ 2/5'],['grey','3 biến thể']]}];
+
+function card(x){
+  return '<div class="item" id="it-'+x.id+'">'+
+   '<div class="stampmark"><svg width="38" height="38" viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="7" width="50" height="50" rx="13" fill="#35C6A5" opacity=".92"/><path d="M19 42 L32 21 L45 42" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="47" width="16" height="4" rx="2" fill="#fff"/></svg></div>'+
+   '<div class="hd"><div class="thumb"><img alt="" loading="lazy" src="'+x.im+'" onload="this.classList.add(\'ok\')" onerror="this.remove()">'+
+   '<svg width="17" height="17" viewBox="0 0 64 64" style="position:relative;z-index:2" aria-hidden="true"><path d="M24 14 L48 32 L24 50 Z" fill="#F4F2EC" opacity=".9"/></svg></div>'+
+   '<div><h4>'+x.t+'</h4><p class="kr">'+x.k+'</p></div></div>'+
+   '<div class="row"><span class="pill grey mono">'+x.id+'</span>'+x.tags.map(function(t){return '<span class="pill '+t[0]+'">'+t[1]+'</span>'}).join('')+'</div>'+
+   '<div class="acts"><button class="btn gold sm" onclick="ok(\''+x.id+'\')">Đóng dấu duyệt</button>'+
+   '<button class="btn ghost sm" onclick="toast(\'Đã trả về biên tập kèm ghi chú\')">Trả lại sửa</button>'+
+   '<button class="btn ghost sm" onclick="toast(\'Đang mở bản xem trước 5 nền tảng\')">Xem trước</button></div></div>';
+}
+function paintQ(){
+  ['bt','bn'].forEach(function(l){
+    var list=Q.filter(function(x){return x.lane===l});
+    document.getElementById('lane-'+l).innerHTML=list.length?list.map(card).join('')
+      :'<div class="empty"><b>Trống</b>Không còn gì chờ duyệt ở làn này.</div>';
+    document.getElementById('c-'+l).textContent=list.length+' mục';});
+  paintPipe(Q.length); paintNav(curPage);
+}
+window.ok=function(id){
+  var el=document.getElementById('it-'+id); if(!el) return;
+  el.classList.add('go');
+  setTimeout(function(){Q=Q.filter(function(x){return x.id!==id});paintQ();toast('Đã đóng dấu · ghi vào nhật ký')},560);
+};
+
+var TP=[['Bị trừ lương sai, hỏi lại thế nào','반장 · Quản đốc','142 bình luận',96,'mint','Đã dựng kịch bản'],
+ ['Gia hạn visa D-2 cần giấy gì','공무원 · Cơ quan','88 câu hỏi',91,'gold','Chờ nguồn đối chiếu'],
+ ['Khai báo tai nạn lao động','회사 · Công ty','61 bình luận',89,'red','Cần người thật viết'],
+ ['Cách nạp thẻ T-money','교통 · Đi lại',' 57 tìm kiếm',82,'gold','Chờ nguồn đối chiếu'],
+ ['Hỏi về tiền quản lý phòng trọ','집주인 · Chủ nhà','54 tìm kiếm',74,'grey','Trong kho'],
+ ['Đổi ca với đồng nghiệp','동료 · Đồng nghiệp','47 bình luận',68,'grey','Trong kho']];
+
+var CH=[['TT','TikTok','9:16 · 74 giây · phụ đề cháy sẵn','Sẵn sàng','mint'],
+ ['YT','YouTube Shorts','9:16 · 74 giây · caption riêng','Sẵn sàng','mint'],
+ ['YT','YouTube dài','16:9 · 4 phút 20 · chương mục','Đang dựng','gold'],
+ ['FB','Facebook Page và Group','1:1 · 74 giây · post kèm 3 dòng','Sẵn sàng','mint'],
+ ['ZA','Zalo OA','Bài đăng kèm ảnh bìa','Sẵn sàng','mint']];
+
+var RO=[['Bị trừ lương sai, hỏi lại thế nào','반장','214.000','9,4%','412','31%',1],
+ ['Gia hạn visa D-2 cần giấy gì','공무원','86.000','12,1%','388','29%',2],
+ ['Xin nghỉ ốm giữa ca','반장','341.000','6,2%','344','26%',3],
+ ['Thương lượng tiền cọc','집주인','128.000','7,0%','198','24%',4],
+ ['Gọi món ở quán nướng','가게','508.000','1,1%','92','11%',5]];
+
+var SRC=[
+ {n:'Naver Search API',u:'Tin ngắn, xu hướng từ khoá, bài cafe',q:'3.140 / 25.000 lượt hôm nay',p:13,c:'ok',s:['mint','Đang chạy']},
+ {n:'YouTube Data API v3',u:'Tuyển playlist video ngắn, lấy metadata',q:'6.200 / 10.000 đơn vị hôm nay',p:62,c:'warn',s:['gold','Sát hạn mức']},
+ {n:'TourAPI 4.0',u:'Điểm đến, sự kiện, lưu trú cho mục du lịch',q:'Chờ cấp khoá tại data.go.kr',p:0,c:'muted',s:['grey','Chờ duyệt']},
+ {n:'ODsay LAB',u:'Tìm đường, tàu điện, xe buýt toàn quốc',q:'Chưa nối',p:0,c:'muted',s:['grey','Chưa nối']},
+ {n:'Kakao Map API',u:'Tìm địa điểm, chuyển toạ độ ↔ địa chỉ',q:'Chưa nối',p:0,c:'muted',s:['grey','Chưa nối']},
+ {n:'Dữ liệu mở Seoul',u:'Giờ tàu đến thời gian thực, lộ trình chuyển tuyến',q:'Chưa nối',p:0,c:'muted',s:['grey','Chưa nối']}];
+
+var RT=[['Phân loại bình luận, dịch tin, tóm tắt','Rẻ nhất','$0,10 – $0,40','Không','~70%','mint'],
+ ['SORI hội thoại đời thường, tra đường','Tầm trung','$0,60 – $2,40','Không','~20%','mint'],
+ ['Sinh nội dung bán hàng cho người bán','Tầm trung','$0,60 – $2,40','Có · biên tập','~5%','gold'],
+ ['Chấm kính ngữ, giải mã văn hoá','Mạnh + RAG','$2 – $15','Có · bản ngữ Hàn','~4%','gold'],
+ ['Visa, luật lao động, y tế','Mạnh + RAG','$2 – $15','Bắt buộc · người thật','~1%','red']];
+
+var GD=[['Không tự đăng','Chặng 4 là cổng cứng. Không tác nhân nào vượt được, kể cả khi đã duyệt mẫu.'],
+ ['Không cam kết kết quả','Không hứa visa, việc làm, thu nhập, hiệu quả sản phẩm — bằng bất kỳ cách diễn đạt nào.'],
+ ['Nguồn truy được','Mọi thông tin pháp lý phải dẫn về văn bản gốc kèm ngày cập nhật. Dưới ngưỡng tin cậy thì nói không chắc và chuyển người thật.'],
+ ['Không đọc tin nhắn cá nhân','Không dùng công cụ không chính thức trên Zalo hay KakaoTalk. Vi phạm điều khoản nền tảng và luật dữ liệu hai nước.'],
+ ['Tách kho dữ liệu','Dữ liệu cá nhân, dữ liệu giao dịch và dữ liệu huấn luyện là ba kho riêng, quyền truy cập riêng.'],
+ ['Nút dừng khẩn cấp','Gỡ toàn bộ nội dung một chiến dịch trong 5 phút. Nhật ký ghi ai duyệt, lúc nào, sửa gì.']];
+
+var PE=[['Minh','Biên tập','Có','Có','2 phút trước'],
+ ['Jiwon · 지원','Bản ngữ duyệt','Có · chỉ kính ngữ','Không','18 phút trước'],
+ ['Hà','Sản xuất','Không','Không','1 giờ trước'],
+ ['Tuấn','Quản trị','Có','Có','Hôm qua'],
+ ['Tác nhân Kịch bản','Agent','Không','Không','Đang chạy'],
+ ['Tác nhân Đăng','Agent','Không','Có · sau khi duyệt','Đang chạy']];
+
+var curPage='p-dash';
+function paintNav(cur){
+  document.getElementById('nav').innerHTML=NAV.map(function(s){
+    return '<div class="navlbl">'+s.g+'</div>'+s.items.map(function(it){
+      var badge=it[2]?'<span class="cnt">'+Q.length+'</span>':'';
+      return '<button class="nav'+(it[0]===cur?' on':'')+'" onclick="nav(\''+it[0]+'\')">'+it[1]+badge+'</button>';}).join('');}).join('');
+}
+window.nav=function(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
+  document.getElementById('crumb').textContent=PAGES[id][0];
+  document.getElementById('ttl').textContent=PAGES[id][1];
+  curPage=id; paintNav(id); window.scrollTo(0,0);
+};
+var tt;
+window.toast=function(m){
+  document.getElementById('tmsg').textContent=m;
+  var t=document.getElementById('toast'); t.classList.add('on');
+  clearTimeout(tt); tt=setTimeout(function(){t.classList.remove('on')},2100);
+};
+window.mode=function(b,manual){
+  b.parentNode.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');
+  document.getElementById('modenote').innerHTML = manual
+   ? '<b style="color:var(--ink)">Chế độ thủ công.</b> Portal dựng sẵn video đúng tỷ lệ, phụ đề, thumbnail và caption cho từng nền tảng. Bạn tải về rồi đăng tay. Khi API được duyệt, bật chế độ tự động — không phải làm lại gì.'
+   : '<b style="color:var(--ink)">Chế độ tự động — chưa bật được.</b> TikTok Content Posting API và Meta app review đang chờ thẩm định; YouTube giới hạn 10.000 đơn vị quota mỗi ngày và không mua thêm được. Cổng phê duyệt ở chặng 4 vẫn giữ nguyên, không bỏ qua được.';
+};
+window.theme=function(t,b){
+  document.body.dataset.theme=t;
+  b.parentNode.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on'); setTimeout(render,40);
+};
+
+function render(){
+  var acc=css('--accent'), mut=css('--muted');
+  document.querySelectorAll('.chv').forEach(function(e){e.innerHTML=chev(acc)});
+  document.querySelectorAll('.soricon').forEach(function(e){e.innerHTML=sori(20)});
+
+  document.getElementById('topics').innerHTML=TP.map(function(r){
+    return '<tr><td><b>'+r[0]+'</b></td><td class="ko" style="font-size:11.5px">'+r[1]+'</td>'+
+      '<td class="mono" style="font-size:11px;color:var(--muted)">'+r[2]+'</td>'+
+      '<td><b class="mono">'+r[3]+'</b></td><td><span class="pill '+r[4]+'">'+r[5]+'</span></td>'+
+      '<td><button class="btn ghost sm" onclick="nav(\'p-script\')">Soạn</button></td></tr>';}).join('');
+
+  document.getElementById('chans').innerHTML=CH.map(function(c){
+    return '<div class="chan"><div class="ic">'+c[0]+'</div><div><div class="nm">'+c[1]+'</div><div class="hk">'+c[2]+'</div></div>'+
+      '<div class="rt"><span class="pill '+c[4]+'">'+c[3]+'</span><button class="btn ghost sm" onclick="toast(\'Đã tải xuống\')">Tải</button></div></div>';}).join('');
+
+  document.getElementById('roi').innerHTML=RO.map(function(r){
+    return '<tr><td><b>'+r[0]+'</b> <span class="ko" style="color:var(--muted);font-size:11px">'+r[1]+'</span></td>'+
+      '<td class="mono">'+r[2]+'</td><td class="mono"><b>'+r[3]+'</b></td><td class="mono">'+r[4]+'</td>'+
+      '<td class="mono">'+r[5]+'</td><td><span class="pill '+(r[6]<=2?'mint':(r[6]>=5?'red':'grey'))+'">#'+r[6]+'</span></td></tr>';}).join('');
+
+  document.getElementById('srcs').innerHTML=SRC.map(function(s){
+    var col=s.c==='ok'?css('--ok'):(s.c==='warn'?css('--accent'):css('--line'));
+    return '<div class="card pad"><div style="display:flex;align-items:flex-start;gap:9px;margin-bottom:4px">'+
+      '<b style="font-size:13.5px;color:var(--ink)">'+s.n+'</b><span class="pill '+s.s[0]+'" style="margin-left:auto">'+s.s[1]+'</span></div>'+
+      '<p style="margin:0 0 9px;font-size:var(--f3);color:var(--muted)">'+s.u+'</p>'+
+      '<div class="mono" style="font-size:10.5px;color:var(--muted)">'+s.q+'</div>'+
+      '<div class="qbar"><i style="width:'+s.p+'%;background:'+col+'"></i></div></div>';}).join('');
+
+  document.getElementById('routes').innerHTML=RT.map(function(r){
+    return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td class="mono">'+r[2]+'</td>'+
+      '<td><span class="pill '+r[5]+'">'+r[3]+'</span></td><td class="mono">'+r[4]+'</td></tr>';}).join('');
+
+  document.getElementById('guards').innerHTML=GD.map(function(g){
+    return '<div class="card pad" style="display:flex;gap:10px;align-items:flex-start">'+chev(acc,15)+
+      '<div><b style="font-size:var(--f3);color:var(--ink)">'+g[0]+'</b>'+
+      '<p style="margin:3px 0 0;font-size:11.8px;color:var(--muted);line-height:1.55">'+g[1]+'</p></div></div>';}).join('');
+
+  document.getElementById('people').innerHTML=PE.map(function(r){
+    var ag=r[1]==='Agent';
+    return '<tr><td><b>'+r[0]+'</b></td><td><span class="pill '+(ag?'grey':'gold')+'">'+r[1]+'</span></td>'+
+      '<td>'+(r[2].indexOf('Không')===0?'<span style="color:var(--warn);font-weight:600">'+r[2]+'</span>':r[2])+'</td>'+
+      '<td>'+r[3]+'</td><td class="mono" style="font-size:11px;color:var(--muted)">'+r[4]+'</td></tr>';}).join('');
+}
+
+render(); paintQ(); nav('p-dash');
+})();
+</script>
+</body>
+</html>

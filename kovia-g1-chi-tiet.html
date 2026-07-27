@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kế hoạch chi tiết Giai đoạn 1 | KOVIA · HANGIL</title>
+<meta name="description" content="Kế hoạch G1: hạ tầng số của hành lang Việt–Hàn. Chiến lược, BETA, lộ trình 30 tháng và mô hình tài chính.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#142B5F; --rice:#BA7517; --mint:#35C6A5;
+  --paper:#F4F2EC; --ink:#22221F; --card:#FFFFFF;
+  --line:rgba(20,43,95,.16); --line2:rgba(20,43,95,.09);
+  --muted:#5C6478;
+  --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Bricolage Grotesque","Be Vietnam Pro",sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --rail:300px; --maxw:760px;
+}
+html[data-theme="dark"]{
+  --night:#8FB4F0; --rice:#E2A63F; --mint:#4FD9B8;
+  --paper:#0D1524; --ink:#DDE3EE; --card:#141E31;
+  --line:rgba(143,180,240,.22); --line2:rgba(143,180,240,.12);
+  --muted:#93A0B8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;font-weight:400}
+:focus-visible{outline:2.5px solid var(--rice);outline-offset:3px;border-radius:3px}
+
+/* ---------- thanh tien do: vach tim duong ---------- */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--rice);z-index:60;transition:width .12s linear}
+
+/* ---------- rail trai: con duong ---------- */
+#rail{position:fixed;top:0;left:0;width:var(--rail);height:100vh;padding:34px 26px 26px 30px;
+  overflow-y:auto;background:var(--paper);z-index:50;
+  border-right:1px solid var(--line2)}
+#rail::-webkit-scrollbar{width:6px}
+#rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.brand{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:.14em;
+  color:var(--night);text-transform:uppercase;margin-bottom:2px}
+.brand em{font-style:normal;color:var(--rice)}
+.brand-sub{font-size:11.5px;color:var(--muted);letter-spacing:.06em;margin-bottom:24px;
+  text-transform:uppercase;font-weight:500}
+.road{position:relative;padding-left:20px}
+.road::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:2px;
+  background:repeating-linear-gradient(to bottom,var(--line) 0 9px,transparent 9px 18px)}
+#rail a{display:flex;gap:9px;align-items:baseline;text-decoration:none;color:var(--muted);
+  position:relative;padding:4px 0;font-size:13.5px;line-height:1.4}
+#rail a b{font-family:var(--disp);font-weight:500;font-size:11px;min-width:24px;
+  color:var(--night);opacity:.5;letter-spacing:.02em}
+#rail a.n1{font-weight:600;color:var(--ink);margin-top:12px;font-size:14px}
+#rail a.n2{padding-left:24px;font-size:12.5px}
+#rail a.n1::before{content:"";position:absolute;left:-20px;top:11px;width:9px;height:9px;
+  border-radius:50%;background:var(--paper);border:2px solid var(--line)}
+#rail a:hover{color:var(--night)}
+#rail a.n1.on{color:var(--rice)}
+#rail a.n1.on::before{background:var(--rice);border-color:var(--rice)}
+#rail a.n1.on b{color:var(--rice);opacity:1}
+#rail a.n2.on{color:var(--night);font-weight:600}
+
+/* ---------- nut ---------- */
+.ctrls{display:flex;gap:8px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line2)}
+.ctrls button{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);
+  background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.ctrls button:hover{border-color:var(--night);color:var(--night)}
+#menu{display:none;position:fixed;top:14px;left:14px;z-index:70;background:var(--card);
+  border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:19px;
+  cursor:pointer;color:var(--night);box-shadow:0 4px 16px rgba(20,43,95,.1)}
+
+/* ---------- noi dung ---------- */
+main{margin-left:var(--rail);padding:0 46px 140px}
+.wrap{max-width:var(--maxw);margin:0 auto}
+
+header.hero{padding:96px 0 54px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--disp);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--rice);font-weight:700;margin-bottom:22px}
+h1.doc{font-size:clamp(36px,5.4vw,58px);line-height:1.06;font-weight:800;letter-spacing:-.03em;
+  margin:0 0 26px;color:var(--night)}
+.thesis{font-size:clamp(19px,2.2vw,23px);line-height:1.5;font-weight:500;color:var(--ink);
+  border-left:3px solid var(--rice);padding-left:22px;margin:0 0 34px;max-width:640px}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.meta span{font-size:12.5px;font-weight:500;color:var(--muted);border:1px solid var(--line);
+  border-radius:999px;padding:5px 14px}
+.meta span b{color:var(--night);font-weight:600}
+
+h1.ch{display:flex;align-items:flex-start;gap:18px;margin:92px 0 30px;
+  padding-top:26px;border-top:2px solid var(--night);
+  font-size:clamp(26px,3.4vw,36px);line-height:1.14;font-weight:800;letter-spacing:-.025em;color:var(--night)}
+h1.ch .ch-num{font-family:var(--disp);font-weight:700;font-size:.62em;color:var(--rice);
+  flex:none;padding-top:.16em;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:700;letter-spacing:-.015em;margin:52px 0 14px;color:var(--night)}
+h3{font-size:17.5px;font-weight:700;margin:34px 0 10px;color:var(--ink)}
+p{margin:0 0 17px}
+a{color:var(--night);text-underline-offset:3px;text-decoration-thickness:1px}
+strong{font-weight:600;color:var(--night)}
+em{font-style:italic;color:var(--muted)}
+ul,ol{margin:0 0 18px;padding-left:22px}
+li{margin-bottom:7px}
+li::marker{color:var(--rice)}
+
+blockquote{margin:30px 0;padding:24px 26px;background:var(--card);border:1px solid var(--line2);
+  border-left:4px solid var(--rice);border-radius:0 10px 10px 0}
+blockquote p{font-size:19px;line-height:1.55;font-weight:600;color:var(--night);margin:0}
+
+.tw{overflow-x:auto;margin:24px 0 28px;border:1px solid var(--line2);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.55}
+th,td{padding:11px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line2)}
+thead th{background:rgba(20,43,95,.045);color:var(--night);font-weight:600;font-size:13px;
+  letter-spacing:.02em;border-bottom:1.5px solid var(--line);white-space:nowrap}
+html[data-theme="dark"] thead th{background:rgba(143,180,240,.07)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(186,117,23,.05)}
+td strong{color:var(--night)}
+
+pre{background:var(--card);border:1px solid var(--line2);border-radius:10px;padding:20px 22px;
+  overflow-x:auto;margin:24px 0;font-family:var(--mono);font-size:12.5px;line-height:1.62;color:var(--ink)}
+code{font-family:var(--mono);font-size:.88em;background:rgba(20,43,95,.06);padding:1.5px 5px;border-radius:4px}
+pre code{background:none;padding:0;font-size:1em}
+html[data-theme="dark"] code{background:rgba(143,180,240,.12)}
+
+:lang(ko),.ko{font-family:"Noto Sans KR",var(--sans)}
+
+/* ---------- responsive ---------- */
+@media(max-width:1080px){
+  :root{--rail:0px}
+  #menu{display:block}
+  #rail{transform:translateX(-100%);transition:transform .25s ease;width:290px;
+    box-shadow:0 0 40px rgba(20,43,95,.18);padding-top:70px}
+  #rail.open{transform:translateX(0)}
+  main{padding:0 22px 100px}
+  header.hero{padding-top:74px}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  h1.ch{gap:12px;margin-top:64px}
+  th,td{padding:9px 11px;font-size:13.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+@media print{
+  #rail,#menu,#bar,.ctrls{display:none!important}
+  main{margin:0;padding:0}
+  body{background:#fff;font-size:11pt}
+  h1.ch{page-break-before:always;margin-top:0}
+  .tw,pre,blockquote{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<button id="menu" aria-label="Mở mục lục">☰</button>
+
+<nav id="rail" aria-label="Mục lục">
+  <div class="brand">KOVIA <em>·</em> HANGIL</div>
+  <div class="brand-sub">Kế hoạch G1</div>
+  <div class="road">
+<a class="n1" href="#1-cách-đọc-tài-liệu-này"><b>1</b><span>CÁCH ĐỌC TÀI LIỆU NÀY</span></a>
+<a class="n1" href="#2-tổng-quan-g1"><b>2</b><span>TỔNG QUAN G1</span></a>
+<a class="n2" href="#21-g1-tồn-tại-để-làm-gì"><b>2.1</b><span>G1 tồn tại để làm gì</span></a>
+<a class="n2" href="#22-năm-nhóm-mười-hai-người"><b>2.2</b><span>Năm nhóm, mười hai người</span></a>
+<a class="n2" href="#23-nút-thắt-thật-của-g1"><b>2.3</b><span>Nút thắt thật của G1</span></a>
+<a class="n1" href="#3-nhóm-a-nội-dung"><b>3</b><span>NHÓM A — NỘI DUNG</span></a>
+<a class="n2" href="#31-mục-tiêu-nhóm"><b>3.1</b><span>Mục tiêu nhóm</span></a>
+<a class="n2" href="#32-nhịp-1-t3-t5-dựng-nền-và-lên-sóng"><b>3.2</b><span>Nhịp 1 (T3 – T5) — Dựng nền và lên sóng</span></a>
+<a class="n2" href="#33-nhịp-2-t6-t8-nội-dung-sinh-ra-giao-dịch"><b>3.3</b><span>Nhịp 2 (T6 – T8) — Nội dung sinh ra giao dịch</span></a>
+<a class="n2" href="#34-nhịp-3-t9-t11-nhân-bản-và-mở-sang-tiếng-hàn"><b>3.4</b><span>Nhịp 3 (T9 – T11) — Nhân bản và mở sang tiếng Hàn</span></a>
+<a class="n2" href="#35-chỉ-số-của-nhóm-a"><b>3.5</b><span>Chỉ số của nhóm A</span></a>
+<a class="n2" href="#36-phụ-thuộc-và-rủi-ro-riêng"><b>3.6</b><span>Phụ thuộc và rủi ro riêng</span></a>
+<a class="n1" href="#4-nhóm-b-portal-amp-agent"><b>4</b><span>NHÓM B — PORTAL &amp;amp; AGENT</span></a>
+<a class="n2" href="#41-định-vị-lại-portal-là-backend-của-webapp-không-phải-công-"><b>4.1</b><span>Định vị lại: Portal là backend của Web-App, không phải công cụ rời</span></a>
+<a class="n2" href="#42-luồng-agentic-bảy-chặng-một-cổng-người"><b>4.2</b><span>Luồng agentic — bảy chặng, một cổng người</span></a>
+<a class="n2" href="#43-chia-hai-đợt-đừng-làm-đủ-bảy-tác-nhân-trong-nhịp-1"><b>4.3</b><span>Chia hai đợt — đừng làm đủ bảy tác nhân trong nhịp 1</span></a>
+<a class="n2" href="#44-nhịp-1-t3-t5-vòng-lặp-tối-thiểu"><b>4.4</b><span>Nhịp 1 (T3 – T5) — Vòng lặp tối thiểu</span></a>
+<a class="n2" href="#45-nhịp-2-t6-t8-sản-xuất-tự-động-và-tương-tác"><b>4.5</b><span>Nhịp 2 (T6 – T8) — Sản xuất tự động và tương tác</span></a>
+<a class="n2" href="#46-nhịp-3-t9-t11-tối-ưu-và-mở-quyền-cho-người-bán"><b>4.6</b><span>Nhịp 3 (T9 – T11) — Tối ưu và mở quyền cho người bán</span></a>
+<a class="n2" href="#47-chỉ-số-của-nhóm-b"><b>4.7</b><span>Chỉ số của nhóm B</span></a>
+<a class="n1" href="#5-nhóm-c-sản-phẩm"><b>5</b><span>NHÓM C — SẢN PHẨM</span></a>
+<a class="n2" href="#51-mục-tiêu-nhóm"><b>5.1</b><span>Mục tiêu nhóm</span></a>
+<a class="n2" href="#52-nhịp-1-ship-tháng-5-ba-bề-mặt-lên-cùng-lúc"><b>5.2</b><span>Nhịp 1 — Ship tháng 5: Ba bề mặt lên cùng lúc</span></a>
+<a class="n2" href="#53-nhịp-2-ship-tháng-8-chợ-và-ai-luyện-nói"><b>5.3</b><span>Nhịp 2 — Ship tháng 8: Chợ và AI luyện nói</span></a>
+<a class="n2" href="#54-nhịp-3-ship-tháng-11-store-builder-bản-mời"><b>5.4</b><span>Nhịp 3 — Ship tháng 11: Store Builder bản mời</span></a>
+<a class="n2" href="#55-chỉ-số-của-nhóm-c"><b>5.5</b><span>Chỉ số của nhóm C</span></a>
+<a class="n1" href="#6-nhóm-d-cộng-đồng-amp-doanh-thu"><b>6</b><span>NHÓM D — CỘNG ĐỒNG &amp;amp; DOANH THU</span></a>
+<a class="n2" href="#61-d1-cộng-đồng-và-mạng-lưới-đại-sứ"><b>6.1</b><span>D1 — Cộng đồng và mạng lưới đại sứ</span></a>
+<a class="n2" href="#62-d2-chợ-hàn-việt"><b>6.2</b><span>D2 — Chợ Hàn – Việt</span></a>
+<a class="n2" href="#63-d3-doanh-thu-b2b"><b>6.3</b><span>D3 — Doanh thu B2B</span></a>
+<a class="n2" href="#64-d4-đối-tác-thay-quảng-cáo"><b>6.4</b><span>D4 — Đối tác thay quảng cáo</span></a>
+<a class="n1" href="#7-nhóm-e-vận-hành-amp-tuân-thủ"><b>7</b><span>NHÓM E — VẬN HÀNH &amp;amp; TUÂN THỦ</span></a>
+<a class="n2" href="#71-nguyên-tắc-làm-sau-cần-điều-kiện-kích-hoạt-không-phải-một"><b>7.1</b><span>Nguyên tắc: &quot;làm sau&quot; cần điều kiện kích hoạt, không phải một ngày tháng</span></a>
+<a class="n2" href="#72-việc-theo-nhịp"><b>7.2</b><span>Việc theo nhịp</span></a>
+<a class="n2" href="#73-vì-sao-pháp-nhân-hàn-để-tháng-8"><b>7.3</b><span>Vì sao pháp nhân Hàn để tháng 8</span></a>
+<a class="n1" href="#8-đường-găng-và-phụ-thuộc-chéo"><b>8</b><span>ĐƯỜNG GĂNG VÀ PHỤ THUỘC CHÉO</span></a>
+<a class="n2" href="#81-đường-găng-của-g1"><b>8.1</b><span>Đường găng của G1</span></a>
+<a class="n2" href="#82-bảng-phụ-thuộc-chéo"><b>8.2</b><span>Bảng phụ thuộc chéo</span></a>
+<a class="n1" href="#9-lịch-đầu-ra-theo-tháng"><b>9</b><span>LỊCH ĐẦU RA THEO THÁNG</span></a>
+<a class="n1" href="#10-nhịp-vận-hành-và-bảng-chỉ-số"><b>10</b><span>NHỊP VẬN HÀNH VÀ BẢNG CHỈ SỐ</span></a>
+<a class="n2" href="#101-ba-nhịp-họp-không-hơn"><b>10.1</b><span>Ba nhịp họp, không hơn</span></a>
+<a class="n2" href="#102-bảng-chỉ-số-g1"><b>10.2</b><span>Bảng chỉ số G1</span></a>
+<a class="n1" href="#11-cửa-vượt-sang-g2"><b>11</b><span>CỬA VƯỢT SANG G2</span></a>
+<a class="n1" href="#12-checklist-tuần-đầu-tiên"><b>12</b><span>CHECKLIST TUẦN ĐẦU TIÊN</span></a>
+<a class="n2" href="#ghi-chú"><b>·</b><span>GHI CHÚ</span></a>
+  </div>
+  <div class="ctrls">
+    <button id="theme">Chế độ tối</button>
+    <button onclick="window.print()">In / PDF</button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Kế hoạch vận hành · Giai đoạn 1 · BETA / Pilot</div>
+  <h1 class="doc">Giai đoạn 1<br>BETA / Pilot</h1>
+  <p class="thesis">Chín tháng, năm nhóm, ba nhịp. G1 không tồn tại để ra mắt sản phẩm — nó tồn tại để trả lời ba câu hỏi: nội dung có giữ chân được không, người xem có chịu mua không, và chi phí thu hút có tiến về 0 không.</p>
+  <div class="meta">
+    <span>Thời gian <b>Tháng 3 → 11</b></span>
+    <span>Đội ngũ <b>12 người · 5 nhóm</b></span>
+    <span>Mốc ship <b>T5 · T8 · T11</b></span>
+    <span>Quảng cáo trả phí <b>0 đồng</b></span>
+  </div>
+</header>
+<h1 id="1-cách-đọc-tài-liệu-này" class="ch"><span class="ch-num">1</span><span class="ch-title">CÁCH ĐỌC TÀI LIỆU NÀY</span></h1>
+<p>Mỗi nhóm có <strong>một người chịu trách nhiệm duy nhất</strong> và <strong>một con số duy nhất</strong> phải báo cáo hằng tuần. Không có đồng chủ trì, không có chỉ số phụ trong báo cáo tuần.</p>
+<p>Ba nhịp trong G1:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Thời gian</th>
+<th>Tên</th>
+<th>Câu hỏi của nhịp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nhịp 1</strong></td>
+<td>T3 – T5</td>
+<td>Lên sóng</td>
+<td>Nội dung có giữ chân được không?</td>
+</tr>
+<tr>
+<td><strong>Nhịp 2</strong></td>
+<td>T6 – T8</td>
+<td>Giao dịch đầu tiên</td>
+<td>Người xem có chịu mua không?</td>
+</tr>
+<tr>
+<td><strong>Nhịp 3</strong></td>
+<td>T9 – T11</td>
+<td>Leo hạng</td>
+<td>Người bán giỏi có ở lại không?</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Quy ước ưu tiên trong tài liệu:</strong>
+<code>★★★</code> không làm thì cả nhịp đứng · <code>★★</code> quan trọng, có thể trượt 2 tuần · <code>★</code> làm được thì tốt</p>
+
+<h1 id="2-tổng-quan-g1" class="ch"><span class="ch-num">2</span><span class="ch-title">TỔNG QUAN G1</span></h1>
+<h2 id="21-g1-tồn-tại-để-làm-gì">2.1 G1 tồn tại để làm gì</h2>
+<p>Không phải để ra mắt sản phẩm. Để trả lời ba câu:</p>
+<ol>
+<li><strong>Nội dung có giữ chân được không?</strong> — đo bằng D30, không đo bằng lượt xem</li>
+<li><strong>Người xem có chịu giao dịch không?</strong> — đo bằng đơn hàng và buổi gia sư đầu tiên</li>
+<li><strong>Chi phí thu hút có tiến về 0 không?</strong> — đo bằng tỷ lệ chuyển sang Zalo OA</li>
+</ol>
+<p>Mọi việc trong tài liệu này chỉ có nghĩa nếu nó phục vụ một trong ba câu trên. Việc nào không phục vụ câu nào — cắt.</p>
+<h2 id="22-năm-nhóm-mười-hai-người">2.2 Năm nhóm, mười hai người</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhóm</th>
+<th>Người</th>
+<th>Chịu trách nhiệm</th>
+<th>Con số báo cáo tuần</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A · Nội dung</strong></td>
+<td>Trưởng nội dung, 2 sản xuất, 1 bản ngữ Hàn (bán thời gian)</td>
+<td>Trưởng nội dung</td>
+<td>Số mảnh xuất bản / tuần</td>
+</tr>
+<tr>
+<td><strong>B · Portal &amp; Agent</strong></td>
+<td>1 kỹ sư AI (ngồi trong nhóm C)</td>
+<td>Kỹ sư AI</td>
+<td>Chi phí trung bình / mảnh nội dung</td>
+</tr>
+<tr>
+<td><strong>C · Sản phẩm</strong></td>
+<td>Trưởng kỹ thuật, 3 fullstack</td>
+<td>Trưởng kỹ thuật</td>
+<td>Số ngày trễ so với mốc ship</td>
+</tr>
+<tr>
+<td><strong>D · Cộng đồng &amp; Doanh thu</strong></td>
+<td>CEO, 1 quản lý cộng đồng, 1 vận hành Chợ</td>
+<td>CEO</td>
+<td>Người theo dõi Zalo OA + doanh thu ký mới</td>
+</tr>
+<tr>
+<td><strong>E · Vận hành &amp; Tuân thủ</strong></td>
+<td>CEO kiêm, thuê ngoài pháp lý và kế toán</td>
+<td>CEO</td>
+<td>Số rào cản pháp lý còn mở</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="23-nút-thắt-thật-của-g1">2.3 Nút thắt thật của G1</h2>
+<p>Với một đội phát triển mạnh và ngân sách quảng cáo bằng 0, <strong>nút thắt không nằm ở kỹ thuật</strong>. Nó nằm ở hai chỗ:</p>
+<ol>
+<li><strong>Sản lượng nội dung</strong> — nếu không đạt 40–60 mảnh/tuần thì phễu không đủ rộng</li>
+<li><strong>Số người bán tuyển được</strong> — nếu không có 30 người bán thật thì Chợ không có gì để bán</li>
+</ol>
+<p>Nhưng sau khi đưa Portal agentic vào nhịp 1 và bỏ rào cản pháp lý ra khỏi đường găng, <strong>nút thắt chuyển sang nhóm C</strong>: Web-App + website ba ngôn ngữ + Portal bảy tác nhân trong ba tháng là khối lượng rất căng với 3 fullstack và 1 kỹ sư AI.</p>
+<p>Hệ quả về phân bổ nguồn lực: <strong>Portal chia làm hai đợt</strong> (xem 4.3). Đợt 1 chỉ dựng vòng lặp tối thiểu để nhóm A đạt sản lượng; phần còn lại lùi sang nhịp 2. Không cố làm đủ bảy tác nhân trong nhịp 1.</p>
+
+<h1 id="3-nhóm-a-nội-dung" class="ch"><span class="ch-num">3</span><span class="ch-title">NHÓM A — NỘI DUNG</span></h1>
+<h2 id="31-mục-tiêu-nhóm">3.1 Mục tiêu nhóm</h2>
+<p>Sản xuất <strong>400 Scene + 36 mini-doc + 50 kịch bản AI roleplay</strong> trong 9 tháng, đạt nhịp ổn định 40–60 mảnh/tuần từ tháng 4, với chi phí dưới 120.000 đ/mảnh.</p>
+<p><strong>Con số báo cáo tuần: số mảnh xuất bản.</strong> Không báo cáo lượt xem trong họp tuần — lượt xem xem ở bảng tháng.</p>
+<h2 id="32-nhịp-1-t3-t5-dựng-nền-và-lên-sóng">3.2 Nhịp 1 (T3 – T5) — Dựng nền và lên sóng</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Đầu ra cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Bản đồ 400 tình huống</strong> theo 7 nhóm quan hệ quyền lực</td>
+<td>Bảng backlog có phân loại, cấp độ, từ khoá, sản phẩm liên quan</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Bible nội dung</strong> — giọng nói thương hiệu, công thức 5 nhịp, điều cấm</td>
+<td>Tài liệu 10–15 trang, ai cũng làm theo được</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Dựng 3 bối cảnh quay cố định</strong> — góc nhà máy, phòng trọ, quầy dịch vụ</td>
+<td>Phông và đạo cụ tại chỗ, quay được liên tục không phải di chuyển</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Sản xuất đợt 1: 150 Scene</strong></td>
+<td>Đăng đủ trên 5 nền tảng</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Quy trình kiểm duyệt bản ngữ</strong> — mỗi Scene phải qua người Hàn duyệt kính ngữ</td>
+<td>Checklist duyệt, thời gian quay vòng dưới 48 giờ</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>12 mini-doc "người thật việc thật"</strong></td>
+<td>Nhân vật lấy từ mạng lưới đại sứ vùng của nhóm D</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Chuẩn metadata mỗi Scene</strong> — nhóm, cấp độ, từ khoá SEO, sản phẩm gắn kèm</td>
+<td>Trường dữ liệu thống nhất với nhóm C</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Casting</strong> — 2 diễn viên Việt, 1 người Hàn</td>
+<td>Hợp đồng cộng tác viên theo buổi</td>
+</tr>
+<tr>
+<td>★</td>
+<td>Series livestream thử nghiệm 2 số</td>
+<td>Đo có ai xem không trước khi làm định kỳ</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Quyết định phải chốt trong nhịp 1:</strong> chọn <strong>một nhóm kỹ năng duy nhất</strong> cho AI roleplay ở nhịp 2. Đề xuất <em>"Với cấp trên"</em> — vì đó là nhóm tình huống gây sợ nhất và cũng là nhóm không app nào dạy.</p>
+<h2 id="33-nhịp-2-t6-t8-nội-dung-sinh-ra-giao-dịch">3.3 Nhịp 2 (T6 – T8) — Nội dung sinh ra giao dịch</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Đầu ra cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Sản xuất đợt 2: +120 Scene</strong>, ưu tiên nhóm có D30 cao nhất từ dữ liệu nhịp 1</td>
+<td>Quyết định dựa trên bảng ROI, không dựa trên cảm tính</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Shoppable Scene</strong> — gắn 1–3 sản phẩm Chợ vào mỗi Scene ẩm thực, mỹ phẩm, đời sống</td>
+<td>Ít nhất 80 Scene có sản phẩm gắn kèm</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>50 kịch bản AI roleplay</strong> cho nhóm kỹ năng đã chọn, có phân nhánh</td>
+<td>Bàn giao cho nhóm C dạng dữ liệu có cấu trúc</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Thử thách 30 ngày đợt 1</strong> — người học quay 15 giây mỗi ngày</td>
+<td>Mục tiêu 1.000 video người dùng</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Livestream định kỳ 1 số/tuần</strong></td>
+<td>Lịch cố định, có khách mời</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>+12 mini-doc</td>
+<td></td>
+</tr>
+<tr>
+<td>★</td>
+<td>Chuỗi "Hỏi gì đáp nấy" từ bình luận cộng đồng</td>
+<td>20–30 Scene/tháng, chi phí gần 0</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="34-nhịp-3-t9-t11-nhân-bản-và-mở-sang-tiếng-hàn">3.4 Nhịp 3 (T9 – T11) — Nhân bản và mở sang tiếng Hàn</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Đầu ra cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Sản xuất đợt 3: +130 Scene</strong></td>
+<td>Đạt 400 Scene tổng</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Bộ công cụ nội dung cho người bán</strong> — hướng dẫn quay, mẫu kịch bản, mẫu thumbnail</td>
+<td>Người bán tự làm được nội dung, giảm tải cho nhóm A</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Bộ nội dung "Đi lại &amp; du lịch"</strong> — 40 mục: mua và nạp thẻ T-money, đọc bảng ga, đổi tuyến, gọi taxi, mua vé tàu</td>
+<td><strong>T-money không có API công khai</strong> — mảng này làm bằng nội dung hướng dẫn, không tích hợp</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>20 bài "Tiếng Việt công trường"</strong> bằng tiếng Hàn cho khách B2B</td>
+<td>Nhóm D dùng làm tài liệu bán hàng</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Tái sản xuất top 20 Scene thành video dài YouTube</strong></td>
+<td>Phục vụ SEO, tuổi thọ nội dung dài hơn</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>+12 mini-doc</td>
+<td></td>
+</tr>
+<tr>
+<td>★</td>
+<td>Thử thách 30 ngày đợt 2</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="35-chỉ-số-của-nhóm-a">3.5 Chỉ số của nhóm A</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Mục tiêu cuối G1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mảnh xuất bản / tuần</td>
+<td>40 – 60</td>
+</tr>
+<tr>
+<td>Chi phí / mảnh</td>
+<td>&lt; 120.000 đ</td>
+</tr>
+<tr>
+<td>D30 trung bình</td>
+<td>&gt; 22%</td>
+</tr>
+<tr>
+<td>Tỷ lệ xem hết Scene</td>
+<td>&gt; 55%</td>
+</tr>
+<tr>
+<td>Số Scene có sản phẩm gắn kèm</td>
+<td>≥ 150</td>
+</tr>
+<tr>
+<td>Thời gian từ ý tưởng đến đăng</td>
+<td>&lt; 12 giờ</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="36-phụ-thuộc-và-rủi-ro-riêng">3.6 Phụ thuộc và rủi ro riêng</h2>
+<p><strong>Phụ thuộc:</strong> cần Studio M2 + M4 (nhóm B) xong trước T4, nếu không sản lượng dừng ở 12–15 mảnh/tuần. Cần nhân vật thật từ đại sứ vùng (nhóm D) cho mini-doc.</p>
+<p><strong>Rủi ro riêng — bản quyền.</strong> Tuyệt đối không dùng clip phim Hàn, MV K-pop, nhạc có bản quyền, ảnh người nổi tiếng. Một lần vi phạm là mất kênh, và mất kênh là sập toàn bộ chiến lược quảng cáo bằng 0. Đây là điều khoản cứng trong bible nội dung, người duyệt phải ký xác nhận từng đợt.</p>
+
+<h1 id="4-nhóm-b-portal-amp-agent" class="ch"><span class="ch-num">4</span><span class="ch-title">NHÓM B — PORTAL &amp;amp; AGENT</span></h1>
+<h2 id="41-định-vị-lại-portal-là-backend-của-webapp-không-phải-công-">4.1 Định vị lại: Portal là backend của Web-App, không phải công cụ rời</h2>
+<p>Studio không còn là một hệ thống riêng. Nó là <strong>Backend Portal của Web-App</strong> — chung danh tính, chung phân quyền, chung kho dữ liệu.</p>
+<p>Ba lý do kiến trúc:</p>
+<ol>
+<li><strong>Đo lường đầu–cuối không phải nối hai hệ thống.</strong> Truy vết từ bài đăng → theo dõi OA → đăng ký → học → mua chỉ chạy được nếu nội dung và người dùng nằm chung một cơ sở dữ liệu.</li>
+<li><strong>Phân quyền dùng chung.</strong> Admin · Biên tập · Sản xuất · Bản ngữ duyệt · Người bán · Người dùng — một hệ vai trò, không phải hai.</li>
+<li><strong>Đây chính là công cụ sẽ giao cho người bán ở nhịp 3.</strong> Cùng luồng sinh nội dung, cùng hàng đợi duyệt. Store Builder không phải xây lại từ đầu — nó là Portal mở quyền cho người ngoài.</li>
+</ol>
+<p>Mục tiêu vẫn như cũ: để <strong>một đội ba người sản xuất được khối lượng của mười người</strong>. Không có Portal thì nguyên tắc "quảng cáo bằng 0" không khả thi.</p>
+<h2 id="42-luồng-agentic-bảy-chặng-một-cổng-người">4.2 Luồng agentic — bảy chặng, một cổng người</h2>
+<pre><code>① Ý TƯỞNG      Insight Agent    xu hướng, bình luận, câu hỏi, từ khoá SEO
+                                 → kho chủ đề có điểm nhu cầu
+                    ↓
+② KỊCH BẢN     Script Agent     sinh theo công thức 5 nhịp,
+                                 đối chiếu RAG từ nguồn đã duyệt
+                    ↓
+③ SẢN XUẤT     Produce Agent    lồng tiếng, phụ đề song ngữ,
+                                 cắt 9:16 / 1:1 / 16:9, thumbnail, nhận diện
+                    ↓
+④ PHÊ DUYỆT    ███ NGƯỜI ███    hàng đợi duyệt · xem trước theo từng nền tảng
+                                 · người bản ngữ Hàn duyệt kính ngữ
+                                 ▲ CỔNG BẮT BUỘC — agent không được vượt
+                    ↓
+⑤ ĐĂNG         Publish Agent    TikTok · YouTube · Facebook · IG/Threads
+                                 · Zalo OA — lịch theo múi giờ VN và KR
+                    ↓
+⑥ ĐO LƯỜNG     Measure Agent    thu số liệu về, ghép với hành vi trên nền tảng
+                    ↓
+⑦ TỐI ƯU       Optimize Agent   xếp hạng Scene theo giá trị sinh ra,
+                                 đề xuất chủ đề tiếp, thử nghiệm hook
+                    └──────────────→ quay lại ①
+</code></pre>
+<p><strong>Hàng rào của agent — không ngoại lệ:</strong></p>
+<ul>
+<li>Không tác nhân nào được tự đăng. Chặng ④ là cổng cứng.</li>
+<li>Không tác nhân nào trả lời câu hỏi visa, pháp lý, y tế bằng giọng chắc chắn.</li>
+<li>Mọi thông tin pháp lý phải truy được về văn bản gốc kèm ngày cập nhật.</li>
+<li>Nhật ký đầy đủ: ai duyệt, lúc nào, sửa gì.</li>
+<li>Nút dừng khẩn cấp: gỡ toàn bộ một chiến dịch trong 5 phút.</li>
+</ul>
+<h2 id="43-chia-hai-đợt-đừng-làm-đủ-bảy-tác-nhân-trong-nhịp-1">4.3 Chia hai đợt — đừng làm đủ bảy tác nhân trong nhịp 1</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Đợt</th>
+<th>Ship</th>
+<th>Gồm chặng</th>
+<th>Vì sao đủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Đợt 1</strong></td>
+<td><strong>T5</strong></td>
+<td>② Kịch bản · ④ Phê duyệt · ⑤ Đăng</td>
+<td><strong>Vòng lặp tối thiểu</strong> để nhóm A đạt sản lượng. Ba chặng còn lại làm tay được trong 3 tháng</td>
+</tr>
+<tr>
+<td><strong>Đợt 2</strong></td>
+<td><strong>T8</strong></td>
+<td>① Ý tưởng · ③ Sản xuất · ⑥ Đo lường · ⑦ Tối ưu</td>
+<td>Khi đã có dữ liệu thật để tối ưu, và khi nhóm C rảnh tay sau nhịp 1</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Con số báo cáo tuần: chi phí trung bình trên một mảnh nội dung.</strong></p>
+<h2 id="44-nhịp-1-t3-t5-vòng-lặp-tối-thiểu">4.4 Nhịp 1 (T3 – T5) — Vòng lặp tối thiểu</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Mô-đun</th>
+<th>Việc cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>M2 SCRIPT</strong></td>
+<td>Kho tri thức RAG từ nguồn đã duyệt (luật lao động, visa, thủ tục cư trú, thuế); sinh kịch bản đúng công thức 5 nhịp; giao diện duyệt của người; mọi thông tin pháp lý phải truy được về văn bản gốc kèm ngày cập nhật</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>④ PHÊ DUYỆT</strong></td>
+<td>Hàng đợi duyệt trong Portal; xem trước theo từng nền tảng; ghi chú sửa; luồng duyệt riêng cho người bản ngữ Hàn kiểm kính ngữ</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>⑤ ĐĂNG (Publish Agent)</strong></td>
+<td>Một tài sản gốc → 8–12 biến thể; viết lại hook riêng từng nền tảng; lịch đăng theo múi giờ VN và KR; nối API TikTok, YouTube, Meta</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Hàng rào và nhật ký</strong></td>
+<td>Bộ luật nội dung máy kiểm được; nhật ký kiểm toán; nút dừng khẩn cấp</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>Hạ tầng tài sản</td>
+<td>Quy ước đặt tên file, thư viện bản gốc, sao lưu hai lớp</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nguyên tắc kiến trúc:</strong> dùng SaaS có sẵn cho M3, M4, M7. <strong>Chỉ tự xây M1, M2, M5, M6, M8</strong> — đó là chỗ chứa tri thức riêng về hành lang Việt – Hàn và là chỗ tạo lợi thế.</p>
+<h2 id="45-nhịp-2-t6-t8-sản-xuất-tự-động-và-tương-tác">4.5 Nhịp 2 (T6 – T8) — Sản xuất tự động và tương tác</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Mô-đun</th>
+<th>Việc cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>M3 PRODUCE</strong></td>
+<td>Phụ đề song ngữ tự động; lồng tiếng bản ngữ Hàn và Việt; sinh thumbnail; cắt đa tỷ lệ 9:16 / 1:1 / 16:9; chèn nhận diện</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>M5 ENGAGE</strong></td>
+<td>Phân loại bình luận và tin nhắn thành 4 luồng: câu hỏi ngôn ngữ (AI trả lời + gắn Scene) · câu hỏi visa/pháp lý/y tế (<strong>bắt buộc chuyển người thật</strong>) · ý định mua (chuyển Zalo OA) · tiêu cực và spam (ẩn, ghi log)</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>① INSIGHT</strong></td>
+<td>Theo dõi xu hướng từ nguồn công khai và API chính thức; kho chủ đề xếp theo điểm nhu cầu</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Nối Naver Search API</strong></td>
+<td>Tin ngắn, xu hướng từ khoá, bài cafe — 25.000 lượt/ngày miễn phí, chỉ cần Client ID và Secret. Đây là nguồn của mục "Tin ngắn cho người Việt ở Hàn"</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Nối YouTube Data API v3</strong></td>
+<td>Tuyển playlist video ngắn. <strong>Quota 10.000 đơn vị/ngày, mỗi lệnh tìm kiếm tốn 100 đơn vị, không mua thêm được</strong> — bắt buộc đệm kết quả và duyệt playlist thủ công, không gọi theo từng người dùng</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lằn ranh tuyệt đối:</strong> không dùng công cụ không chính thức để đọc, gửi hoặc tự động hoá tin nhắn cá nhân trên Zalo hay KakaoTalk. Vi phạm điều khoản nền tảng và tiềm ẩn vi phạm luật dữ liệu ở cả hai nước.</p>
+<h2 id="46-nhịp-3-t9-t11-tối-ưu-và-mở-quyền-cho-người-bán">4.6 Nhịp 3 (T9 – T11) — Tối ưu và mở quyền cho người bán</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Mô-đun</th>
+<th>Việc cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>M7 MEASURE</strong></td>
+<td>Truy vết bài đăng → theo dõi OA → đăng ký → học → mua; bảng ROI theo từng Scene: Scene nào sinh ra người trả tiền, Scene nào chỉ sinh lượt xem</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>M6 HARVEST</strong></td>
+<td>Bình luận hay → Scene mới; đánh giá đơn hàng → nội dung bán hàng; gom video từ thử thách 30 ngày</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>Tối ưu chi phí</td>
+<td>Chọn mô hình theo tác vụ, gộp yêu cầu, đệm kết quả; mục tiêu giảm 40% chi phí API so với nhịp 1</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Mở Portal cho người bán</strong></td>
+<td>Cùng luồng ②→④→⑤ nhưng phạm vi hẹp: người bán sinh nội dung cho chính cửa hàng mình. Đây là nền của Store Builder</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="47-chỉ-số-của-nhóm-b">4.7 Chỉ số của nhóm B</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Trước Studio</th>
+<th>Mục tiêu cuối G1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mảnh nội dung / tuần với 3 người</td>
+<td>8 – 12</td>
+<td><strong>45 – 60</strong></td>
+</tr>
+<tr>
+<td>Thời gian ý tưởng → đăng</td>
+<td>3 – 5 ngày</td>
+<td><strong>&lt; 12 giờ</strong></td>
+</tr>
+<tr>
+<td>Chi phí / mảnh</td>
+<td>400 – 800k đ</td>
+<td><strong>60 – 120k đ</strong></td>
+</tr>
+<tr>
+<td>Số nền tảng phủ</td>
+<td>2 – 3</td>
+<td><strong>5 – 6</strong></td>
+</tr>
+<tr>
+<td>Tỷ lệ bình luận được trả lời trong 2 giờ</td>
+<td>—</td>
+<td>&gt; 80%</td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="5-nhóm-c-sản-phẩm" class="ch"><span class="ch-num">5</span><span class="ch-title">NHÓM C — SẢN PHẨM</span></h1>
+<h2 id="51-mục-tiêu-nhóm">5.1 Mục tiêu nhóm</h2>
+<p>Ba mốc ship, mỗi nhịp một mốc. <strong>Con số báo cáo tuần: số ngày trễ so với mốc ship.</strong></p>
+<h2 id="52-nhịp-1-ship-tháng-5-ba-bề-mặt-lên-cùng-lúc">5.2 Nhịp 1 — Ship tháng 5: Ba bề mặt lên cùng lúc</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Chi tiết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Web-App — Frontend</strong></td>
+<td>Đăng ký/đăng nhập, hồ sơ người dùng, thư viện Scene, theo dõi tiến độ học, tìm kiếm, lưu Scene</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Web-App — Backend Portal (đợt 1)</strong></td>
+<td>Vòng lặp ② Kịch bản → ④ Phê duyệt → ⑤ Đăng đa kênh; hệ vai trò Admin/Biên tập/Sản xuất/Bản ngữ duyệt; nhật ký và nút dừng. Chi tiết ở chương 4</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Website giới thiệu ba ngôn ngữ</strong></td>
+<td>Việt (người dùng) · <strong>Hàn (khách B2B)</strong> · Anh (nhà đầu tư). Kèm trung tâm nội dung SEO</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Zalo OA bản cơ bản</strong></td>
+<td>Đủ để nhắn tin cho người theo dõi. <strong>Mini App đầy đủ và ZNS lùi sang khi có OA doanh nghiệp</strong> — xem 7.2</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Hạ tầng dữ liệu đúng ngay từ đầu</strong></td>
+<td>Kho tách theo vùng (VN/KR); đồng ý riêng biệt cho thông báo / marketing / chuyển dữ liệu xuyên biên giới; nhật ký truy cập</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Đo lường và truy vết từ ngày đầu</strong></td>
+<td>Không làm sau. Không có attribution thì không trả lời được câu hỏi số 3 của G1</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>Nền tảng thiết kế</td>
+<td>Áp bộ nhận diện Con dấu; thư viện thành phần dùng chung cho web và Mini App</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Thứ tự ship trong nhịp 1 — quan trọng:</strong> Web-App Frontend và Website lên trước, Portal đợt 1 lên ngay sau. <strong>Zalo Mini App đầy đủ không nằm trong nhịp 1</strong> vì nó cần OA đã xác thực doanh nghiệp, mà pháp nhân đã được đưa ra khỏi đường găng.</p>
+<p><strong>Lưu ý về website tiếng Hàn:</strong> phần này nhỏ về khối lượng nhưng <strong>mở khoá dòng doanh thu sớm nhất</strong> — nó cho nhóm D vào khách B2B từ tháng 6 thay vì tháng 9. Không được xếp sau.</p>
+<h2 id="53-nhịp-2-ship-tháng-8-chợ-và-ai-luyện-nói">5.3 Nhịp 2 — Ship tháng 8: Chợ và AI luyện nói</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Chi tiết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Chợ Pilot</strong></td>
+<td>Danh mục, trang sản phẩm, giỏ hàng, đặt hàng, theo dõi đơn, đánh giá có xác thực mua hàng. <strong>Thanh toán và hoá đơn do đối tác nhà nhập khẩu xử lý</strong> — xem 6.2</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Portal đợt 2</strong></td>
+<td>① Ý tưởng · ③ Sản xuất tự động · ⑥ Đo lường · ⑦ Tối ưu</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Công cụ vận hành Chợ</strong></td>
+<td>Thẩm định người bán 3 tầng; kiểm duyệt sản phẩm qua 6 cổng; quản lý khiếu nại; đối soát doanh thu với đối tác</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>AI roleplay</strong></td>
+<td>Ghi âm, chấm phát âm và ngữ điệu, <strong>phát hiện lỗi mức độ lịch sự</strong>, phản hồi có thể hành động</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Đặt lịch gia sư + thanh toán</strong></td>
+<td>Không làm sàn mở — chỉ 20–30 gia sư tuyển tay</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>Hồ sơ năng lực bản rút gọn</td>
+<td>Ghi nhận dữ liệu năng lực từ bây giờ để G2 có sẵn — chưa hiển thị ra ngoài</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Sẵn sàng chuyển đổi thanh toán</strong></td>
+<td>Thiết kế để khi có pháp nhân thì bật cổng thanh toán và ký quỹ của chính nền tảng, không phải làm lại</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="54-nhịp-3-ship-tháng-11-store-builder-bản-mời">5.4 Nhịp 3 — Ship tháng 11: Store Builder bản mời</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Việc</th>
+<th>Chi tiết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td><strong>Store Builder</strong></td>
+<td>Tạo cửa hàng trong 5 phút; mẫu giao diện; <strong>AI dịch mô tả Việt ↔ Hàn giữ đúng thuật ngữ ngành hàng</strong>; sinh nội dung bán hàng từ ảnh và thông số; quản lý đơn, tồn kho, khách hàng</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Cơ chế mời và điểm tin cậy</strong></td>
+<td>Ngưỡng leo hạng tự động; điểm tin cậy tích luỹ trên Chợ <strong>đi theo người bán sang cửa hàng riêng</strong></td>
+</tr>
+<tr>
+<td>★★★</td>
+<td><strong>Mục "Đi lại &amp; du lịch" trong Khám phá</strong></td>
+<td>Nối <strong>TourAPI 4.0</strong> (điểm đến, sự kiện, lưu trú), <strong>ODsay LAB</strong> (tìm đường công cộng toàn quốc), <strong>Kakao Map</strong> (tìm địa điểm). Ba nguồn này phủ gần đủ nhu cầu tra bản đồ và đi lại</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Tối ưu chuyển đổi</strong></td>
+<td>Onboarding, thông báo đúng lúc, gợi ý Scene → sản phẩm, nhắc học lại</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Zalo Mini App đầy đủ + ZNS</strong></td>
+<td>Bật khi OA doanh nghiệp xong. Nếu pháp nhân xong ở T8–T9 thì Mini App vào nhịp 3</td>
+</tr>
+<tr>
+<td>★★</td>
+<td><strong>Chuyển Chợ về tự thu tiền</strong></td>
+<td>Khi pháp nhân và thông báo sàn TMĐT xong: bật cổng thanh toán, ví ký quỹ, hoàn tiền</td>
+</tr>
+<tr>
+<td>★</td>
+<td>Chuẩn bị Kakao</td>
+<td>Kakao Login sẵn sàng bật ở G2 — chỉ dựng khung, chưa cần pháp nhân Hàn</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="55-chỉ-số-của-nhóm-c">5.5 Chỉ số của nhóm C</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Mục tiêu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trễ so với mốc ship</td>
+<td>0 ngày</td>
+</tr>
+<tr>
+<td>Thời gian tải trang chính</td>
+<td>&lt; 2,5 giây trên 4G</td>
+</tr>
+<tr>
+<td>Tỷ lệ hoàn tất đăng ký</td>
+<td>&gt; 65%</td>
+</tr>
+<tr>
+<td>Tỷ lệ đặt hàng thành công</td>
+<td>&gt; 92%</td>
+</tr>
+<tr>
+<td>Thời gian hoạt động</td>
+<td>&gt; 99,5%</td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="6-nhóm-d-cộng-đồng-amp-doanh-thu" class="ch"><span class="ch-num">6</span><span class="ch-title">NHÓM D — CỘNG ĐỒNG &amp;amp; DOANH THU</span></h1>
+<p>Nhóm này có bốn mảng việc rất khác nhau. Tách rõ để không lẫn.</p>
+<h2 id="61-d1-cộng-đồng-và-mạng-lưới-đại-sứ">6.1 D1 — Cộng đồng và mạng lưới đại sứ</h2>
+<p><strong>Người chịu trách nhiệm:</strong> quản lý cộng đồng. <strong>Con số tuần: người theo dõi Zalo OA.</strong></p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Việc</th>
+<th>Mục tiêu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Mở nhóm Facebook, Zalo OA, 5 kênh mạng xã hội; viết nội quy nhóm; đi 10 trường đại học có khoa tiếng Hàn</td>
+<td><strong>60 đại sứ trường</strong> · 8k Zalo OA · nhóm FB 15k</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Tuyển thêm đại sứ; mở mạng lưới đại sứ vùng tại Gyeonggi và Ansan; 3 sự kiện offline; chạy thử thách 30 ngày</td>
+<td><strong>110 đại sứ trường + 20 đại sứ vùng</strong> · 18k Zalo OA</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Lập nhóm Zalo theo địa phương; ngày hội cộng đồng; chương trình ghi nhận đại sứ xuất sắc</td>
+<td><strong>150 đại sứ trường + 40 đại sứ vùng</strong> · 30k Zalo OA</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Cơ chế trả cho đại sứ — không trả tiền, trả bằng địa vị và cơ hội:</strong> chứng nhận, thư giới thiệu, tài khoản Pro, ưu tiên ghép gia sư, được lên kênh chính, hoa hồng Chợ. Với sinh viên tiếng Hàn, một dòng trong CV có giá trị hơn 500.000 đ.</p>
+<p><strong>KPI kỷ luật:</strong> tỷ lệ chuyển từ "đất thuê" (TikTok, Facebook, YouTube) sang "đất của mình" (Zalo OA, tài khoản nền tảng) phải <strong>≥ 8%/tháng</strong>. Người theo dõi tăng mà Zalo OA không tăng là tăng trưởng ảo.</p>
+<h2 id="62-d2-chợ-hàn-việt">6.2 D2 — Chợ Hàn – Việt</h2>
+<p><strong>Người chịu trách nhiệm:</strong> vận hành Chợ. <strong>Con số tuần: số người bán đã ký + số mã hàng đạt chuẩn.</strong></p>
+<h3 id="mô-hình-pilot-chạy-qua-một-đối-tác-có-pháp-nhân">Mô hình Pilot: chạy qua một đối tác có pháp nhân</h3>
+<p>Vì pháp nhân Việt Nam đã được đưa ra khỏi đường găng, Chợ trong G1 <strong>không tự thu tiền</strong>. Nhưng cũng không lùi về chế độ giới thiệu thuần — vì như thế mất cơ chế bảo đảm, mà bảo đảm chính là định vị của Chợ.</p>
+<blockquote>
+<p><strong>Đường thứ ba: chọn MỘT nhà nhập khẩu đã có pháp nhân đóng vai người bán chính thức của Pilot.</strong></p>
+</blockquote>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Bên</th>
+<th>Làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>KOVIA</strong></td>
+<td>Mang lưu lượng · tuyển chọn hàng · đặt tiêu chí · làm nội dung · vận hành giao diện Chợ · chăm sóc khách</td>
+</tr>
+<tr>
+<td><strong>Đối tác nhà nhập khẩu</strong></td>
+<td>Thanh toán · hoá đơn · kho vận · nghĩa vụ thuế và tuân thủ · là người bảo đảm pháp lý cho đơn hàng</td>
+</tr>
+</tbody>
+</table></div>
+<p>Được ba thứ cùng lúc: <strong>không cần pháp nhân để bắt đầu</strong> · <strong>cơ chế bảo đảm vẫn sống</strong> vì đối tác là người bảo đảm · <strong>có số liệu chuyển đổi thật</strong>. Khi lập pháp nhân xong thì chuyển về, hàng và người bán đã sẵn.</p>
+<p>Điều khoản cần có trong hợp đồng đối tác: KOVIA sở hữu dữ liệu khách hàng và đánh giá · quyền chuyển đơn sang pháp nhân của KOVIA khi sẵn sàng · không độc quyền vĩnh viễn · tỷ lệ chia doanh thu giảm dần theo quy mô.</p>
+<h3 id="việc-theo-nhịp">Việc theo nhịp</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Việc</th>
+<th>Mục tiêu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Lập bản đồ 60 nhà nhập khẩu chính hãng; <strong>đàm phán và chốt đối tác Pilot</strong>; hoàn thiện bộ tiêu chí 3 tầng và danh mục cấm; soạn hợp đồng mẫu và chính sách đổi trả</td>
+<td><strong>Ký được 1 đối tác Pilot</strong> · bộ tiêu chí đã qua luật sư · 20 cuộc gặp người bán</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Đưa hàng lên qua đối tác, chạy đơn đầu tiên; dựng quy trình khiếu nại; đối soát doanh thu hằng tuần</td>
+<td><strong>30 nhà cung cấp · 400 mã hàng · đơn hàng đầu tiên</strong></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Mở rộng; chọn nhóm đủ ngưỡng mời mở cửa hàng; <strong>chuyển sang tự thu tiền nếu pháp nhân đã xong</strong></td>
+<td><strong>50 nhà cung cấp · 25–40 cửa hàng · 500 đơn/tháng</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ngưỡng được mời mở cửa hàng (chốt lại sau 3 tháng chạy Chợ):</strong> ≥ 30 đơn hoàn tất · ≥ 60 triệu đồng doanh số · điểm tin cậy ≥ 4,5/5 · tỷ lệ khiếu nại &lt; 2% · đã eKYC tầng T1 hoặc T2.</p>
+<p><strong>Ngành hàng mở đầu — theo thứ tự rủi ro pháp lý từ thấp lên:</strong> thời trang, phụ kiện, gia dụng, văn phòng phẩm, quà lưu niệm → đồ khô có công bố → <strong>mỹ phẩm, chỉ với người bán tầng T1 có số tiếp nhận công bố</strong>. Tuyệt đối không: thuốc, thực phẩm chức năng chưa công bố, thiết bị y tế, sữa công thức, sản phẩm cho trẻ dưới 36 tháng.</p>
+<h2 id="63-d3-doanh-thu-b2b">6.3 D3 — Doanh thu B2B</h2>
+<p><strong>Người chịu trách nhiệm: CEO.</strong> Đây là dòng tiền sớm nhất và <strong>không vi phạm nguyên tắc quảng cáo bằng 0</strong> — nó bán bằng quan hệ, không bằng tiền quảng cáo.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Việc</th>
+<th>Mục tiêu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Lập danh sách 200 doanh nghiệp Hàn tại Việt Nam; tiếp cận KOCHAM, hiệp hội DN Hàn theo tỉnh, ngân hàng Hàn (Shinhan, Woori), công ty kế toán Hàn; soạn bộ tài liệu bán hàng tiếng Hàn</td>
+<td>30 cuộc gặp · bộ tài liệu xong</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Chào gói <strong>đào tạo văn hoá và ngôn ngữ</strong> cho phòng nhân sự nhà máy Hàn; chào gói <strong>Hạ cánh mềm 90 ngày</strong> đầu tiên</td>
+<td><strong>3–4 khách đào tạo · 1–2 khách landing service</strong></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Nhân bản; xây bộ hồ sơ năng lực để bán tiếp</td>
+<td><strong>6 khách đào tạo · 4–5 khách landing · ~100.000 USD doanh thu năm</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Vì sao gói đào tạo văn hoá là thứ dễ bán nhất:</strong> không cần quy mô, không cần sản phẩm hoàn chỉnh, biên lợi nhuận rất cao, và nó giải một nỗi đau có thật — quản lý Hàn không hiểu vì sao công nhân Việt "vâng" nhưng không làm.</p>
+<h2 id="64-d4-đối-tác-thay-quảng-cáo">6.4 D4 — Đối tác thay quảng cáo</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Đối tác</th>
+<th>Ta cho gì</th>
+<th>Ta nhận gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khoa và CLB tiếng Hàn các trường</td>
+<td>Nội dung miễn phí, workshop, học bổng nhỏ</td>
+<td>Tiếp cận hàng nghìn sinh viên mỗi trường</td>
+</tr>
+<tr>
+<td>Hội sinh viên Việt Nam tại Hàn và chi hội vùng</td>
+<td>Hỗ trợ sự kiện, nội dung, tư vấn</td>
+<td>Tiếp cận du học sinh — nhóm chất lượng cao</td>
+</tr>
+<tr>
+<td>Trung tâm tiếng Hàn (du học, phái cử)</td>
+<td>Công cụ học miễn phí cho học viên</td>
+<td>Học viên vào hệ sinh thái; sau này thành nguồn gia sư</td>
+</tr>
+<tr>
+<td>Người sáng tạo nội dung Hàn – Việt sẵn có</td>
+<td>Chia sẻ dữ liệu, đồng sản xuất, hoa hồng Chợ</td>
+<td>Khán giả có sẵn</td>
+</tr>
+<tr>
+<td>Hiệp hội doanh nghiệp Hàn</td>
+<td>Báo cáo thị trường lao động miễn phí</td>
+<td>Đường vào khách B2B</td>
+</tr>
+<tr>
+<td>Nhà nhập khẩu hàng Hàn chính hãng</td>
+<td>Kênh bán mới, nội dung miễn phí</td>
+<td>Nguồn hàng hợp pháp cho Chợ</td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="7-nhóm-e-vận-hành-amp-tuân-thủ" class="ch"><span class="ch-num">7</span><span class="ch-title">NHÓM E — VẬN HÀNH &amp;amp; TUÂN THỦ</span></h1>
+<p>Nhóm này đã được <strong>đưa ra khỏi đường găng</strong>: pháp nhân Việt Nam, xác thực Zalo OA doanh nghiệp và thông báo sàn thương mại điện tử đều lùi lại, không chặn khởi động Pilot.</p>
+<p>Đổi lại, nhóm E phải làm hai việc khác: <strong>chuẩn bị sẵn hồ sơ để bật nhanh khi cần</strong>, và <strong>canh ba mốc kích hoạt</strong>.</p>
+<p><strong>Con số báo cáo tuần: số ngày cần để hoàn tất pháp nhân nếu bấm nút hôm nay.</strong> Con số này phải giảm dần, không được đứng yên.</p>
+<h2 id="71-nguyên-tắc-làm-sau-cần-điều-kiện-kích-hoạt-không-phải-một">7.1 Nguyên tắc: "làm sau" cần điều kiện kích hoạt, không phải một ngày tháng</h2>
+<p>Đây là chỗ dễ trôi nhất trong cả kế hoạch. Ba mốc dưới đây, <strong>cái nào đến trước thì bật cái đó</strong> — không chờ hết Pilot.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Mốc kích hoạt</th>
+<th>Phải bật gì</th>
+<th>Thời gian cần</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Khách B2B đầu tiên đồng ý ký</strong></td>
+<td>Pháp nhân Việt Nam — để xuất hoá đơn</td>
+<td>2–4 tuần</td>
+</tr>
+<tr>
+<td>Pilot Chợ đạt <strong>150 đơn/tháng</strong> qua đối tác</td>
+<td>Pháp nhân + thông báo sàn TMĐT</td>
+<td>4–8 tuần</td>
+</tr>
+<tr>
+<td>Cần <strong>Mini App đầy đủ hoặc ZNS</strong></td>
+<td>Zalo OA xác thực doanh nghiệp</td>
+<td>1–2 tuần sau khi có pháp nhân</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Khả năng cao mốc thứ nhất đến trước</strong> — có thể ngay tháng 6. Doanh nghiệp Hàn không trả tiền mà không có hoá đơn. Nghĩa là trên thực tế pháp nhân sẽ cần khoảng <strong>tháng 6 – tháng 8</strong>, không phải "sau Pilot".</p>
+<p>Hệ quả với Store Builder: nếu pháp nhân xong ở T8–T9 thì Chợ tự thu tiền từ T10, dữ liệu doanh số đủ ở T12, <strong>Store Builder bản mời lùi từ T11 sang T12–T13</strong>. Đây là cái giá của việc hoãn, và nó chấp nhận được — miễn là không để trôi quá T9.</p>
+<h2 id="72-việc-theo-nhịp">7.2 Việc theo nhịp</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Việc</th>
+<th>Ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Chuẩn bị sẵn hồ sơ pháp nhân</strong> — chọn phương án (dùng pháp nhân sẵn có + bổ sung ngành nghề, hay lập mới), soạn xong hồ sơ, chưa nộp</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Rà soát pháp lý mô hình Chợ: danh mục cấm, tiêu chí 3 tầng, hợp đồng đối tác Pilot</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Soạn hợp đồng đối tác nhà nhập khẩu</strong> — điều khoản sở hữu dữ liệu và quyền chuyển đơn về sau</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Bắt đầu tìm <strong>cố vấn hoặc đối tác người Hàn</strong> (chưa lập pháp nhân Hàn)</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Đăng ký khoá API tại data.go.kr</strong> cho TourAPI và dữ liệu mở Seoul — duyệt mất thời gian, làm sớm</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Rà điều khoản TourAPI (yêu cầu dùng như chức năng chính hoặc phụ của dịch vụ) và điều khoản YouTube</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>Canh mốc kích hoạt</strong> — khách B2B đầu tiên hoặc 150 đơn/tháng; bấm nút thì nộp hồ sơ ngay</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Chuẩn bị hồ sơ thông báo sàn TMĐT với Bộ Công Thương — soạn trước, nộp khi có pháp nhân</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Hồ sơ tuân thủ Nghị định 13/2023: đánh giá tác động xử lý dữ liệu, cơ chế đồng ý riêng biệt</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Thiết lập kế toán, hoá đơn, hợp đồng cộng tác viên</td>
+<td>★★</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Hoàn tất pháp nhân + OA doanh nghiệp + thông báo sàn TMĐT</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Khởi động hồ sơ pháp nhân Hàn Quốc từ tháng 8</strong> — để kịp AlimTalk ở G2</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Rà soát bảo hiểm trách nhiệm và điều khoản sử dụng</td>
+<td>★★</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="73-vì-sao-pháp-nhân-hàn-để-tháng-8">7.3 Vì sao pháp nhân Hàn để tháng 8</h2>
+<p>Pilot gần như không phụ thuộc vào nó: KakaoTalk Channel dạng thông tin cá nhân mở được; website tiếng Hàn không cần; và <strong>hợp đồng B2B vẫn ký bằng pháp nhân Việt</strong> vì dịch vụ thực hiện tại Việt Nam.</p>
+<p>Nhưng AlimTalk cần chạy từ đầu G2 (T12), và chuỗi <em>đăng ký kinh doanh Hàn → thẩm định Kakao Channel doanh nghiệp → cấp SenderKey → duyệt mẫu tin</em> mất <strong>8–12 tuần</strong>. Khởi động tháng 8 là vừa đủ.</p>
+
+<h1 id="8-đường-găng-và-phụ-thuộc-chéo" class="ch"><span class="ch-num">8</span><span class="ch-title">ĐƯỜNG GĂNG VÀ PHỤ THUỘC CHÉO</span></h1>
+<h2 id="81-đường-găng-của-g1">8.1 Đường găng của G1</h2>
+<pre><code>C: Web-App Frontend + Backend Portal đợt 1 + Website 3 ngôn ngữ   (T3–T5)
+        ↓
+A: Luồng sản xuất chạy qua Portal → đạt 40 mảnh/tuần              (T5–T6)
+        ↓
+D2: Chốt đối tác nhà nhập khẩu cho Pilot                          (T5)
+      ← song song: D2 bộ tiêu chí đã qua luật sư (T4)
+      ← song song: E soạn sẵn hồ sơ pháp nhân, chưa nộp (T4)
+        ↓
+C+D2: Chợ Pilot chạy đơn qua đối tác                              (T7–T8)
+        ↓
+E: MỐC KÍCH HOẠT — khách B2B đầu tiên hoặc 150 đơn/tháng
+   → nộp hồ sơ pháp nhân + OA doanh nghiệp + thông báo sàn TMĐT   (T6–T9)
+        ↓
+C: Chợ tự thu tiền + Mini App đầy đủ + ZNS                        (T9–T10)
+        ↓
+D2: Tích luỹ 3 tháng dữ liệu doanh số                             (T10–T12)
+        ↓
+C: Store Builder bản mời                                          (T12–T13)
+</code></pre>
+<p><strong>Đường găng đã đổi chủ.</strong> Mắt xích đầu không còn là pháp nhân mà là <strong>nhóm C ship được Web-App và Portal đợt 1 trong ba tháng</strong>. Nếu Portal trượt, nhóm A không đạt sản lượng, phễu không đủ rộng, và mọi thứ phía sau trượt theo.</p>
+<p><strong>Hai nhánh chạy song song, không chặn nhau:</strong></p>
+<ul>
+<li><strong>Nhánh sản phẩm và nội dung</strong> (C → A → D1) không chạm tới pháp lý, chạy hết tốc độ từ T3.</li>
+<li><strong>Nhánh thương mại</strong> (D2 → E → C) chạy chậm hơn, được mở khoá bằng mốc kích hoạt chứ không bằng lịch.</li>
+</ul>
+<p><strong>Cái giá phải trả:</strong> Store Builder lùi từ T11 sang <strong>T12–T13</strong>. Chấp nhận được — miễn là pháp nhân không trôi quá T9. Nếu trôi quá T9, cả G1 hụt một cửa vượt.</p>
+<h2 id="82-bảng-phụ-thuộc-chéo">8.2 Bảng phụ thuộc chéo</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhóm cần</th>
+<th>Từ nhóm</th>
+<th>Cái gì</th>
+<th>Hạn chót</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>M2 Script + M4 Distribute chạy được</td>
+<td>T4 — trễ thì sản lượng dừng ở 12–15 mảnh/tuần</td>
+</tr>
+<tr>
+<td>A</td>
+<td>D1</td>
+<td>Nhân vật thật cho mini-doc</td>
+<td>T4</td>
+</tr>
+<tr>
+<td>A</td>
+<td>D2</td>
+<td>Danh sách sản phẩm để gắn Shoppable Scene</td>
+<td>T6</td>
+</tr>
+<tr>
+<td>C</td>
+<td>E</td>
+<td>Pháp nhân + OA doanh nghiệp — <strong>chỉ cần khi bật Mini App và Chợ tự thu tiền</strong></td>
+<td>T9 (không phải T4)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>50 kịch bản AI roleplay dạng dữ liệu</td>
+<td>T7</td>
+</tr>
+<tr>
+<td>C</td>
+<td>D2</td>
+<td>Bộ tiêu chí và quy trình để dựng công cụ thẩm định</td>
+<td>T6</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>E</td>
+<td>Rà soát pháp lý danh mục hàng</td>
+<td>T4</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>E</td>
+<td>Hợp đồng đối tác nhà nhập khẩu</td>
+<td>T5</td>
+</tr>
+<tr>
+<td>C</td>
+<td>D2</td>
+<td>Đối tác Pilot đã ký, biết luồng thanh toán để dựng đối soát</td>
+<td>T6</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>C</td>
+<td>Công cụ thẩm định người bán</td>
+<td>T7</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>C</td>
+<td>Website tiếng Hàn lên sóng</td>
+<td>T5</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>A</td>
+<td>Bộ bài "Tiếng Việt công trường"</td>
+<td>T9</td>
+</tr>
+<tr>
+<td>B</td>
+<td>C</td>
+<td>Kết nối dữ liệu để đo lường đầu-cuối</td>
+<td>T8</td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="9-lịch-đầu-ra-theo-tháng" class="ch"><span class="ch-num">9</span><span class="ch-title">LỊCH ĐẦU RA THEO THÁNG</span></h1>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Tháng</th>
+<th>Nhóm A</th>
+<th>Nhóm B</th>
+<th>Nhóm C</th>
+<th>Nhóm D</th>
+<th>Nhóm E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T3</strong></td>
+<td>Bible + backlog 400 tình huống; dựng bối cảnh</td>
+<td>Chặng ② Kịch bản bản đầu</td>
+<td>Khung Web-App + Portal + website</td>
+<td>Mở 5 kênh; 10 trường</td>
+<td>Chọn phương án pháp nhân; rà soát Chợ</td>
+</tr>
+<tr>
+<td><strong>T4</strong></td>
+<td>60 Scene; 4 mini-doc</td>
+<td><strong>② + ④ + ⑤ chạy được</strong></td>
+<td>Web-App bản nội bộ; Portal bản nội bộ</td>
+<td>30 đại sứ; bản đồ 60 nhà nhập khẩu</td>
+<td><strong>Soạn xong hồ sơ pháp nhân, chưa nộp</strong>; tiêu chí Chợ qua luật sư</td>
+</tr>
+<tr>
+<td><strong>T5</strong></td>
+<td>90 Scene; livestream thử</td>
+<td>Hàng rào + nhật ký</td>
+<td><strong>SHIP: Web-App + Portal đợt 1 + website 3 ngôn ngữ</strong></td>
+<td>60 đại sứ; 8k OA; <strong>chốt đối tác Pilot</strong></td>
+<td>Hợp đồng đối tác nhập khẩu</td>
+</tr>
+<tr>
+<td><strong>T6</strong></td>
+<td>40 Scene; Shoppable đợt 1</td>
+<td>Chặng ③ Sản xuất</td>
+<td>Chợ Pilot bản nội bộ; AI roleplay bản đầu</td>
+<td><strong>Chào B2B; 20 cuộc gặp nhà cung cấp</strong></td>
+<td>⚡ <strong>Mốc kích hoạt có thể đến — khách B2B đầu tiên</strong></td>
+</tr>
+<tr>
+<td><strong>T7</strong></td>
+<td>40 Scene; 50 kịch bản roleplay</td>
+<td>Chặng ⑥ Đo lường</td>
+<td>Công cụ thẩm định + đối soát với đối tác</td>
+<td><strong>30 nhà cung cấp, 400 mã hàng</strong></td>
+<td>Nộp hồ sơ pháp nhân nếu đã kích hoạt</td>
+</tr>
+<tr>
+<td><strong>T8</strong></td>
+<td>40 Scene; thử thách 30 ngày</td>
+<td>Chặng ① Ý tưởng</td>
+<td><strong>SHIP: Chợ Pilot + AI roleplay + Portal đợt 2</strong></td>
+<td>Đơn hàng đầu tiên; 3 khách B2B</td>
+<td>Thông báo sàn TMĐT; <strong>khởi động pháp nhân Hàn</strong></td>
+</tr>
+<tr>
+<td><strong>T9</strong></td>
+<td>45 Scene; công cụ cho người bán</td>
+<td>Chặng ⑦ Tối ưu</td>
+<td>Zalo Mini App đầy đủ; chuyển Chợ về tự thu tiền</td>
+<td>40 nhà cung cấp; 18k OA</td>
+<td>Hoàn tất OA doanh nghiệp</td>
+</tr>
+<tr>
+<td><strong>T10</strong></td>
+<td>45 Scene; 20 bài tiếng Hàn; <strong>40 mục Đi lại &amp; du lịch</strong></td>
+<td>Mở Portal cho người bán</td>
+<td>Tối ưu chuyển đổi; <strong>mục Đi lại &amp; du lịch (TourAPI + ODsay + Kakao Map)</strong>; Store Builder bản nội bộ</td>
+<td>45 nhà cung cấp; khách landing</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>T11</strong></td>
+<td>40 Scene; video dài YouTube</td>
+<td>Tối ưu chi phí API</td>
+<td>Store Builder bản thử nghiệm nội bộ</td>
+<td><strong>50 nhà cung cấp; 30k OA; 500 đơn/tháng</strong></td>
+<td>Rà soát điều khoản</td>
+</tr>
+<tr>
+<td><strong>T12–T13</strong></td>
+<td>—</td>
+<td>—</td>
+<td><strong>SHIP: Store Builder bản mời</strong></td>
+<td>25–40 cửa hàng</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="10-nhịp-vận-hành-và-bảng-chỉ-số" class="ch"><span class="ch-num">10</span><span class="ch-title">NHỊP VẬN HÀNH VÀ BẢNG CHỈ SỐ</span></h1>
+<h2 id="101-ba-nhịp-họp-không-hơn">10.1 Ba nhịp họp, không hơn</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Thời lượng</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Họp tuần</strong></td>
+<td>45 phút</td>
+<td>Mỗi nhóm báo <strong>đúng một con số</strong> và <strong>một việc đang tắc</strong>. Không báo cáo hoạt động, không trình bày slide</td>
+</tr>
+<tr>
+<td><strong>Rà tháng</strong></td>
+<td>2 giờ</td>
+<td>Bảng ROI nội dung → quyết định sản xuất tháng sau. Rà dòng tiền. Rà rào cản pháp lý</td>
+</tr>
+<tr>
+<td><strong>Rà nhịp</strong></td>
+<td>Nửa ngày, cuối T5 / T8 / T11</td>
+<td>Đối chiếu cửa vượt. Quyết định đi tiếp hay sửa</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="102-bảng-chỉ-số-g1">10.2 Bảng chỉ số G1</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Nhóm</th>
+<th>Chỉ số</th>
+<th>T5</th>
+<th>T8</th>
+<th>T11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Thu hút</strong></td>
+<td>Người theo dõi 5 nền tảng</td>
+<td>40.000</td>
+<td>90.000</td>
+<td><strong>150.000</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Lượt xem / tháng</td>
+<td>1,5 tr</td>
+<td>5 tr</td>
+<td><strong>8–12 tr</strong></td>
+</tr>
+<tr>
+<td><strong>Sở hữu</strong></td>
+<td>Người theo dõi Zalo OA</td>
+<td>8.000</td>
+<td>18.000</td>
+<td><strong>30.000</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Thành viên nhóm Facebook</td>
+<td>15.000</td>
+<td>32.000</td>
+<td><strong>50.000</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Tài khoản đăng ký</td>
+<td>9.000</td>
+<td>22.000</td>
+<td><strong>40.000</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Tỷ lệ chuyển sang "đất của mình"</td>
+<td>≥ 8%/tháng</td>
+<td>≥ 8%</td>
+<td>≥ 8%</td>
+</tr>
+<tr>
+<td><strong>Gắn kết</strong></td>
+<td>Người học hoạt động tuần (WAU)</td>
+<td>900</td>
+<td>2.600</td>
+<td><strong>5.000</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Retention D30</td>
+<td>&gt; 15%</td>
+<td>&gt; 19%</td>
+<td><strong>&gt; 22%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Scene hoàn thành / người / tuần</td>
+<td>2,5</td>
+<td>3,4</td>
+<td><strong>&gt; 4</strong></td>
+</tr>
+<tr>
+<td><strong>Giao dịch</strong></td>
+<td>Đơn hàng Chợ / tháng</td>
+<td>—</td>
+<td>120</td>
+<td><strong>500</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>GMV / tháng</td>
+<td>—</td>
+<td>110 tr đ</td>
+<td><strong>400–600 tr đ</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Buổi gia sư / tháng</td>
+<td>—</td>
+<td>60</td>
+<td><strong>200</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Cửa hàng riêng đang hoạt động</td>
+<td>—</td>
+<td>—</td>
+<td><strong>25–40</strong></td>
+</tr>
+<tr>
+<td><strong>Tin cậy</strong></td>
+<td>Tỷ lệ khiếu nại đơn hàng</td>
+<td>—</td>
+<td>&lt; 3%</td>
+<td><strong>&lt; 2%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Người bán được kiểm định</td>
+<td>—</td>
+<td>30</td>
+<td><strong>50</strong></td>
+</tr>
+<tr>
+<td><strong>Sản xuất</strong></td>
+<td>Mảnh nội dung / tuần</td>
+<td>25</td>
+<td>45</td>
+<td><strong>40–60</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Chi phí / mảnh</td>
+<td>250k</td>
+<td>150k</td>
+<td><strong>&lt; 120k</strong></td>
+</tr>
+<tr>
+<td><strong>Doanh thu</strong></td>
+<td>Doanh thu / tháng</td>
+<td>—</td>
+<td>90 tr đ</td>
+<td><strong>250–400 tr đ</strong></td>
+</tr>
+</tbody>
+</table></div>
+
+<h1 id="11-cửa-vượt-sang-g2" class="ch"><span class="ch-num">11</span><span class="ch-title">CỬA VƯỢT SANG G2</span></h1>
+<p>Không đủ thì <strong>sửa G1, không mở rộng</strong>. Đây là kỷ luật quan trọng nhất của cả dự án.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cửa</th>
+<th>Ngưỡng</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Retention D30</strong></td>
+<td><strong>&gt; 20%</strong></td>
+<td>Dưới ngưỡng này thì nội dung là giải trí, không phải nền tảng</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Tỷ lệ khiếu nại đơn hàng</strong></td>
+<td><strong>&lt; 3%</strong></td>
+<td>Trên ngưỡng này thì mở rộng Chợ là nhân bản rủi ro</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Người vừa học vừa mua hàng</strong></td>
+<td><strong>≥ 100 người</strong></td>
+<td>Chỉ số quan trọng nhất — nó chứng minh hai trụ thật sự nuôi nhau, không phải hai sản phẩm dán cạnh nhau</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Chuyển sang "đất của mình"</strong></td>
+<td><strong>≥ 8%/tháng</strong></td>
+<td>Dưới ngưỡng này thì tăng trưởng phụ thuộc thuật toán, không phải tài sản của mình</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Cửa hàng riêng hoạt động</strong></td>
+<td><strong>≥ 25</strong> (chấp nhận trượt sang T12–T13)</td>
+<td>Chứng minh cơ chế leo hạng có hiệu lực</td>
+</tr>
+<tr>
+<td>5b</td>
+<td><strong>Pháp nhân và tuân thủ hoàn tất</strong></td>
+<td><strong>Xong trước T9</strong></td>
+<td>Trôi quá T9 thì Store Builder và toàn bộ G2 trượt theo</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Doanh thu B2B</strong></td>
+<td><strong>≥ 4 khách đã trả tiền</strong></td>
+<td>Chứng minh chiều Hàn → Việt trả tiền được cho chiều Việt → Hàn</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nếu cửa 3 không đạt nhưng các cửa khác đạt:</strong> đó không phải thất bại, mà là tín hiệu rằng nội dung và thương mại đang chạy song song chứ chưa gắn vào nhau. Việc cần làm là dồn sức vào Shoppable Scene, không phải mở rộng.</p>
+
+<h1 id="12-checklist-tuần-đầu-tiên" class="ch"><span class="ch-num">12</span><span class="ch-title">CHECKLIST TUẦN ĐẦU TIÊN</span></h1>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Việc</th>
+<th>Ai</th>
+<th>Xong khi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Chốt phạm vi Portal đợt 1</strong> — ba chặng ②④⑤, không hơn</td>
+<td>Trưởng KT + Kỹ sư AI</td>
+<td>Hết tuần 1 — đây là mắt xích đầu đường găng mới</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Chốt bảng phân công năm nhóm, mỗi nhóm một người chịu trách nhiệm và một con số</td>
+<td>CEO</td>
+<td>Hết tuần 1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Đặt lịch họp tuần cố định 45 phút, một khung giờ, không đổi</td>
+<td>CEO</td>
+<td>Hết tuần 1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mở Zalo OA, Facebook Page và Group, 5 kênh mạng xã hội; đăng ký tên miền</td>
+<td>Cộng đồng</td>
+<td>Hết tuần 1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Bắt đầu bản đồ 400 tình huống và bible nội dung</td>
+<td>Trưởng nội dung</td>
+<td>Bản nháp hết tuần 2</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Dựng khung M2 Script và kho tri thức RAG</td>
+<td>Kỹ sư AI</td>
+<td>Bản chạy được hết tuần 3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Khởi tạo kho mã, hạ tầng, phân tách dữ liệu theo vùng</td>
+<td>Trưởng kỹ thuật</td>
+<td>Hết tuần 2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Đặt lịch gặp luật sư rà soát mô hình Chợ và hợp đồng đối tác</td>
+<td>CEO</td>
+<td>Trong tuần 1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Lập danh sách 60 nhà nhập khẩu hàng Hàn chính hãng; <strong>chọn 5 ứng viên đối tác Pilot</strong></td>
+<td>Vận hành Chợ</td>
+<td>Hết tuần 2</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Chọn phương án pháp nhân và soạn sẵn hồ sơ</strong> — chưa nộp, để bấm nút là nộp được</td>
+<td>CEO</td>
+<td>Hết tuần 3</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Dán ba mốc kích hoạt (7.1) lên bảng theo dõi, rà mỗi tuần</td>
+<td>CEO</td>
+<td>Hết tuần 1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Bắt đầu tìm cố vấn hoặc đối tác người Hàn</td>
+<td>CEO</td>
+<td>Liên tục</td>
+</tr>
+</tbody>
+</table></div>
+
+<h2 id="ghi-chú">GHI CHÚ</h2>
+<p>Tài liệu này chi tiết hoá <strong>Giai đoạn 1</strong> trong lộ trình 30 tháng của Đề án v2.4. Các con số là mục tiêu đặt ra, cần thay bằng số thật sau mỗi tháng vận hành.</p>
+<p><strong>Cập nhật v1.2 (27/07/2026):</strong> bổ sung công việc nối nguồn dữ liệu ngoài — Naver Search API và YouTube Data API vào nhóm B nhịp 2; TourAPI, ODsay LAB và Kakao Map cho mục "Đi lại &amp; du lịch" vào nhóm C nhịp 3; bộ 40 nội dung hướng dẫn đi lại vào nhóm A nhịp 3; đăng ký khoá data.go.kr vào nhóm E nhịp 1. Ghi nhận hai kết quả khảo sát: <strong>Naver Clip và thẻ T-money đều không có API</strong>.</p>
+<p><strong>Cập nhật v1.1 (27/07/2026):</strong> pháp nhân Việt Nam, xác thực Zalo OA doanh nghiệp và thông báo sàn TMĐT đưa ra khỏi đường găng, thay bằng <strong>cơ chế ba mốc kích hoạt</strong> (7.1). Chợ trong G1 chạy <strong>Pilot qua một đối tác nhà nhập khẩu có pháp nhân</strong> (6.2) để giữ được cơ chế bảo đảm. Studio đổi thành <strong>Backend Portal của Web-App</strong> với luồng agentic bảy chặng, chia hai đợt ship (chương 4). Store Builder lùi sang T12–T13.</p>
+<p>Ba nguyên tắc bao trùm toàn bộ G1:</p>
+<ol>
+<li><strong>Không mở rộng trước khi đạt cửa vượt.</strong> Mọi cám dỗ mở thêm mảng, thêm ngành hàng, thêm nền tảng đều hoãn tới G2.</li>
+<li><strong>Không chi một đồng quảng cáo trả phí.</strong> Tiền chỉ vào nền tảng, nội dung, tự động hoá và con người.</li>
+<li><strong>Không đánh đổi niềm tin lấy tăng trưởng.</strong> Một vụ lừa đảo ở tháng thứ sáu xoá sạch chín tháng xây dựng.</li>
+<li><strong>"Làm sau" phải có mốc kích hoạt.</strong> Việc hoãn không có điều kiện bật lại thì không phải hoãn — là bỏ.</li>
+</ol>
+</div>
+</main>
+
+<script>
+(function(){
+  var rail=document.getElementById('rail'),menu=document.getElementById('menu'),
+      bar=document.getElementById('bar'),theme=document.getElementById('theme'),
+      links=[].slice.call(rail.querySelectorAll('a')),
+      heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+
+  menu.addEventListener('click',function(){rail.classList.toggle('open');});
+  rail.addEventListener('click',function(e){if(e.target.closest('a'))rail.classList.remove('open');});
+
+  function save(t){try{localStorage.setItem('kv-theme',t);}catch(e){}}
+  try{var s=localStorage.getItem('kv-theme');if(s)document.documentElement.dataset.theme=s;}catch(e){}
+  function sync(){var d=document.documentElement.dataset.theme==='dark';
+    theme.textContent=d?'Chế độ sáng':'Chế độ tối';}
+  sync();
+  theme.addEventListener('click',function(){
+    var d=document.documentElement.dataset.theme==='dark';
+    document.documentElement.dataset.theme=d?'light':'dark';save(d?'light':'dark');sync();});
+
+  var tick=false;
+  function upd(){
+    var st=window.scrollY,h=document.body.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(st/h)*100:0)+'%';
+    var cur=0;
+    for(var i=0;i<heads.length;i++){
+      if(heads[i]&&heads[i].getBoundingClientRect().top<160)cur=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+    var on=links[cur];
+    if(on&&window.innerWidth>1080){
+      var r=on.getBoundingClientRect(),rr=rail.getBoundingClientRect();
+      if(r.top<rr.top+70||r.bottom>rr.bottom-70)
+        rail.scrollTop+=r.top-rr.top-rail.clientHeight/2;
+    }
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
+  window.addEventListener('resize',upd);upd();
+})();
+</script>
+</body>
+</html>
