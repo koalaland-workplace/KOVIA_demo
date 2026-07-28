@@ -8,7 +8,14 @@ Bộ tài liệu và bản demo của **KOVIA** — hạ tầng số của hành
 
 **→ [Trang tổng hợp (index.html)](index.html)** — bản giới thiệu khái quát, có đường dẫn tới tất cả những thứ bên dưới.
 
-**→ [Bản giới thiệu tổng quát (PDF)](KOVIA-Gioi-thieu.pdf)** — 17 trang A4, 10 mục, kèm ảnh chụp 8 màn hình ứng dụng. Dùng để gửi kèm email hoặc in ra. Bản web: [kovia-gioi-thieu.html](kovia-gioi-thieu.html).
+**→ Bản giới thiệu tổng quát** — 10 mục, khổ A4, kèm ảnh chụp 8 màn hình ứng dụng. Dùng để gửi kèm email hoặc in ra.
+
+| Ngôn ngữ | PDF | Bản web |
+|---|---|---|
+| Tiếng Việt | [KOVIA-Gioi-thieu.pdf](KOVIA-Gioi-thieu.pdf) — 17 trang | [kovia-gioi-thieu.html](kovia-gioi-thieu.html) |
+| 한국어 | [KOVIA-Gioi-thieu-KO.pdf](KOVIA-Gioi-thieu-KO.pdf) — 14 trang | [kovia-gioi-thieu-ko.html](kovia-gioi-thieu-ko.html) |
+
+Bản tiếng Hàn dùng ảnh chụp giao diện app ở chế độ tiếng Hàn, không phải ảnh tiếng Việt chú thích lại.
 
 ## Hai bản demo
 

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOVIA · HANGIL 한길 — 사업 개요</title>
+<meta name="description" content="KOVIA 사업 개요 — 베트남–한국 회랑 플랫폼: 포지셔닝, 시장, 제품 아키텍처, 사용자 앱, 로드맵과 재무.">
+<link rel="icon" href="Branding/assets/svg/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#142B5F; --rice:#BA7517; --mint:#35C6A5;
+  --paper:#F4F2EC; --ink:#22221F; --card:#FFFFFF;
+  --line:rgba(20,43,95,.16); --line2:rgba(20,43,95,.09); --muted:#5C6478;
+  --sans:"Noto Sans KR","Be Vietnam Pro",system-ui,-apple-system,sans-serif;
+  --disp:"Bricolage Grotesque","Noto Sans KR",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ko:"Be Vietnam Pro",var(--sans);
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#DFDCD3;color:var(--ink);font-family:var(--sans);
+  font-size:10.1pt;line-height:1.72;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.ko{font-family:var(--ko)}
+
+/* ---------- khổ trang A4 ---------- */
+@page{size:A4 portrait;margin:14mm 15mm 13mm}
+.page{width:210mm;min-height:297mm;padding:14mm 15mm 13mm;margin:0 auto 8mm;
+  background:var(--paper);position:relative;overflow:hidden;
+  box-shadow:0 6px 26px rgba(20,24,31,.16)}
+@page cover{margin:0}          /* bìa tràn lề, không có lề trang */
+@media print{
+  body{background:#fff;font-size:10.2pt}
+  .page{width:auto;min-height:0;padding:0;margin:0;box-shadow:none;background:transparent;
+    break-after:page;page-break-after:always}
+  .page:last-child{break-after:auto;page-break-after:auto}
+  .cover{page:cover;background:var(--night);width:210mm;height:297mm;min-height:297mm;
+    padding:20mm 20mm 15mm;display:flex;flex-direction:column;overflow:hidden}
+}
+h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
+table,figure,.card,.stat,.shot{break-inside:avoid;page-break-inside:avoid}
+
+/* ---------- bìa ---------- */
+.cover{background:var(--night);color:#EDF1F8;display:flex;flex-direction:column}
+.cover .mark{display:flex;align-items:center;gap:11px;margin-bottom:auto}
+.cover .mark svg{width:34px;height:34px}
+.cover .mk-t{font-family:var(--disp);font-weight:700;font-size:13pt;letter-spacing:.16em;
+  text-transform:uppercase;line-height:1;color:#fff}
+.cover .mk-s{font-size:8pt;letter-spacing:.1em;color:#8FA3CC;text-transform:uppercase;margin-top:3px}
+.cover .eyebrow{font-family:var(--disp);font-size:8.5pt;letter-spacing:.22em;text-transform:uppercase;
+  color:#E0A951;font-weight:700;margin-bottom:7mm}
+.cover h1{font-size:31pt;line-height:1.18;font-weight:800;letter-spacing:-.02em;margin:0 0 4mm;color:#fff}
+.cover .ko-l{font-family:var(--sans);font-weight:700;font-size:15pt;color:#E0A951;margin:0 0 9mm}
+.cover .lead{font-size:12pt;line-height:1.5;font-weight:400;color:#C3D0EA;max-width:135mm;
+  border-left:2.5px solid #E0A951;padding-left:6mm;margin:0 0 12mm}
+.cover .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-bottom:12mm}
+.cover .facts div{border-top:1.5px solid rgba(224,169,81,.5);padding-top:3mm}
+.cover .facts b{display:block;font-family:var(--disp);font-size:18pt;font-weight:700;color:#fff;
+  letter-spacing:-.02em;line-height:1}
+.cover .facts span{font-size:8pt;color:#8FA3CC;line-height:1.35;display:block;margin-top:1.5mm}
+.cover .foot{border-top:1px solid rgba(143,163,204,.3);padding-top:4mm;font-size:8.5pt;color:#8FA3CC;
+  display:flex;justify-content:space-between;gap:6mm}
+
+/* ---------- đầu mục ---------- */
+.sec-head{display:flex;align-items:baseline;gap:5mm;border-top:2px solid var(--night);
+  padding-top:3mm;margin:0 0 4mm}
+.sec-num{font-family:var(--disp);font-weight:700;font-size:9.5pt;color:var(--rice);flex:none}
+h2{font-size:18.5pt;line-height:1.22;font-weight:800;letter-spacing:-.01em;color:var(--night);margin:0}
+.lede{font-size:11pt;color:var(--muted);line-height:1.55;margin:0 0 5mm;max-width:150mm}
+h3{font-size:11.5pt;font-weight:700;color:var(--night);margin:7mm 0 2.5mm;letter-spacing:-.01em}
+p{margin:0 0 3mm}
+strong{font-weight:600;color:var(--night)}
+em{font-style:italic;color:var(--muted)}
+ul{margin:0 0 3mm;padding-left:5mm}
+li{margin-bottom:1.2mm}
+li::marker{color:var(--rice)}
+
+/* ---------- thẻ, số liệu ---------- */
+.grid{display:grid;gap:3mm;margin:3mm 0 4mm}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm}
+.card .k{font-family:var(--disp);font-size:7.5pt;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:700;color:var(--rice);margin-bottom:2mm}
+.card h4{font-size:10.5pt;font-weight:700;color:var(--night);margin:0 0 1.5mm;letter-spacing:-.01em}
+.card p{font-size:9.2pt;line-height:1.5;color:var(--muted);margin:0}
+.stat{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm}
+.stat b{display:block;font-family:var(--disp);font-size:17pt;font-weight:700;color:var(--night);
+  letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5mm}
+.stat span{font-size:8.6pt;color:var(--muted);line-height:1.4;display:block}
+
+/* ---------- bảng ---------- */
+table{border-collapse:collapse;width:100%;font-size:9.2pt;line-height:1.45;
+  border:1px solid var(--line2);border-radius:3mm;overflow:hidden;margin:3mm 0 4mm;background:var(--card)}
+th,td{padding:2.4mm 3mm;text-align:left;vertical-align:top;border-bottom:1px solid var(--line2)}
+thead th{background:rgba(20,43,95,.05);color:var(--night);font-weight:600;font-size:8.4pt;
+  letter-spacing:.02em;border-bottom:1.3px solid var(--line)}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--night)}
+.pill{display:inline-block;font-size:7.8pt;font-weight:600;padding:.6mm 2mm;border-radius:99px;
+  background:rgba(53,198,165,.18);color:#0E7A64;white-space:nowrap}
+.pill.later{background:rgba(20,43,95,.08);color:var(--muted)}
+
+blockquote{margin:4mm 0;padding:4mm 5mm;background:var(--card);border:1px solid var(--line2);
+  border-left:1.2mm solid var(--rice);border-radius:0 3mm 3mm 0}
+blockquote p{font-size:11pt;line-height:1.45;font-weight:600;color:var(--night);margin:0}
+pre.flow{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm;
+  font-family:var(--mono);font-size:7.6pt;line-height:1.5;color:var(--ink);margin:3mm 0 4mm;
+  white-space:pre;overflow:hidden}
+
+/* ---------- ảnh màn hình ứng dụng ---------- */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm 4mm;margin:3mm 0 0}
+.shot{text-align:left;margin:0}   /* figure mặc định có lề 40px, phải bỏ */
+.shot img{width:92%;display:block;border-radius:2.5mm;border:1px solid var(--line);
+  background:#fff;box-shadow:0 1.5mm 4mm rgba(20,24,31,.12)}
+.shot .n{font-family:var(--disp);font-size:7.2pt;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--rice);margin:2.2mm 0 .6mm}
+.shot h4{font-size:9.2pt;font-weight:700;color:var(--night);margin:0 0 .8mm;letter-spacing:-.01em}
+.shot p{font-size:8pt;line-height:1.38;color:var(--muted);margin:0}
+.shots3{grid-template-columns:repeat(3,1fr);gap:6mm 5mm}
+.shots3 .shot h4{font-size:10.5pt}
+.shots3 .shot p{font-size:8.8pt;line-height:1.48}
+
+.note{font-size:8.5pt;color:var(--muted);border-top:1px solid var(--line2);padding-top:3mm;margin-top:5mm}
+.pgnum{position:absolute;right:15mm;bottom:7mm;font-family:var(--mono);font-size:8pt;color:var(--muted)}
+@media print{.pgnum{display:none}}
+a{color:var(--night)}
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="mark">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="7" y="7" width="50" height="50" rx="13" fill="#FFFFFF"></rect>
+      <path d="M19 42 L32 21 L45 42" fill="none" stroke="#142B5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"></rect>
+    </svg>
+    <span><span class="mk-t">KOVIA</span><br><span class="mk-s">Hangil 한길</span></span>
+  </div>
+
+  <div class="eyebrow">사업 개요 · 제안서 v2.5 · 2026.07.27</div>
+  <h1>베트남–한국 회랑<br>디지털 플랫폼</h1>
+  <p class="ko-l">한 길 위에, 두 나라 — 하나의 길, 두 개의 고향</p>
+  <p class="lead">베트남–한국 회랑의 디지털 인프라입니다. 베트남 사람은 한국으로 가기 위한 역량과 신뢰를 쌓고, 한국 사람은 베트남에 들어오기 위한 사람·부지·물품·서류를 찾습니다 — 하나의 신원 레이어 위에서.</p>
+
+  <div class="facts">
+    <div><b>321,795</b><span>재한 베트남인</span></div>
+    <div><b>10,400+</b><span>베트남 내 한국 FDI 프로젝트</span></div>
+    <div><b>30</b><span>개월 로드맵, 5단계</span></div>
+    <div><b>0</b><span>유료 광고비</span></div>
+  </div>
+
+  <div class="foot">
+    <span>검토와 의견 수렴을 위한 문서이며, 투자 권유 자료가 아닙니다.</span>
+    <span>수치는 추정치이며 확약이 아닙니다.</span>
+  </div>
+  <span class="pgnum">1</span>
+</section>
+
+<!-- ============ 2 · 요약 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">01</span><h2>요약</h2></div>
+  <p class="lede">KOVIA는 한국어 학습 앱도, 전자상거래 플랫폼도 아닙니다. 베트남–한국 회랑의 <strong>신원과 신뢰 레이어</strong>이며, 그 위에 여러 응용 서비스가 올라갑니다.</p>
+
+  <h3>문제</h3>
+  <p>오늘의 베트남–한국 회랑은 구조화되지 않은 신뢰 위에서 돌아갑니다. 페이스북 그룹, 아는 브로커, “형이 소개해 줬다”. 그 결과는 과도한 중개 수수료, 유학과 취업을 빙자한 사기, 그리고 직접 채용을 주저하는 한국 기업입니다. 한 사람에 대해 검증 가능한 디지털 기록, 즉 <strong>“역량 여권”</strong>을 가진 사업자는 아직 없습니다.</p>
+
+  <h3>세 가지 핵심 논지</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">논지 1</div><h4>검증 가능한 신뢰를 판다</h4><p>서비스를 파는 것이 아닙니다. 자산은 한 사람의 역량과 이력에 대한 디지털 기록이며, 다른 모든 사업은 그 위에서 수익을 냅니다.</p></div>
+    <div class="card"><div class="k">논지 2</div><h4>양방향 비대칭</h4><p>베트남 → 한국 방향은 거의 전부 무료로 열어 밀도와 데이터를 쌓고, 한국 → 베트남 방향에서 높은 값으로 판매합니다. 오늘의 학습자가 내일 한국 기업이 돈을 내고 채용하는 인재입니다.</p></div>
+    <div class="card"><div class="k">논지 3</div><h4>닫힌 순환</h4><p>매년 수만 명이 3~5년의 한국 생활을 마치고 귀국하는 반면, 베트남의 한국 FDI 기업은 반장과 통역이 늘 부족합니다. “가고–배우고–일하고–돌아오고–다시 채용되는” 고리를 잇습니다.</p></div>
+  </div>
+
+  <h3>해자는 어디에 있는가</h3>
+  <table>
+    <thead><tr><th style="width:52%">계층</th><th>복제 가능한가</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>영상 콘텐츠</td><td>가능 — 3개월이면</td><td>해자가 아님</td></tr>
+      <tr><td>AI 모델</td><td>가능 — API는 누구나</td><td>해자가 아님</td></tr>
+      <tr><td>마켓플레이스</td><td>가능 — 자본을 태우면</td><td>해자가 아님</td></tr>
+      <tr><td><strong>수십만 명의 누적 역량 프로필</strong></td><td><strong>불가능</strong></td><td>← 해자</td></tr>
+      <tr><td><strong>특정 지역의 커뮤니티 밀도</strong></td><td><strong>매우 어려움</strong></td><td>← 해자</td></tr>
+      <tr><td><strong>협회·학교·산업단지·기관과의 관계</strong></td><td><strong>매우 어려움</strong></td><td>← 해자</td></tr>
+    </tbody>
+  </table>
+
+  <h3>북극성 지표</h3>
+  <blockquote><p>검증된 성공 연결(Verified Successful Connections). 세 가지 독립적 근거가 모두 갖춰졌을 때만 집계합니다: 플랫폼을 통한 거래 기록, 양측의 상호 확인, 그리고 외부 증적(근로계약서, 입학 허가서, 인보이스, 배송 수령증).</p></blockquote>
+  <span class="pgnum">2</span>
+</section>
+
+<!-- ============ 3 · 시장 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">02</span><h2>시장과 고객</h2></div>
+  <p class="lede">EPS 쿼터의 대폭 축소는 인력 송출에 베팅해서는 안 된다는 뜻입니다. 실수요는 유학, E-7 비자, 그리고 특히 <strong>베트남 현지 한국 기업에서의 취업</strong>으로 몰리고 있습니다 — 훨씬 큰 시장이며 인력 송출 면허 문제도 없습니다.</p>
+
+  <div class="grid g4">
+    <div class="stat"><b>321,795</b><span>재한 베트남인(2024.10) — 28.21%가 D2/D4 유학생</span></div>
+    <div class="stat"><b>989억</b><span>USD 한국의 대베트남 FDI, 10,400개 이상 프로젝트, 전체의 약 18%</span></div>
+    <div class="stat"><b>570,000</b><span>2026년 목표 방한 베트남 관광객 수</span></div>
+    <div class="stat"><b>4,200</b><span>2026년 EPS 쿼터 — 대폭 축소, 여기에 베팅하지 않음</span></div>
+  </div>
+
+  <h3>여섯 고객군</h3>
+  <table>
+    <thead><tr><th>#</th><th style="width:24%">고객군</th><th>핵심 페인포인트</th><th>지불력</th><th>우선순위</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A1</strong></td><td>재한 베트남인</td><td>생존 한국어, 비자, 의료, 세금, 송금, 외로움</td><td>낮음 · 고빈도</td><td>★★★</td></tr>
+      <tr><td><strong>A2</strong></td><td>한국행 준비 중인 베트남인</td><td>어학, 학교와 회사 선택, 사기 우려, 중개 수수료</td><td>높음 · 일회성</td><td>★★★</td></tr>
+      <tr><td><strong>A3</strong></td><td>문화로 배우는 학습자</td><td>학습이 지루하고, 실제로 쓰지 못함</td><td>낮음</td><td>★★★ (유입)</td></tr>
+      <tr><td><strong>B1</strong></td><td>베트남에 진출하는 한국 기업</td><td>시장 조사, 부지와 공장 임차, 법무, 통역, 채용</td><td><strong>매우 높음</strong></td><td>★★</td></tr>
+      <tr><td><strong>B2</strong></td><td>베트남 거주 한국인</td><td>베트남어, 주거, 의료, 학교</td><td>높음</td><td>★</td></tr>
+      <tr><td><strong>C</strong></td><td>양국 소상공인과 중소기업</td><td>시작 방법, 물류, 결제, 검증</td><td>GMV의 %</td><td>★★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>A3에 대한 참고:</strong> 이 그룹은 “돈이 없다”는 이유로 흔히 저평가됩니다. 틀렸습니다. A3는 가장 저렴한 유입 경로이자 한국 상품의 최대 구매층입니다. 한국 문화를 좋아하는 사람이 곧 한국 화장품·식품·패션을 사는 사람입니다. 한–베 마켓을 후반부가 아니라 BETA에 바로 넣는 이유입니다.</p>
+
+  <h3>플라이휠</h3>
+  <pre class="flow">   실전 콘텐츠 (AI Portal 덕분에 원가 거의 0)
+              ↓
+        학습자와 시청자
+              ↓
+     역량 데이터 + 행동 데이터
+              ↓
+      검증된 프로필 (Skill Passport)
+              ↓
+   한국 기업이 채용·구매·제휴에 비용을 지불
+              ↓
+        실제 일자리, 실제 주문
+              ↓
+   신뢰가 쌓이고 → 스스로 콘텐츠를 만들고 → 지인을 데려옴
+              ↓
+        (처음으로, 더 강하게)</pre>
+  <span class="pgnum">3</span>
+</section>
+
+<!-- ============ 4 · 제품 아키텍처 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">03</span><h2>제품 아키텍처</h2></div>
+  <p class="lede">BETA는 앞의 세 기둥을 켜고 네 번째를 시작합니다. 나머지는 지도이지 첫 달의 계획이 아닙니다. 첫 번째 규율은 이것입니다. <strong>콘텐츠 레이어와 신원 레이어가 충분히 두꺼워지기 전에는 어떤 마켓플레이스도 열지 않는다.</strong></p>
+
+  <table>
+    <thead><tr><th>기둥</th><th style="width:28%">이름</th><th>설명</th><th>단계</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P1</strong></td><td><strong>Learn</strong> — 실전 한국어</td><td>Scene 영상 + AI 말하기 연습 + 튜터</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P2</strong></td><td><strong>Culture</strong> — 문화와 경험</td><td>미니 다큐, 문화 해설, 커뮤니티, 오프라인</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P3</strong></td><td><strong>Market</strong> — 한–베 마켓</td><td>한국 상품의 베트남 유통, 검증된 판매자</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P4</strong></td><td><strong>Store</strong> — 온라인 상점</td><td>판매자가 직접 개설·번역·운영</td><td><span class="pill">BETA 후반</span></td></tr>
+      <tr><td>P5</td><td>Passport — 역량 프로필</td><td>신원 + 역량 + 이력 + 커뮤니티 보증</td><td><span class="pill later">2단계</span></td></tr>
+      <tr><td>P6</td><td>Rights — 권익과 긴급 지원</td><td>비자, 의료, 세금, 노동 분쟁, 사기 대응</td><td><span class="pill later">2단계</span></td></tr>
+      <tr><td>P7</td><td>Career — 취업과 유학</td><td><strong>베트남 현지</strong> 한국 기업 취업을 최우선</td><td><span class="pill later">2–3단계</span></td></tr>
+      <tr><td>P8</td><td>Business — 소프트 랜딩</td><td>한국 중소기업 대상 랜딩 서비스, 통역, 실사, 채용</td><td><span class="pill later">2–3단계</span></td></tr>
+      <tr><td>P9</td><td>Return — 귀국자 네트워크</td><td>귀국자 ↔ 베트남 내 한국 FDI 기업</td><td><span class="pill later">4단계</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>콘텐츠 단위는 “강의”가 아니라 “Scene”</h3>
+  <p>Scene은 문법 주제가 아니라 <strong>권력 관계</strong>로 분류합니다. 상사와, 동료와, 서비스 직원과, 집주인과, 학교와, 한국인 가족과, 관공서와. <em>높임말을 틀리는 것이 문법을 틀리는 것보다 위험합니다.</em> 각 Scene은 60~90초 세로 영상이며 다섯 박자 공식을 따릅니다.</p>
+  <pre class="flow">1박 — HOOK (0–5초)      : 궁금증을 부르는 한 문장 / 긴장된 상황
+2박 — KEY PHRASE (5–25초): 핵심 문장 1–3개, 천천히, 이중 자막
+3박 — CULTURE (25–50초)  : 왜 그렇게 말하는가, 틀리면 무슨 일이 생기는가
+4박 — PRACTICE (50–75초) : 따라 말하기, 반복할 여백을 둠
+5박 — ACTION (75–90초)   : 앱에서 AI와 연습 / 다음 Scene 보기</pre>
+
+  <h3>하나의 두뇌, 세 개의 입구</h3>
+  <pre class="flow">   입구 1: Zalo Mini App     입구 2: 카카오톡 채널        입구 3: Web / PWA
+   (베트남 주력)              (한국 주력, 2단계)           (SEO, B2B, 데스크톱)
+          │                            │                          │
+          └────────────────────────────┼──────────────────────────┘
+                                       │
+                        ══════ 단 하나의 두뇌 ══════
+                    신원 · 동의(consent) · 프로필 · CRM
+                   예약 · 결제 · 주문 · 콘텐츠
+                          지식 베이스(RAG) · 감사 로그</pre>
+  <span class="pgnum">4</span>
+</section>
+<!-- ============ 5 · 사용자 앱 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">04</span><h2>사용자 앱</h2></div>
+  <p class="lede">BETA 1.0 빌드의 주요 화면 여덟 개 — 전체가 베트남어·한국어 이중 언어이며, 세 가지 테마와 세 가지 글자 크기를 제공합니다.</p>
+
+  <div class="shots">
+    <figure class="shot">
+      <img src="assets/screens-ko/kham-pha.png" alt="탐색 화면">
+      <div class="n">화면 01</div>
+      <h4>탐색</h4>
+      <p>프로필 기반 개인화 피드: 주요 Scene, 60초 가로 스크롤, 노래로 배우기, 짧은 뉴스.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/tieng-han.png" alt="언어 학습 화면">
+      <div class="n">화면 02</div>
+      <h4>언어 학습</h4>
+      <p>강의가 아니라 <em>대화 상대</em>를 먼저 고릅니다 — 상대마다 필요한 높임말이 다릅니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/scene.png" alt="다섯 박자 Scene 화면">
+      <div class="n">화면 03</div>
+      <h4>다섯 박자 Scene</h4>
+      <p>상황, 표현, 문화 해설, 말하기 연습, 실전 사용 기록까지 한 흐름으로.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/luyen-noi.png" alt="AI 말하기 연습 화면">
+      <div class="n">화면 04</div>
+      <h4>AI 말하기 연습</h4>
+      <p>발음, 억양 그리고 <strong>공손함</strong>까지 평가하고 구체적인 교정을 제시합니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/cho.png" alt="한–베 마켓 화면">
+      <div class="n">화면 05</div>
+      <h4>한–베 마켓</h4>
+      <p>모든 상품에 “검증 완료” 표식. 가격이 아니라 확실성으로 경쟁합니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/toi.png" alt="내 프로필 화면">
+      <div class="n">화면 06</div>
+      <h4>내 프로필</h4>
+      <p>완료한 상황, 실전 사용, 높임말 점수 — 2단계 Skill Passport의 데이터 기반.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/tien-ich.png" alt="편의 기능 패널">
+      <div class="n">화면 07</div>
+      <h4>편의 기능</h4>
+      <p>네 그룹, 열여섯 기능. 흐리게 표시된 항목은 다음 단계에서 열립니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/sori.png" alt="SORI 도우미">
+      <div class="n">화면 08</div>
+      <h4>SORI 도우미</h4>
+      <p>급할 때 바로 묻습니다. SORI는 동행자이며, 자신이 AI임을 늘 밝힙니다.</p>
+    </figure>
+  </div>
+
+  <p class="note">브라우저에서 실제로 동작하는 인터랙티브 빌드를 캡처한 화면이며, 정적인 디자인 시안이 아닙니다. 표시된 데이터는 예시이고, 상품 이미지와 영상은 레이아웃 확인용 임시 소스입니다.</p>
+  <span class="pgnum">5</span>
+</section>
+
+<!-- ============ 6 · 핵심 화면 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">05</span><h2>핵심 화면 셋</h2></div>
+  <p class="lede">아래 세 화면은 제품 논지가 구체적인 동작으로 바뀌는 지점입니다. 세 화면만 보실 수 있다면 이 세 개를 보십시오.</p>
+
+  <div class="shots shots3">
+    <figure class="shot">
+      <img src="assets/screens-ko/tieng-han.png" alt="언어 학습 화면">
+      <h4>강의가 아니라 상대를 고른다</h4>
+      <p>어학 앱은 모두 “1과: 자모”로 시작합니다. 여기서 첫 질문은 <strong>“오늘은 누구와?”</strong>입니다. 같은 말이라도 반장님에게 하는 말과 룸메이트에게 하는 말은 서로 다른 문장이고, 잘못 말했을 때의 대가는 점수로 끝나지 않기 때문입니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/luyen-noi.png" alt="AI 말하기 연습 화면">
+      <h4>공손함까지 채점한다</h4>
+      <p>AI는 발음과 억양만이 아니라 <strong>공손함</strong>을 채점하고 구체적으로 고쳐 줍니다. “까요에서 올려 말했습니다. 허락을 구하는 질문은 끝을 내려야 하며, 그렇지 않으면 따지는 것처럼 들립니다.” 시험 대비 앱이 하지 않는 일입니다.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens-ko/tien-ich.png" alt="편의 기능 패널">
+      <h4>배운 다음에 어디로 가는가</h4>
+      <p>편의 기능 패널은 사용자가 학습만 필요한 것이 아님을 플랫폼이 인정하는 자리입니다. 통역, 환율 조회, 집 구하기, 비자 문의, 일자리가 함께 필요합니다. 아이콘 색은 일의 성격을 따릅니다 — <strong>금색은 돈이 오가는 일, 남색은 서류가 필요한 일</strong>.</p>
+    </figure>
+  </div>
+
+  <h3>사용자층에서 도출한 설계 원칙</h3>
+  <div class="grid g2">
+    <div class="card"><h4>같은 문단 안의 이중 언어</h4><p>한글은 라틴 문자보다 높이가 커서 별도의 행간이 필요합니다. 모든 화면은 승인 전에 두 언어 모두에서 검증합니다.</p></div>
+    <div class="card"><h4>세 가지 글자 크기, 세 가지 테마</h4><p>교대 근무자와 이동 중 사용을 위한 어두운 “야간” 테마, 40대 이상 사용자를 위한 큰 글자 크기를 제공합니다.</p></div>
+    <div class="card"><h4>끌 수 있는 도우미</h4><p>SORI와 마이크 버튼은 내 프로필에서 끌 수 있습니다. 떠 있는 도우미가 내용을 가리는 것은 불편하며, 결정권은 사용자에게 있어야 합니다.</p></div>
+    <div class="card"><h4>없는 것을 약속하지 않는다</h4><p>마켓에는 “미리보기입니다 — BETA 1.0에서는 주문을 받지 않습니다”라고 명시합니다. 아직 열지 않은 기능은 흐리게 두고 누를 수 없게 합니다.</p></div>
+  </div>
+  <span class="pgnum">6</span>
+</section>
+
+<!-- ============ 7 · PORTAL ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Portal — 콘텐츠 엔진</h2></div>
+  <p class="lede">Portal은 별도의 도구가 아니라 <strong>사용자 앱 자체의 백엔드</strong>입니다. 신원, 권한, 데이터 저장소를 공유합니다. 광고비 0 전략의 핵심 무기입니다.</p>
+
+  <div class="grid g4">
+    <div class="card"><div class="k">M1</div><h4>Insight</h4><p>공개 소스와 공식 API로 트렌드를 수집하고, 수요 점수로 주제를 정렬합니다.</p></div>
+    <div class="card"><div class="k">M2</div><h4>Script</h4><p>다섯 박자 공식에 맞춰 대본을 생성하고 승인된 지식 베이스와 대조합니다. 제작 전 사람이 검수합니다.</p></div>
+    <div class="card"><div class="k">M3</div><h4>Produce</h4><p>이중 자막, 더빙, 썸네일, 비율별 컷. 저작권 있는 자산은 절대 사용하지 않습니다.</p></div>
+    <div class="card"><div class="k">M4</div><h4>Distribute</h4><p>원본 하나에서 8~12개 변형을 생성하고, 플랫폼별 훅과 두 시간대에 맞춘 발행 일정을 적용합니다.</p></div>
+    <div class="card"><div class="k">M5</div><h4>Engage</h4><p>댓글을 네 갈래로 분류합니다. 비자·법률·의료 문의는 반드시 사람에게 넘깁니다.</p></div>
+    <div class="card"><div class="k">M6</div><h4>Harvest</h4><p>좋은 댓글은 새 Scene으로, 주문 후기는 판매 콘텐츠로 바꿉니다.</p></div>
+    <div class="card"><div class="k">M7</div><h4>Measure</h4><p>게시물 → Zalo OA → 가입 → 학습 → 구매까지 추적하고, Scene별 ROI 표를 만듭니다.</p></div>
+    <div class="card"><div class="k">M8</div><h4>Govern</h4><p>콘텐츠 규범, 완전한 감사 로그, 캠페인 전체를 5분 안에 내리는 긴급 정지 버튼.</p></div>
+  </div>
+
+  <h3>기대 산출량</h3>
+  <table>
+    <thead><tr><th style="width:46%"></th><th>Portal 없이</th><th>Portal 사용</th></tr></thead>
+    <tbody>
+      <tr><td>3인 팀의 주당 콘텐츠</td><td>8 – 12건</td><td><strong>45 – 60건</strong></td></tr>
+      <tr><td>기획에서 발행까지</td><td>3 – 5일</td><td><strong>6 – 12시간</strong></td></tr>
+      <tr><td>콘텐츠 1건당 원가</td><td>40 – 80만 VND</td><td><strong>6 – 12만 VND</strong></td></tr>
+      <tr><td>커버 플랫폼 수</td><td>2 – 3</td><td><strong>5 – 6</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>책임 있는 AI — 일곱 원칙</h3>
+  <ul>
+    <li><strong>고위험 판단에는 반드시 사람이 개입합니다.</strong> 예외는 없습니다.</li>
+    <li><strong>승인된 출처 기반의 RAG.</strong> 법률·비자·행정 정보는 원문으로 소급 확인되고 갱신일이 표시되어야 합니다.</li>
+    <li><strong>신뢰도 점수와 에스컬레이션.</strong> 임계값 아래에서는 “확실하지 않습니다”라고 말하고 사람에게 넘깁니다. 추측하지 않습니다.</li>
+    <li><strong>결과를 약속하지 않습니다.</strong> 비자, 취업, 소득, 상품 효능 어느 것도 보장하지 않습니다.</li>
+    <li><strong>데이터 저장소 분리.</strong> 개인정보, 거래 데이터, 학습 데이터는 각각 별도 저장소와 별도 접근 권한을 갖습니다.</li>
+    <li><strong>완전한 감사 로그.</strong> 누가 무엇을 물었고 AI가 무엇을 답했으며 누가 무엇을 승인·수정했는지 남깁니다.</li>
+    <li><strong>사용자에게 투명하게.</strong> AI와 대화 중임을 항상 명시합니다.</li>
+  </ul>
+  <p>국경 간 규제 준수에 관하여: 한국 사용자 데이터는 PIPA에 따라 한국에, 베트남 사용자 데이터는 시행령 13/2023에 따라 베트남에 저장합니다. 알림 수신 동의, 마케팅 동의, 국경 간 이전 동의는 각각 별개의 동의로 받으며 묶지 않습니다.</p>
+  <span class="pgnum">7</span>
+</section>
+<!-- ============ 8 · BETA와 로드맵 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">07</span><h2>BETA와 로드맵</h2></div>
+  <p class="lede">BETA는 최종 제품의 축소판이 아닙니다. 광고비 0으로 돌아가는 유입과 리텐션의 기계이며, 세 가지 결정적 질문에 답하기 위해 존재합니다.</p>
+
+  <div class="grid g3">
+    <div class="card"><div class="k">질문 1</div><h4>콘텐츠가 사람을 붙잡는가</h4><p>조회수가 아니라 D7/D30 리텐션으로 측정합니다.</p></div>
+    <div class="card"><div class="k">질문 2</div><h4>시청자가 거래로 이어지는가</h4><p>첫 마켓 주문과 첫 튜터 수업으로 측정합니다.</p></div>
+    <div class="card"><div class="k">질문 3</div><h4>획득 비용이 0에 수렴하는가</h4><p>“빌린 땅”에서 “내 땅”으로의 전환율로 측정합니다.</p></div>
+  </div>
+
+  <h3>9개월 차 목표</h3>
+  <table>
+    <thead><tr><th>구분</th><th style="width:44%">지표</th><th>목표</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><strong>유입</strong></td><td>5개 플랫폼 총 팔로워</td><td><strong>150,000</strong></td></tr>
+      <tr><td>오가닉 CAC</td><td>팔로워당 &lt; 3,000 VND</td></tr>
+      <tr><td rowspan="2"><strong>자산화</strong></td><td>Zalo OA 팔로워</td><td><strong>30,000</strong></td></tr>
+      <tr><td>플랫폼 가입 계정</td><td>40,000</td></tr>
+      <tr><td rowspan="2"><strong>인게이지먼트</strong></td><td>주간 활성 학습자</td><td><strong>5,000</strong></td></tr>
+      <tr><td>D30 리텐션</td><td>&gt; 22%</td></tr>
+      <tr><td rowspan="2"><strong>거래</strong></td><td>월 마켓 주문 수</td><td><strong>500</strong></td></tr>
+      <tr><td>월 GMV</td><td>4 – 6억 VND</td></tr>
+      <tr><td><strong>신뢰</strong></td><td>주문 클레임 비율</td><td>&lt; 2%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>30개월 로드맵</h3>
+  <table>
+    <thead><tr><th>단계</th><th>기간</th><th style="width:24%">명칭</th><th>주요 목표</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0</strong></td><td>1 – 2개월</td><td>준비</td><td>실사, 브랜드, Portal v0, 법인 설립 착수</td></tr>
+      <tr><td><strong>1</strong></td><td>3 – 11개월</td><td><strong>BETA / 파일럿</strong></td><td>Web-App + Zalo OA + 3개 언어 웹사이트, Learn·Culture·마켓 v1·Portal·초대제 Store Builder</td></tr>
+      <tr><td><strong>2</strong></td><td>12 – 18개월</td><td>신뢰와 확장</td><td>한국 법인, Skill Passport, 권익 센터, 튜터 개방, 마켓 개방, 카카오 연동</td></tr>
+      <tr><td><strong>3</strong></td><td>19 – 24개월</td><td>한국 → 베트남 방향</td><td>B2B 랜딩 서비스 확대, 채용, ID Graph, 베트남 → 한국 상품 개방, 운영 손익분기</td></tr>
+      <tr><td><strong>4</strong></td><td>25 – 30개월</td><td>회랑 인프라</td><td>귀국자 네트워크, 금융 파트너십, 일본·대만 회랑 확장 검토</td></tr>
+    </tbody>
+  </table>
+  <p><strong>0단계의 중단 조건:</strong> 시험 제작한 영상 30편이 리텐션 벤치마크에 미달하면 <strong>BETA로 넘어가지 않습니다</strong>. 콘텐츠 포맷을 고치러 돌아갑니다. 이 사업 전체에서 가장 값싼 리스크 통제 지점입니다.</p>
+  <span class="pgnum">8</span>
+</section>
+
+<!-- ============ 9 · 비즈니스 모델 & 브랜드 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">08</span><h2>비즈니스 모델</h2></div>
+  <p class="lede">배분 원칙은 이렇습니다. <strong>한국 → 베트남</strong> 방향의 매출이 <strong>베트남 → 한국</strong> 방향의 무료 제품 전체를 보조합니다. 이 모델의 재무적 척추입니다.</p>
+
+  <div class="grid g4">
+    <div class="stat"><b>~234k</b><span>USD 첫 12개월 예산(절감 시나리오 ~195k)</span></div>
+    <div class="stat"><b>~138k</b><span>USD 첫 12개월 예상 매출</span></div>
+    <div class="stat"><b>~96k</b><span>USD 1년차 순소진 — 이 규모에서는 매우 낮은 수준</span></div>
+    <div class="stat"><b>300–350k</b><span>USD 18개월 권장 조달 규모</span></div>
+  </div>
+
+  <table>
+    <thead><tr><th>#</th><th style="width:32%">매출원</th><th>개시</th><th>마진</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>한국 기업 대상 문화·언어 교육</strong></td><td>6개월</td><td>매우 높음</td><td>가장 쉽고 현금이 빠르며 규모가 필요 없음</td></tr>
+      <tr><td>2</td><td><strong>한국 중소기업 랜딩 서비스</strong></td><td>9개월</td><td>매우 높음</td><td>건당 5,000–50,000 USD. 연 60–100건이면 전체 운영이 유지됨</td></tr>
+      <tr><td>3</td><td>마켓 수수료</td><td>6개월</td><td>중간</td><td>초기 8–15%, 확장하며 점진 인하</td></tr>
+      <tr><td>4</td><td>튜터·강좌 수익 배분</td><td>7개월</td><td>중간</td><td>20–30%</td></tr>
+      <tr><td>5</td><td>학습자 Pro 구독</td><td>9개월</td><td>높음</td><td>월 99,000–199,000 VND</td></tr>
+      <tr><td>6</td><td>Store Builder SaaS</td><td>9개월</td><td>높음</td><td>구독 + 거래 수수료</td></tr>
+      <tr><td>7</td><td>베트남 내 한국 기업 채용</td><td>14개월</td><td>높음</td><td>채용 성사 기준 수수료</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>단위 경제성을 읽는 법:</strong> 유료 학습자의 LTV는 약 750,000 VND, 마켓 구매자의 1년차 LTV는 약 270,000 VND로 얇습니다. 그러나 B2B 랜딩 고객 한 곳의 LTV는 11,000–30,000 USD입니다. B2C의 단위 경제성은 <strong>데이터 자산과 커뮤니티 밀도를 쌓는 비용</strong>으로 볼 때에만 타당합니다 — 그것이 B2B 고객을 만들고 해자를 만듭니다. 손익분기 경로는 12개월 차 운영 손익분기 근접, 18개월 차 안정적 손익분기, 24개월 차 흑자 전환입니다.</p>
+
+  <div class="sec-head" style="margin-top:9mm"><span class="sec-num">09</span><h2>브랜드</h2></div>
+  <p>2계층 구조입니다. <strong>KOVIA</strong>는 중립적이고 세 언어 모두에서 자연스럽게 읽히며(코비아), 웹·계약·기업용 대시보드·투자 자료에 사용합니다. <strong>HANGIL · 한길</strong>은 “하나의 길”이면서 동시에 “한국으로 가는 길”을 함의하며, 커뮤니티 채널과 학습자에게 닿는 모든 접점에 사용합니다.</p>
+  <p>심볼은 <strong>도장</strong>입니다. 모서리가 둥근 사각 테두리 안에 위로 향한 삼각과 가로로 놓인 금색 획이 들어갑니다. 테두리는 <em>확인되었음</em>을, 삼각은 지붕·산·논라(베트남 전통 모자)·자음 <span class="ko">ㅅ</span>·상승 화살표를, 금색 획은 땅과 확인 표시를 뜻합니다. 구성 방식은 한글 음절 조합의 논리를 그대로 따릅니다 — 자음이 위, 가로 모음이 아래, 하나의 네모 안에. 형태 자체가 파는 것을 말합니다. 검증 가능한 신뢰입니다.</p>
+  <table>
+    <thead><tr><th>역할</th><th>색</th><th>코드</th><th>사용처</th></tr></thead>
+    <tbody>
+      <tr><td>주조색</td><td>남색</td><td>#142B5F</td><td>플랫폼, B2B, 제목</td></tr>
+      <tr><td>강조색</td><td>금색</td><td>#BA7517</td><td>커뮤니티 채널, 액션 버튼, HANGIL</td></tr>
+      <tr><td>AI · 인터랙션</td><td>민트</td><td>#35C6A5</td><td>AI 영역, 긍정 상태</td></tr>
+    </tbody>
+  </table>
+  <p class="note">서체: 라틴·베트남어는 Be Vietnam Pro, 한국어는 Pretendard. 캐릭터 <strong>SORI · 소리</strong>는 교사가 아닌 동행자 역할입니다. SORI 머리 위의 지붕이 곧 심볼의 삼각이므로, 캐릭터와 로고는 같은 세계에 속합니다.</p>
+  <span class="pgnum">9</span>
+</section>
+
+<!-- ============ 10 · 리스크 & 문서 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">10</span><h2>리스크와 다음 단계</h2></div>
+
+  <h3>넘지 않는 세 개의 선</h3>
+  <div class="grid g3">
+    <div class="card"><h4>유료 알선을 하지 않는다</h4><p>한국행 취업·유학의 유료 알선은 인력 송출 면허 문제에 걸립니다. BETA는 여기에 손대지 않습니다.</p></div>
+    <div class="card"><h4>결과를 약속하지 않는다</h4><p>비자, 취업, 소득을 보장하지 않습니다. 한 번의 위반으로 신원 레이어 전체의 신뢰를 잃습니다.</p></div>
+    <div class="card"><h4>저작물을 쓰지 않는다</h4><p>한국 드라마 클립, K-pop 뮤직비디오, 저작권 있는 음원을 쓰지 않습니다. 채널을 잃으면 광고비 0 전략 전체를 잃습니다.</p></div>
+  </div>
+
+  <h3>가장 큰 리스크: “빌린 땅” 위에 짓는 것</h3>
+  <p>페이스북, 틱톡, 유튜브 위에 짓는 것은 빌린 땅 위에 짓는 것입니다. 알고리즘 변경 한 번, 채널 정지 한 번이면 전부 잃습니다. 그래서 원칙은 강제입니다. 모든 콘텐츠는 <strong>내 땅</strong>으로 오는 경로를 가져야 합니다 — Zalo OA, 플랫폼 계정, 이메일, 전화번호. 규율 지표는 이것입니다. 빌린 땅에서 내 땅으로의 전환율이 매월 최소 8%. 팔로워는 느는데 Zalo OA가 늘지 않는다면 그것은 허수 성장입니다.</p>
+
+  <h3>확정이 필요한 네 가지</h3>
+  <ul>
+    <li>브랜드 아키텍처: KOVIA + HANGIL 2계층을 유지할 것인가, 하나로 합칠 것인가?</li>
+    <li><strong>한국 측 자문 또는 파트너</strong> — 누구를 찾고 무엇을 줄 것인가? 한국 법인은 파일럿 종료까지 미룰 수 있으나, 마켓이 대금을 받는다면 베트남 법인은 미룰 수 없습니다.</li>
+    <li>B2B 서비스를 4개월 차로 앞당길 것인가? 이르게 들어오는 현금이며, 광고비가 아니라 관계로 파는 것이므로 광고비 0 원칙에 어긋나지 않습니다.</li>
+    <li>초기 지리적 회랑: 한 지역에 밀도를 모을 것인가, 전국으로 펼칠 것인가?</li>
+  </ul>
+
+  <h3>전체 문서 구성</h3>
+  <table>
+    <thead><tr><th style="width:28%">문서</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td><strong>통합 소개 페이지</strong></td><td>온라인 개요. 브라우저에서 바로 열리는 두 개의 인터랙티브 데모 포함</td></tr>
+      <tr><td><strong>KOVIA Branding</strong></td><td>베트남어·한국어 브랜드 가이드: 로고 4종 변형, 여백 규정, 축소 규칙, 색상, 서체, SORI, 산출 파일 목록</td></tr>
+      <tr><td><strong>KOVIA 사업 제안서</strong></td><td>제안서 v2.5 전문, 17개 장: 전략, 시장, 제품 아키텍처, BETA, Portal, 마켓, 기술, 30개월 로드맵, 재무, 법률 리스크</td></tr>
+      <tr><td><strong>1단계 상세 계획</strong></td><td>BETA 9개월 실행 계획: 5개 조직, 3개 사이클, 크리티컬 패스, 월별 산출물, 지표표, 2단계 진입 게이트</td></tr>
+      <tr><td><strong>KOVIA APP 데모</strong></td><td>사용자 앱의 인터랙티브 빌드 — 본 문서의 여덟 화면</td></tr>
+      <tr><td><strong>Management Portal 데모</strong></td><td>운영 시스템의 인터랙티브 빌드: 7단계 제작 흐름, 승인 대기열, 데이터 소스, 거버넌스</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote><p>모든 문서와 두 개의 데모는 아래에서 공개되어 있습니다<br>koalaland-workplace.github.io/KOVIA_demo</p></blockquote>
+
+  <p class="note">KOVIA · HANGIL 한길 — 사업 개요 · 제안서 v2.5 · 브랜드 아이덴티티 v2.0 · 2026.07.27. 검토와 의견 수렴을 위한 문서이며 투자 권유 자료가 아닙니다. 모든 수치는 제안서 작성 시점의 추정치이며 확약이 아닙니다.</p>
+  <span class="pgnum">10</span>
+</section>
+
+</body>
+</html>
