@@ -104,7 +104,13 @@ html[data-theme="dark"] .demo:hover{box-shadow:0 16px 42px rgba(0,0,0,.45)}
 html[data-theme="dark"] .demo-go{color:#0D1524}
 .demo:nth-child(2) .demo-go{background:var(--rice)}
 .demo-go svg{width:14px;height:14px}
-.demo-note{font-size:12px;color:var(--muted);text-align:center;margin:0 0 78px}
+.demo-note{font-size:12px;color:var(--muted);text-align:center;margin:0 0 14px}
+.intro-line{font-size:13.5px;color:var(--muted);text-align:center;margin:0 0 78px;
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.intro-line a{color:var(--night);font-weight:600;text-decoration:none;
+  border-bottom:1.5px solid var(--rice);padding-bottom:1px}
+.intro-line a:hover{color:var(--rice)}
+.intro-line span{opacity:.5}
 
 /* ---------- section ---------- */
 section{padding:8px 0 4px}
@@ -279,6 +285,10 @@ footer{margin-top:96px;border-top:2px solid var(--night);background:var(--card)}
     </a>
   </div>
   <p class="demo-note">Hai bản demo là prototype giao diện — dữ liệu minh hoạ, chưa nối backend thật.</p>
+  <p class="intro-line">Cần một bản để gửi kèm hoặc in ra?
+    <a href="KOVIA-Gioi-thieu.pdf">Bản giới thiệu tổng quát · PDF, 10 mục, có ảnh màn hình ứng dụng</a>
+    <span>·</span> <a href="kovia-gioi-thieu.html">xem bản web</a>
+  </p>
 </div></header>
 
 <main>

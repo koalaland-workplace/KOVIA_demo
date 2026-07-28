@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOVIA · HANGIL 한길 — Giới thiệu tổng quát</title>
+<meta name="description" content="Bản giới thiệu tổng quát dự án KOVIA — nền tảng hành lang Việt – Hàn: định vị, thị trường, kiến trúc sản phẩm, ứng dụng người dùng, lộ trình và tài chính.">
+<link rel="icon" href="Branding/assets/svg/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#142B5F; --rice:#BA7517; --mint:#35C6A5;
+  --paper:#F4F2EC; --ink:#22221F; --card:#FFFFFF;
+  --line:rgba(20,43,95,.16); --line2:rgba(20,43,95,.09); --muted:#5C6478;
+  --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Bricolage Grotesque","Be Vietnam Pro",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ko:"Noto Sans KR",var(--sans);
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#DFDCD3;color:var(--ink);font-family:var(--sans);
+  font-size:10.2pt;line-height:1.62;-webkit-font-smoothing:antialiased}
+.ko{font-family:var(--ko)}
+
+/* ---------- khổ trang A4 ---------- */
+@page{size:A4 portrait;margin:14mm 15mm 13mm}
+.page{width:210mm;min-height:297mm;padding:14mm 15mm 13mm;margin:0 auto 8mm;
+  background:var(--paper);position:relative;overflow:hidden;
+  box-shadow:0 6px 26px rgba(20,24,31,.16)}
+@page cover{margin:0}          /* bìa tràn lề, không có lề trang */
+@media print{
+  body{background:#fff;font-size:10.2pt}
+  .page{width:auto;min-height:0;padding:0;margin:0;box-shadow:none;background:transparent;
+    break-after:page;page-break-after:always}
+  .page:last-child{break-after:auto;page-break-after:auto}
+  .cover{page:cover;background:var(--night);width:210mm;height:297mm;min-height:297mm;
+    padding:20mm 20mm 15mm;display:flex;flex-direction:column;overflow:hidden}
+}
+h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
+table,figure,.card,.stat,.shot{break-inside:avoid;page-break-inside:avoid}
+
+/* ---------- bìa ---------- */
+.cover{background:var(--night);color:#EDF1F8;display:flex;flex-direction:column}
+.cover .mark{display:flex;align-items:center;gap:11px;margin-bottom:auto}
+.cover .mark svg{width:34px;height:34px}
+.cover .mk-t{font-family:var(--disp);font-weight:700;font-size:13pt;letter-spacing:.16em;
+  text-transform:uppercase;line-height:1;color:#fff}
+.cover .mk-s{font-size:8pt;letter-spacing:.1em;color:#8FA3CC;text-transform:uppercase;margin-top:3px}
+.cover .eyebrow{font-family:var(--disp);font-size:8.5pt;letter-spacing:.22em;text-transform:uppercase;
+  color:#E0A951;font-weight:700;margin-bottom:7mm}
+.cover h1{font-size:34pt;line-height:1.04;font-weight:800;letter-spacing:-.03em;margin:0 0 4mm;color:#fff}
+.cover .ko-l{font-family:var(--ko);font-weight:700;font-size:15pt;color:#E0A951;margin:0 0 9mm}
+.cover .lead{font-size:12pt;line-height:1.5;font-weight:400;color:#C3D0EA;max-width:135mm;
+  border-left:2.5px solid #E0A951;padding-left:6mm;margin:0 0 12mm}
+.cover .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-bottom:12mm}
+.cover .facts div{border-top:1.5px solid rgba(224,169,81,.5);padding-top:3mm}
+.cover .facts b{display:block;font-family:var(--disp);font-size:18pt;font-weight:700;color:#fff;
+  letter-spacing:-.02em;line-height:1}
+.cover .facts span{font-size:8pt;color:#8FA3CC;line-height:1.35;display:block;margin-top:1.5mm}
+.cover .foot{border-top:1px solid rgba(143,163,204,.3);padding-top:4mm;font-size:8.5pt;color:#8FA3CC;
+  display:flex;justify-content:space-between;gap:6mm}
+
+/* ---------- đầu mục ---------- */
+.sec-head{display:flex;align-items:baseline;gap:5mm;border-top:2px solid var(--night);
+  padding-top:3mm;margin:0 0 4mm}
+.sec-num{font-family:var(--disp);font-weight:700;font-size:9.5pt;color:var(--rice);flex:none}
+h2{font-size:19pt;line-height:1.12;font-weight:800;letter-spacing:-.025em;color:var(--night);margin:0}
+.lede{font-size:11pt;color:var(--muted);line-height:1.55;margin:0 0 5mm;max-width:150mm}
+h3{font-size:11.5pt;font-weight:700;color:var(--night);margin:7mm 0 2.5mm;letter-spacing:-.01em}
+p{margin:0 0 3mm}
+strong{font-weight:600;color:var(--night)}
+em{font-style:italic;color:var(--muted)}
+ul{margin:0 0 3mm;padding-left:5mm}
+li{margin-bottom:1.2mm}
+li::marker{color:var(--rice)}
+
+/* ---------- thẻ, số liệu ---------- */
+.grid{display:grid;gap:3mm;margin:3mm 0 4mm}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm}
+.card .k{font-family:var(--disp);font-size:7.5pt;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:700;color:var(--rice);margin-bottom:2mm}
+.card h4{font-size:10.5pt;font-weight:700;color:var(--night);margin:0 0 1.5mm;letter-spacing:-.01em}
+.card p{font-size:9.2pt;line-height:1.5;color:var(--muted);margin:0}
+.stat{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm}
+.stat b{display:block;font-family:var(--disp);font-size:17pt;font-weight:700;color:var(--night);
+  letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5mm}
+.stat span{font-size:8.6pt;color:var(--muted);line-height:1.4;display:block}
+
+/* ---------- bảng ---------- */
+table{border-collapse:collapse;width:100%;font-size:9.2pt;line-height:1.45;
+  border:1px solid var(--line2);border-radius:3mm;overflow:hidden;margin:3mm 0 4mm;background:var(--card)}
+th,td{padding:2.4mm 3mm;text-align:left;vertical-align:top;border-bottom:1px solid var(--line2)}
+thead th{background:rgba(20,43,95,.05);color:var(--night);font-weight:600;font-size:8.4pt;
+  letter-spacing:.02em;border-bottom:1.3px solid var(--line)}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--night)}
+.pill{display:inline-block;font-size:7.8pt;font-weight:600;padding:.6mm 2mm;border-radius:99px;
+  background:rgba(53,198,165,.18);color:#0E7A64;white-space:nowrap}
+.pill.later{background:rgba(20,43,95,.08);color:var(--muted)}
+
+blockquote{margin:4mm 0;padding:4mm 5mm;background:var(--card);border:1px solid var(--line2);
+  border-left:1.2mm solid var(--rice);border-radius:0 3mm 3mm 0}
+blockquote p{font-size:11pt;line-height:1.45;font-weight:600;color:var(--night);margin:0}
+pre.flow{background:var(--card);border:1px solid var(--line2);border-radius:3mm;padding:4mm;
+  font-family:var(--mono);font-size:7.6pt;line-height:1.5;color:var(--ink);margin:3mm 0 4mm;
+  white-space:pre;overflow:hidden}
+
+/* ---------- ảnh màn hình ứng dụng ---------- */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm 4mm;margin:3mm 0 0}
+.shot{text-align:left;margin:0}   /* figure mặc định có lề 40px, phải bỏ */
+.shot img{width:92%;display:block;border-radius:2.5mm;border:1px solid var(--line);
+  background:#fff;box-shadow:0 1.5mm 4mm rgba(20,24,31,.12)}
+.shot .n{font-family:var(--disp);font-size:7.2pt;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--rice);margin:2.2mm 0 .6mm}
+.shot h4{font-size:9.2pt;font-weight:700;color:var(--night);margin:0 0 .8mm;letter-spacing:-.01em}
+.shot p{font-size:8pt;line-height:1.38;color:var(--muted);margin:0}
+.shots3{grid-template-columns:repeat(3,1fr);gap:6mm 5mm}
+.shots3 .shot h4{font-size:10.5pt}
+.shots3 .shot p{font-size:8.8pt;line-height:1.48}
+
+.note{font-size:8.5pt;color:var(--muted);border-top:1px solid var(--line2);padding-top:3mm;margin-top:5mm}
+.pgnum{position:absolute;right:15mm;bottom:7mm;font-family:var(--mono);font-size:8pt;color:var(--muted)}
+@media print{.pgnum{display:none}}
+a{color:var(--night)}
+</style>
+</head>
+<body>
+
+<!-- ============ TRANG 1 · BÌA ============ -->
+<section class="page cover">
+  <div class="mark">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="7" y="7" width="50" height="50" rx="13" fill="#FFFFFF"></rect>
+      <path d="M19 42 L32 21 L45 42" fill="none" stroke="#142B5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <rect x="24" y="47" width="16" height="4" rx="2" fill="#BA7517"></rect>
+    </svg>
+    <span><span class="mk-t">KOVIA</span><br><span class="mk-s">Hangil 한길</span></span>
+  </div>
+
+  <div class="eyebrow">Giới thiệu tổng quát · Đề án v2.5 · 27.07.2026</div>
+  <h1>Nền tảng hành lang<br>Việt&nbsp;–&nbsp;Hàn</h1>
+  <p class="ko-l">한 길 위에, 두 나라 — Một con đường, hai quê hương</p>
+  <p class="lead">Hạ tầng số của hành lang Việt – Hàn: nơi một người Việt xây dựng năng lực và uy tín để sang Hàn, và một người Hàn tìm được người, đất, hàng, giấy tờ để vào Việt Nam — trên cùng một lớp danh tính.</p>
+
+  <div class="facts">
+    <div><b>321.795</b><span>người Việt tại Hàn Quốc</span></div>
+    <div><b>10.400+</b><span>dự án FDI Hàn tại Việt Nam</span></div>
+    <div><b>30</b><span>tháng lộ trình, 5 giai đoạn</span></div>
+    <div><b>0</b><span>đồng quảng cáo trả phí</span></div>
+  </div>
+
+  <div class="foot">
+    <span>Tài liệu để nghiên cứu và góp ý — không phải hồ sơ chào bán.</span>
+    <span>Số liệu là ước tính, không phải cam kết.</span>
+  </div>
+  <span class="pgnum">1</span>
+</section>
+
+<!-- ============ TRANG 2 · TÓM TẮT ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Tóm tắt điều hành</h2></div>
+  <p class="lede">KOVIA không phải một app học tiếng Hàn, cũng không phải một sàn thương mại điện tử. Đó là <strong>lớp danh tính và tin cậy</strong> của hành lang Việt – Hàn, với nhiều bề mặt ứng dụng bên trên.</p>
+
+  <h3>Vấn đề</h3>
+  <p>Hành lang Việt – Hàn hôm nay chạy trên niềm tin phi cấu trúc: nhóm Facebook, môi giới quen, “anh em giới thiệu”. Hệ quả là phí môi giới cắt cổ, lừa đảo du học và việc làm, doanh nghiệp Hàn không dám tuyển trực tiếp. Không ai đang sở hữu <strong>“hộ chiếu năng lực”</strong> — bản ghi số kiểm chứng được về một con người.</p>
+
+  <h3>Ba luận điểm quyết định</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">Luận điểm 1</div><h4>Bán niềm tin kiểm chứng được</h4><p>Không bán dịch vụ. Tài sản là bản ghi số về năng lực và lịch sử của một con người — thứ mà mọi mảng khác kiếm tiền phía trên nó.</p></div>
+    <div class="card"><div class="k">Luận điểm 2</div><h4>Bất đối xứng hai chiều</h4><p>Miễn phí gần như toàn bộ chiều Việt → Hàn để xây mật độ và dữ liệu; bán đắt cho chiều Hàn → Việt. Người học hôm nay là nhân sự doanh nghiệp Hàn trả tiền để tuyển ngày mai.</p></div>
+    <div class="card"><div class="k">Luận điểm 3</div><h4>Vòng tròn khép kín</h4><p>Mỗi năm hàng chục nghìn người Việt về nước sau 3–5 năm ở Hàn, trong khi FDI Hàn tại Việt Nam đang đói quản đốc và thông dịch. Nối vòng “đi – học – làm – về – được thuê lại”.</p></div>
+  </div>
+
+  <h3>Moat nằm ở đâu</h3>
+  <table>
+    <thead><tr><th style="width:52%">Lớp</th><th>Có thể bị sao chép?</th><th>Ghi chú</th></tr></thead>
+    <tbody>
+      <tr><td>Nội dung video</td><td>Có — trong 3 tháng</td><td>Không phải moat</td></tr>
+      <tr><td>Mô hình AI</td><td>Có — ai cũng gọi được API</td><td>Không phải moat</td></tr>
+      <tr><td>Marketplace</td><td>Có — đối thủ đốt tiền là cướp được</td><td>Không phải moat</td></tr>
+      <tr><td><strong>Hồ sơ năng lực tích luỹ của hàng trăm nghìn người</strong></td><td><strong>Không</strong></td><td>← Đây là moat</td></tr>
+      <tr><td><strong>Mật độ cộng đồng ở một địa bàn cụ thể</strong></td><td><strong>Rất khó</strong></td><td>← Đây là moat</td></tr>
+      <tr><td><strong>Quan hệ với hiệp hội, trường, KCN, cơ quan</strong></td><td><strong>Rất khó</strong></td><td>← Đây là moat</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Chỉ số Bắc Đẩu</h3>
+  <blockquote><p>Verified Successful Connections — số kết nối thành công đã được xác thực. Chỉ tính khi có đủ ba dấu hiệu độc lập: giao dịch qua nền tảng có bản ghi, xác nhận hai chiều từ cả hai bên, và một dấu vết bên ngoài (hợp đồng lao động, thư mời nhập học, hoá đơn, biên nhận giao hàng).</p></blockquote>
+  <span class="pgnum">2</span>
+</section>
+
+<!-- ============ TRANG 3 · THỊ TRƯỜNG ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Thị trường và khách hàng</h2></div>
+  <p class="lede">Chỉ tiêu EPS giảm mạnh nghĩa là không được đặt cược vào xuất khẩu lao động. Cầu thật đang dồn sang du học, visa E-7, và đặc biệt là <strong>việc làm tại doanh nghiệp Hàn ngay tại Việt Nam</strong> — mảng lớn hơn nhiều và không vướng giấy phép xuất khẩu lao động.</p>
+
+  <div class="grid g4">
+    <div class="stat"><b>321.795</b><span>người Việt tại Hàn Quốc (10/2024) — 28,21% là du học D2/D4</span></div>
+    <div class="stat"><b>98,9 tỷ</b><span>USD vốn FDI Hàn tại Việt Nam, hơn 10.400 dự án, ~18% tổng FDI</span></div>
+    <div class="stat"><b>570.000</b><span>lượt khách Việt sang Hàn — mục tiêu năm 2026</span></div>
+    <div class="stat"><b>4.200</b><span>chỉ tiêu EPS 2026 — giảm mạnh, không đặt cược vào đây</span></div>
+  </div>
+
+  <h3>Sáu nhóm khách hàng</h3>
+  <table>
+    <thead><tr><th>#</th><th style="width:26%">Nhóm</th><th>Nỗi đau lõi</th><th>Chi trả</th><th>Ưu tiên</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A1</strong></td><td>Người Việt đang ở Hàn</td><td>Tiếng Hàn sống sót, visa, y tế, thuế, chuyển tiền, cô đơn</td><td>Thấp, tần suất cao</td><td>★★★</td></tr>
+      <tr><td><strong>A2</strong></td><td>Người Việt muốn sang Hàn</td><td>Học tiếng, chọn trường và công ty, sợ bị lừa, phí môi giới</td><td>Cao, một lần</td><td>★★★</td></tr>
+      <tr><td><strong>A3</strong></td><td>Người học vì văn hoá</td><td>Học chán, không dùng được thật</td><td>Thấp</td><td>★★★ (phễu)</td></tr>
+      <tr><td><strong>B1</strong></td><td>Doanh nghiệp Hàn vào VN</td><td>Đọc thị trường, thuê đất và xưởng, pháp lý, phiên dịch, tuyển người</td><td><strong>Rất cao</strong></td><td>★★</td></tr>
+      <tr><td><strong>B2</strong></td><td>Người Hàn sống ở VN</td><td>Tiếng Việt, nhà ở, y tế, trường học</td><td>Cao</td><td>★</td></tr>
+      <tr><td><strong>C</strong></td><td>Hộ kinh doanh, SME hai nước</td><td>Không biết bắt đầu, logistics, thanh toán, kiểm định</td><td>Theo % GMV</td><td>★★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Lưu ý về A3:</strong> nhóm này thường bị coi thường vì “không có tiền”. Sai — A3 là phễu rẻ nhất và là tệp mua hàng Hàn Quốc lớn nhất. Người yêu văn hoá Hàn chính là người mua mỹ phẩm, thực phẩm và thời trang Hàn. Đây là lý do Chợ Hàn – Việt nằm ngay trong BETA chứ không đợi tới giai đoạn sau.</p>
+
+  <h3>Bánh đà</h3>
+  <pre class="flow">   Nội dung thực chiến (chi phí gần 0, nhờ Portal AI)
+              ↓
+        Người học và người xem
+              ↓
+     Dữ liệu năng lực + hành vi
+              ↓
+      Hồ sơ đã kiểm chứng (Skill Passport)
+              ↓
+   Doanh nghiệp Hàn trả tiền để tuyển / mua / hợp tác
+              ↓
+        Có việc thật, đơn hàng thật
+              ↓
+   Người dùng tin tưởng → tự tạo nội dung → rủ bạn
+              ↓
+        (quay lại đầu, mạnh hơn)</pre>
+  <span class="pgnum">3</span>
+</section>
+
+<!-- ============ TRANG 4 · KIẾN TRÚC SẢN PHẨM ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Kiến trúc sản phẩm</h2></div>
+  <p class="lede">BETA bật ba trụ đầu và mở đầu trụ thứ tư. Các trụ còn lại là bản đồ, không phải kế hoạch tháng đầu. Nguyên tắc kỷ luật số một: <strong>không mở marketplace nào trước khi lớp nội dung và lớp danh tính đủ dày.</strong></p>
+
+  <table>
+    <thead><tr><th>Trụ</th><th style="width:30%">Tên</th><th>Mô tả ngắn</th><th>Giai đoạn</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P1</strong></td><td><strong>Learn</strong> — Tiếng Hàn thực chiến</td><td>Video Scene + AI luyện nói + gia sư</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P2</strong></td><td><strong>Culture</strong> — Văn hoá &amp; trải nghiệm</td><td>Mini-doc, giải mã văn hoá, cộng đồng, offline</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P3</strong></td><td><strong>Market</strong> — Chợ Hàn – Việt</td><td>Hàng Hàn về Việt, người bán được kiểm định</td><td><span class="pill">BETA</span></td></tr>
+      <tr><td><strong>P4</strong></td><td><strong>Store</strong> — Cửa hàng online</td><td>Chủ shop tự mở cửa hàng, tự dịch, tự vận hành</td><td><span class="pill">Cuối BETA</span></td></tr>
+      <tr><td>P5</td><td>Passport — Hồ sơ năng lực</td><td>Danh tính + năng lực + lịch sử + bảo lãnh cộng đồng</td><td><span class="pill later">GĐ 2</span></td></tr>
+      <tr><td>P6</td><td>Rights — Quyền lợi &amp; Khẩn cấp</td><td>Visa, y tế, thuế, tranh chấp lao động, chống lừa đảo</td><td><span class="pill later">GĐ 2</span></td></tr>
+      <tr><td>P7</td><td>Career — Việc làm &amp; du học</td><td>Ưu tiên việc làm tại doanh nghiệp Hàn <strong>ở Việt Nam</strong></td><td><span class="pill later">GĐ 2–3</span></td></tr>
+      <tr><td>P8</td><td>Business — Hạ cánh mềm</td><td>Landing service, phiên dịch, thẩm định, tuyển dụng cho SME Hàn</td><td><span class="pill later">GĐ 2–3</span></td></tr>
+      <tr><td>P9</td><td>Return — Mạng lưới hồi hương</td><td>Người về nước ↔ doanh nghiệp FDI Hàn tại Việt Nam</td><td><span class="pill later">GĐ 4</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Đơn vị nội dung: “Scene”, không phải “bài học”</h3>
+  <p>Scene phân loại theo <strong>quan hệ quyền lực</strong>, không theo chủ đề ngữ pháp: với cấp trên, với đồng nghiệp, với dịch vụ, với nhà trọ, với nhà trường, với gia đình Hàn, với cơ quan. <em>Sai kính ngữ nguy hiểm hơn sai ngữ pháp.</em> Mỗi Scene là một video dọc 60–90 giây theo công thức năm nhịp:</p>
+  <pre class="flow">Nhịp 1 — HOOK (0–5s)       : một câu tiếng Hàn gây tò mò / một tình huống căng
+Nhịp 2 — KEY PHRASE (5–25s): 1–3 mẫu câu, chậm, có phụ đề song ngữ
+Nhịp 3 — CULTURE (25–50s)  : vì sao người Hàn nói vậy, sai thì hậu quả gì
+Nhịp 4 — PRACTICE (50–75s) : người xem nói theo, có khoảng trống để lặp
+Nhịp 5 — ACTION (75–90s)   : luyện với AI trong app / xem Scene tiếp theo</pre>
+
+  <h3>Một bộ não – ba cửa vào</h3>
+  <pre class="flow">   CỬA 1: Zalo Mini App      CỬA 2: KakaoTalk Channel     CỬA 3: Web / PWA
+   (chủ lực Việt Nam)         (chủ lực Hàn Quốc, GĐ 2)      (SEO, B2B, desktop)
+          │                            │                          │
+          └────────────────────────────┼──────────────────────────┘
+                                       │
+                        ══════ MỘT BỘ NÃO DUY NHẤT ══════
+                   Danh tính · Đồng ý (consent) · Hồ sơ · CRM
+                  Đặt lịch · Thanh toán · Đơn hàng · Nội dung
+                          Kho tri thức (RAG) · Nhật ký</pre>
+  <span class="pgnum">4</span>
+</section>
+
+<!-- ============ TRANG 5 · ỨNG DỤNG NGƯỜI DÙNG ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Ứng dụng người dùng</h2></div>
+  <p class="lede">Tám màn hình chính của bản dựng BETA 1.0 — toàn bộ song ngữ Việt – Hàn, ba bộ giao diện và ba cỡ chữ.</p>
+
+  <div class="shots">
+    <figure class="shot">
+      <img src="assets/screens/kham-pha.png" alt="Màn Khám phá">
+      <div class="n">Màn 01</div>
+      <h4>Khám phá</h4>
+      <p>Feed cá nhân hoá theo hồ sơ: Scene nổi bật, hàng cuộn 60 giây, học qua bài hát, tin ngắn.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/tieng-han.png" alt="Màn Tiếng Hàn">
+      <div class="n">Màn 02</div>
+      <h4>Tiếng Hàn</h4>
+      <p>Chọn <em>người đối thoại</em> trước, không chọn bài — mỗi người một mức kính ngữ.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/scene.png" alt="Màn Scene năm nhịp">
+      <div class="n">Màn 03</div>
+      <h4>Scene năm nhịp</h4>
+      <p>Tình huống, mẫu câu, giải mã văn hoá, luyện nói, ghi lại lần dùng thật.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/luyen-noi.png" alt="Màn luyện nói với AI">
+      <div class="n">Màn 04</div>
+      <h4>Luyện nói với AI</h4>
+      <p>Chấm phát âm, ngữ điệu và <strong>mức độ lịch sự</strong>, kèm lời sửa cụ thể.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/cho.png" alt="Màn Chợ Hàn – Việt">
+      <div class="n">Màn 05</div>
+      <h4>Chợ Hàn – Việt</h4>
+      <p>Mọi mặt hàng đều có nhãn “đã kiểm định”. Đấu bằng sự chắc chắn, không đấu giá rẻ.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/toi.png" alt="Màn Tôi">
+      <div class="n">Màn 06</div>
+      <h4>Tôi</h4>
+      <p>Tình huống đã xong, lần dùng thật, điểm kính ngữ — nền cho Skill Passport ở giai đoạn 2.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/tien-ich.png" alt="Bảng Tiện ích">
+      <div class="n">Màn 07</div>
+      <h4>Tiện ích</h4>
+      <p>Mười sáu tiện ích, bốn nhóm. Mục để mờ là phần mở ở giai đoạn sau.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/sori.png" alt="Trợ lý SORI">
+      <div class="n">Màn 08</div>
+      <h4>Trợ lý SORI</h4>
+      <p>Hỏi nhanh khi cần nói gấp. SORI là bạn đồng hành, và luôn nói rõ mình là AI.</p>
+    </figure>
+  </div>
+
+  <p class="note">Ảnh chụp từ bản dựng tương tác chạy thật trong trình duyệt, không phải ảnh thiết kế tĩnh. Dữ liệu hiển thị là minh hoạ; ảnh sản phẩm và video dùng nguồn tạm để dựng bố cục.</p>
+  <span class="pgnum">5</span>
+</section>
+
+<!-- ============ TRANG 6 · BA MÀN CỐT LÕI ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Ba màn hình cốt lõi</h2></div>
+  <p class="lede">Ba màn dưới đây là nơi luận điểm sản phẩm biến thành thao tác cụ thể. Nếu chỉ xem được ba màn, hãy xem ba màn này.</p>
+
+  <div class="shots shots3">
+    <figure class="shot">
+      <img src="assets/screens/tieng-han.png" alt="Màn Tiếng Hàn">
+      <h4>Chọn người, không chọn bài</h4>
+      <p>Mọi app học tiếng đều bắt đầu bằng “Bài 1: Bảng chữ cái”. Ở đây câu hỏi đầu tiên là <strong>“Hôm nay nói với ai?”</strong> — vì cùng một câu nói với quản đốc và với bạn cùng phòng là hai câu khác nhau, và nói nhầm thì hậu quả không nằm ở điểm số.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/luyen-noi.png" alt="Màn luyện nói">
+      <h4>Chấm cả mức độ lịch sự</h4>
+      <p>AI không chỉ chấm phát âm và ngữ điệu mà chấm cả <strong>lịch sự</strong>, kèm lời sửa cụ thể: “Bạn lên giọng ở 까요. Câu xin phép phải xuống giọng ở cuối, nếu không nghe như chất vấn.” Đây là thứ một app luyện thi không làm.</p>
+    </figure>
+    <figure class="shot">
+      <img src="assets/screens/tien-ich.png" alt="Bảng Tiện ích">
+      <h4>Học xong thì dẫn tới đâu</h4>
+      <p>Bảng Tiện ích là chỗ nền tảng thừa nhận người dùng không chỉ cần học: họ cần phiên dịch, tra tỷ giá, tìm nhà, hỏi visa, tìm việc. Màu icon phân theo bản chất việc — <strong>vàng là động tới tiền, xanh đêm là cần giấy tờ</strong>.</p>
+    </figure>
+  </div>
+
+  <h3>Nguyên tắc thiết kế rút ra từ tệp người dùng</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Song ngữ trong cùng một khối chữ</h4><p>Chữ Hàn cao hơn chữ Latin nên phải đặt line-height riêng. Mọi giao diện đều kiểm thử ở cả hai ngôn ngữ trước khi duyệt.</p></div>
+    <div class="card"><h4>Ba cỡ chữ, ba giao diện</h4><p>Có bộ “Ca Đêm” nền tối cho người làm ca và đọc trên đường; cỡ chữ Lớn cho người dùng trên 40 tuổi.</p></div>
+    <div class="card"><h4>Trợ lý có thể tắt</h4><p>SORI và nút micro đều tắt được trong mục Tôi. Trợ lý nổi che nội dung là phiền, và người dùng phải có quyền quyết định.</p></div>
+    <div class="card"><h4>Không hứa thứ chưa có</h4><p>Chợ ghi rõ “Bản xem trước — chưa nhận đơn trong BETA 1.0”. Tiện ích chưa mở thì để mờ và không bấm được.</p></div>
+  </div>
+  <span class="pgnum">6</span>
+</section>
+
+<!-- ============ TRANG 7 · PORTAL ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Portal — cỗ máy nội dung</h2></div>
+  <p class="lede">Portal không phải công cụ rời — <strong>nó là backend của chính ứng dụng người dùng</strong>: chung danh tính, chung phân quyền, chung kho dữ liệu. Đây là vũ khí trung tâm của chiến lược quảng cáo bằng 0.</p>
+
+  <div class="grid g4">
+    <div class="card"><div class="k">M1</div><h4>Insight</h4><p>Nghe xu hướng từ nguồn công khai và API chính thức, xếp chủ đề theo điểm nhu cầu.</p></div>
+    <div class="card"><div class="k">M2</div><h4>Script</h4><p>Sinh kịch bản đúng công thức năm nhịp, đối chiếu kho tri thức đã duyệt. Người thật duyệt trước khi sản xuất.</p></div>
+    <div class="card"><div class="k">M3</div><h4>Produce</h4><p>Phụ đề hai ngôn ngữ, lồng tiếng, thumbnail, cắt đa tỷ lệ. Tuyệt đối không dùng tài sản có bản quyền.</p></div>
+    <div class="card"><div class="k">M4</div><h4>Distribute</h4><p>Một tài sản gốc sinh 8–12 biến thể, mỗi nền tảng một cách viết hook, lịch đăng theo hai múi giờ.</p></div>
+    <div class="card"><div class="k">M5</div><h4>Engage</h4><p>Phân loại bình luận thành bốn luồng; hỏi về visa, pháp lý và y tế luôn chuyển người thật.</p></div>
+    <div class="card"><div class="k">M6</div><h4>Harvest</h4><p>Biến bình luận hay thành Scene mới, đánh giá đơn hàng thành nội dung bán hàng.</p></div>
+    <div class="card"><div class="k">M7</div><h4>Measure</h4><p>Truy vết bài đăng → Zalo OA → đăng ký → học → mua. Bảng ROI theo từng Scene.</p></div>
+    <div class="card"><div class="k">M8</div><h4>Govern</h4><p>Bộ luật nội dung, nhật ký kiểm toán đầy đủ, nút dừng khẩn cấp gỡ cả chiến dịch trong 5 phút.</p></div>
+  </div>
+
+  <h3>Sản lượng kỳ vọng</h3>
+  <table>
+    <thead><tr><th style="width:46%"></th><th>Không có Portal</th><th>Có Portal</th></tr></thead>
+    <tbody>
+      <tr><td>Nội dung mỗi tuần với đội 3 người</td><td>8 – 12 mảnh</td><td><strong>45 – 60 mảnh</strong></td></tr>
+      <tr><td>Thời gian từ ý tưởng đến đăng</td><td>3 – 5 ngày</td><td><strong>6 – 12 giờ</strong></td></tr>
+      <tr><td>Chi phí mỗi mảnh nội dung</td><td>400 – 800 nghìn VND</td><td><strong>60 – 120 nghìn VND</strong></td></tr>
+      <tr><td>Số nền tảng phủ</td><td>2 – 3</td><td><strong>5 – 6</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>AI có trách nhiệm — bảy nguyên tắc</h3>
+  <ul>
+    <li><strong>Người ở giữa vòng lặp</strong> cho mọi quyết định rủi ro cao — không có ngoại lệ.</li>
+    <li><strong>RAG từ nguồn đã duyệt.</strong> Mọi thông tin pháp lý, visa, thủ tục phải truy về văn bản gốc và có ngày cập nhật.</li>
+    <li><strong>Điểm tin cậy và leo thang.</strong> Dưới ngưỡng thì AI phải nói “tôi không chắc” và chuyển người thật, không được đoán.</li>
+    <li><strong>Không bao giờ cam kết kết quả</strong> visa, việc làm, thu nhập, hiệu quả sản phẩm.</li>
+    <li><strong>Tách kho dữ liệu:</strong> dữ liệu cá nhân, giao dịch và huấn luyện là ba kho riêng, quyền truy cập riêng.</li>
+    <li><strong>Nhật ký kiểm toán đầy đủ</strong> — ai hỏi gì, AI trả lời gì, ai duyệt, sửa gì.</li>
+    <li><strong>Minh bạch với người dùng</strong> — luôn hiển thị rõ khi đang nói chuyện với AI.</li>
+  </ul>
+  <p>Về tuân thủ xuyên biên giới: dữ liệu người dùng tại Hàn lưu ở Hàn theo PIPA, dữ liệu người dùng tại Việt Nam lưu tại Việt Nam theo Nghị định 13/2023. Đồng ý nhận thông báo, đồng ý marketing và đồng ý chuyển dữ liệu xuyên biên giới là ba đồng ý riêng biệt, không gộp.</p>
+  <span class="pgnum">7</span>
+</section>
+
+<!-- ============ TRANG 8 · BETA & LỘ TRÌNH ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">07</span><h2>BETA và lộ trình</h2></div>
+  <p class="lede">BETA không phải phiên bản thu nhỏ của sản phẩm cuối. BETA là cỗ máy thu hút và giữ chân, chạy với ngân sách quảng cáo bằng 0, để trả lời ba câu hỏi sống còn.</p>
+
+  <div class="grid g3">
+    <div class="card"><div class="k">Câu hỏi 1</div><h4>Nội dung có giữ chân được không?</h4><p>Đo bằng retention D7/D30 — không đo bằng lượt xem.</p></div>
+    <div class="card"><div class="k">Câu hỏi 2</div><h4>Người xem có chịu giao dịch không?</h4><p>Đo bằng đơn hàng Chợ đầu tiên và buổi gia sư đầu tiên.</p></div>
+    <div class="card"><div class="k">Câu hỏi 3</div><h4>Chi phí thu hút có về 0 không?</h4><p>Đo bằng tỷ lệ chuyển từ “đất thuê” sang “đất của mình”.</p></div>
+  </div>
+
+  <h3>Mục tiêu tháng thứ 9</h3>
+  <table>
+    <thead><tr><th>Nhóm</th><th style="width:44%">Chỉ số</th><th>Mục tiêu</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><strong>Thu hút</strong></td><td>Tổng người theo dõi trên 5 nền tảng</td><td><strong>150.000</strong></td></tr>
+      <tr><td>CAC hữu cơ</td><td>&lt; 3.000 VND / người theo dõi</td></tr>
+      <tr><td rowspan="2"><strong>Sở hữu</strong></td><td>Người theo dõi Zalo OA</td><td><strong>30.000</strong></td></tr>
+      <tr><td>Tài khoản đăng ký trên nền tảng</td><td>40.000</td></tr>
+      <tr><td rowspan="2"><strong>Gắn kết</strong></td><td>Người học hoạt động hằng tuần</td><td><strong>5.000</strong></td></tr>
+      <tr><td>Retention D30</td><td>&gt; 22%</td></tr>
+      <tr><td rowspan="2"><strong>Giao dịch</strong></td><td>Đơn hàng Chợ mỗi tháng</td><td><strong>500</strong></td></tr>
+      <tr><td>GMV mỗi tháng</td><td>400 – 600 triệu VND</td></tr>
+      <tr><td><strong>Tin cậy</strong></td><td>Tỷ lệ khiếu nại đơn hàng</td><td>&lt; 2%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Lộ trình 30 tháng</h3>
+  <table>
+    <thead><tr><th>GĐ</th><th>Thời gian</th><th style="width:26%">Tên</th><th>Mục tiêu chính</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0</strong></td><td>T1 – T2</td><td>Chuẩn bị</td><td>Thẩm định, thương hiệu, Portal v0, khởi động pháp nhân</td></tr>
+      <tr><td><strong>1</strong></td><td>T3 – T11</td><td><strong>BETA / Pilot</strong></td><td>Web-App + Zalo OA + website ba ngôn ngữ; Learn, Culture, Chợ v1, Portal, Store Builder bản mời</td></tr>
+      <tr><td><strong>2</strong></td><td>T12 – T18</td><td>Tin cậy &amp; Mở rộng</td><td>Pháp nhân Hàn, Skill Passport, Rights Center, gia sư mở, Chợ mở, Kakao</td></tr>
+      <tr><td><strong>3</strong></td><td>T19 – T24</td><td>Chiều Hàn → Việt</td><td>B2B landing scale, tuyển dụng, ID Graph, mở chiều hàng Việt → Hàn, hoà vốn vận hành</td></tr>
+      <tr><td><strong>4</strong></td><td>T25 – T30</td><td>Hạ tầng hành lang</td><td>Mạng hồi hương, đối tác tài chính, nghiên cứu mở Nhật và Đài</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Điều kiện dừng ở Giai đoạn 0:</strong> nếu 30 video thử nghiệm không đạt benchmark giữ chân thì <strong>không bước sang BETA</strong> — quay lại sửa định dạng nội dung. Đây là điểm kiểm soát rủi ro rẻ nhất của toàn đề án.</p>
+  <span class="pgnum">8</span>
+</section>
+
+<!-- ============ TRANG 9 · TÀI CHÍNH & THƯƠNG HIỆU ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Mô hình kinh doanh</h2></div>
+  <p class="lede">Nguyên tắc phân bổ: dòng doanh thu chiều <strong>Hàn → Việt</strong> trợ cấp cho toàn bộ sản phẩm miễn phí ở chiều <strong>Việt → Hàn</strong>. Đây là xương sống tài chính của mô hình.</p>
+
+  <div class="grid g4">
+    <div class="stat"><b>~234k</b><span>USD ngân sách 12 tháng đầu (kịch bản tiết kiệm ~195k)</span></div>
+    <div class="stat"><b>~138k</b><span>USD doanh thu dự kiến 12 tháng đầu</span></div>
+    <div class="stat"><b>~96k</b><span>USD đốt tiền ròng năm 1 — rất thấp cho quy mô này</span></div>
+    <div class="stat"><b>300–350k</b><span>USD nhu cầu vốn khuyến nghị cho 18 tháng</span></div>
+  </div>
+
+  <table>
+    <thead><tr><th>#</th><th style="width:34%">Dòng doanh thu</th><th>Bật khi</th><th>Biên LN</th><th>Ghi chú</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>B2B đào tạo văn hoá &amp; ngôn ngữ</strong></td><td>T6</td><td>Rất cao</td><td>Dễ nhất, tiền mặt sớm, không cần quy mô</td></tr>
+      <tr><td>2</td><td><strong>Landing service cho SME Hàn</strong></td><td>T9</td><td>Rất cao</td><td>5.000–50.000 USD/khách; 60–100 khách/năm nuôi cả hệ thống</td></tr>
+      <tr><td>3</td><td>Hoa hồng Chợ</td><td>T6</td><td>Trung</td><td>8–15% ở nấc đầu, giảm dần khi mở rộng</td></tr>
+      <tr><td>4</td><td>Ăn chia gia sư &amp; khoá học</td><td>T7</td><td>Trung</td><td>20–30%</td></tr>
+      <tr><td>5</td><td>Thuê bao Pro cho người học</td><td>T9</td><td>Cao</td><td>99–199 nghìn VND/tháng</td></tr>
+      <tr><td>6</td><td>SaaS Store Builder</td><td>T9</td><td>Cao</td><td>Thuê bao + % giao dịch</td></tr>
+      <tr><td>7</td><td>Tuyển dụng cho DN Hàn tại VN</td><td>T14</td><td>Cao</td><td>Phí theo tuyển thành công</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Đọc kinh tế đơn vị thế nào:</strong> LTV người học trả phí khoảng 750 nghìn VND, LTV người mua Chợ năm đầu khoảng 270 nghìn VND — mỏng. Nhưng LTV một khách B2B landing là 11.000 – 30.000 USD. Kinh tế đơn vị B2C chỉ hợp lý khi được nhìn như <strong>chi phí xây tài sản dữ liệu và mật độ cộng đồng</strong> — thứ tạo ra khách B2B và tạo ra moat. Đường tới hoà vốn: T12 gần hoà vốn vận hành, T18 hoà vốn ổn định, T24 biên lợi nhuận dương.</p>
+
+  <div class="sec-head" style="margin-top:9mm"><span class="sec-num">09</span><h2>Thương hiệu</h2></div>
+  <p>Kiến trúc hai tầng: <strong>KOVIA</strong> trung tính, đọc tự nhiên ở cả ba ngôn ngữ (코비아), dùng cho web, hợp đồng, dashboard doanh nghiệp và hồ sơ gọi vốn. <strong>HANGIL · 한길</strong> — “một con đường”, đồng thời gợi “đường sang Hàn” — dùng cho kênh cộng đồng và mọi thứ chạm tới người học.</p>
+  <p>Biểu tượng là <strong>con dấu</strong>: khung vuông bo góc, bên trong là mũi chóp hướng lên và một vạch vàng nằm ngang. Khung dấu đọc là <em>đã xác nhận</em>; mũi chóp là mái che, ngọn núi, nón lá, phụ âm <span class="ko">ㅅ</span> và mũi tên đi lên; vạch vàng là nền đất và gạch xác nhận. Cách xếp hình đi theo đúng logic ghép âm tiết tiếng Hàn — phụ âm trên, nguyên âm ngang dưới, gói trong một ô vuông. Hình vẽ tự nó nói ra thứ đang bán: niềm tin có thể kiểm chứng.</p>
+  <table>
+    <thead><tr><th>Vai trò</th><th>Màu</th><th>Mã</th><th>Dùng ở đâu</th></tr></thead>
+    <tbody>
+      <tr><td>Chủ đạo</td><td>Xanh đêm</td><td>#142B5F</td><td>Nền tảng, B2B, chữ tiêu đề</td></tr>
+      <tr><td>Nhấn ấm</td><td>Vàng lúa</td><td>#BA7517</td><td>Kênh cộng đồng, nút hành động, HANGIL</td></tr>
+      <tr><td>AI / tương tác</td><td>Bạc hà</td><td>#35C6A5</td><td>Bề mặt AI, trạng thái tích cực</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Bộ chữ: Be Vietnam Pro cho Latin và tiếng Việt, Pretendard cho tiếng Hàn. Nhân vật <strong>SORI · 소리</strong> giữ vai bạn đồng hành; mái che trên đầu SORI chính là mũi chóp của biểu tượng, nên nhân vật và logo thuộc cùng một thế giới.</p>
+  <span class="pgnum">9</span>
+</section>
+
+<!-- ============ TRANG 10 · RỦI RO & TÀI LIỆU ============ -->
+<section class="page">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Rủi ro và bước tiếp theo</h2></div>
+
+  <h3>Ba lằn ranh không được vượt</h3>
+  <div class="grid g3">
+    <div class="card"><h4>Không môi giới có thu phí</h4><p>Tuyển dụng và du học sang Hàn có thu phí vướng giấy phép xuất khẩu lao động. BETA không chạm vào.</p></div>
+    <div class="card"><h4>Không cam kết kết quả</h4><p>Không hứa visa, việc làm, thu nhập. Vi phạm một lần là mất uy tín của cả lớp danh tính.</p></div>
+    <div class="card"><h4>Không dùng tài sản có bản quyền</h4><p>Không clip phim Hàn, không MV K-pop, không nhạc có bản quyền. Mất kênh là mất toàn bộ chiến lược quảng cáo bằng 0.</p></div>
+  </div>
+
+  <h3>Rủi ro lớn nhất: xây trên “đất thuê”</h3>
+  <p>Xây trên Facebook, TikTok và YouTube là xây trên đất thuê. Một lần đổi thuật toán hoặc một lần bị khoá kênh là mất tất cả. Nguyên tắc bắt buộc: mọi nội dung phải có đường dẫn về <strong>đất của mình</strong> — Zalo OA, tài khoản trên nền tảng, email và số điện thoại. KPI kỷ luật: tỷ lệ chuyển đổi từ đất thuê sang đất của mình ít nhất 8% mỗi tháng. Nếu người theo dõi tăng mà Zalo OA không tăng thì đó là tăng trưởng ảo.</p>
+
+  <h3>Bốn quyết định cần chốt</h3>
+  <ul>
+    <li>Kiến trúc thương hiệu: giữ hai tầng KOVIA + HANGIL hay gộp làm một?</li>
+    <li><strong>Cố vấn hoặc đối tác Hàn</strong> — tìm ai và đổi lại điều gì? Pháp nhân Hàn hoãn được tới cuối Pilot; pháp nhân Việt Nam thì không hoãn được nếu Chợ thu tiền.</li>
+    <li>Có đưa dịch vụ B2B lên sớm từ tháng thứ tư không? Đây là nguồn tiền mặt sớm và không vi phạm nguyên tắc quảng cáo bằng 0, vì nó bán bằng quan hệ chứ không bằng tiền quảng cáo.</li>
+    <li>Hành lang địa lý khởi đầu: tập trung mật độ ở một vùng hay trải toàn quốc?</li>
+  </ul>
+
+  <h3>Bộ tài liệu đầy đủ</h3>
+  <table>
+    <thead><tr><th style="width:30%">Tài liệu</th><th>Nội dung</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Trang tổng hợp</strong></td><td>Bản giới thiệu trực tuyến, có hai bản demo tương tác mở thẳng trong trình duyệt</td></tr>
+      <tr><td><strong>KOVIA Branding</strong></td><td>Sổ tay nhận diện song ngữ Việt – Hàn: bốn biến thể logo, vùng an toàn, quy tắc thu nhỏ, bảng màu, bộ chữ, SORI, danh sách file cần xuất</td></tr>
+      <tr><td><strong>KOVIA Tổng quan</strong></td><td>Đề án v2.5 đầy đủ, 17 chương: chiến lược, thị trường, kiến trúc sản phẩm, BETA, Portal, Chợ, kỹ thuật, lộ trình 30 tháng, tài chính, rủi ro pháp lý</td></tr>
+      <tr><td><strong>Chi tiết Phase 1</strong></td><td>Kế hoạch thực thi BETA chín tháng: năm nhóm việc, ba nhịp, đường găng, lịch đầu ra theo tháng, bảng chỉ số, cửa vượt sang giai đoạn 2</td></tr>
+      <tr><td><strong>Demo KOVIA APP</strong></td><td>Bản dựng tương tác của ứng dụng người dùng — tám màn hình trong tài liệu này</td></tr>
+      <tr><td><strong>Demo Management Portal</strong></td><td>Bản dựng tương tác của hệ thống vận hành: luồng sản xuất bảy chặng, hàng đợi phê duyệt, nguồn dữ liệu, quản trị</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote><p>Toàn bộ tài liệu và hai bản demo đang mở công khai tại<br>koalaland-workplace.github.io/KOVIA_demo</p></blockquote>
+
+  <p class="note">KOVIA · HANGIL <span class="ko">한길</span> — Giới thiệu tổng quát · Đề án v2.5 · Bộ nhận diện v2.0 · 27.07.2026. Tài liệu để nghiên cứu và góp ý, không phải hồ sơ chào bán. Mọi số liệu là ước tính tại thời điểm lập đề án, không phải cam kết.</p>
+  <span class="pgnum">10</span>
+</section>
+
+</body>
+</html>
