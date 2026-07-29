@@ -453,8 +453,8 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
           <span class="nm">KOVIA</span>
         </div>
         <div class="lang">
-          <button class="on" onclick="lang('vi',this)">VI</button>
-          <button class="ko" onclick="lang('ko',this)">한</button>
+          <button class="on" onclick="setLang('vi',this)">VI</button>
+          <button class="ko" onclick="setLang('ko',this)">한</button>
         </div>
       </div>
 
@@ -500,8 +500,8 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
       <div class="topbar">
         <div class="blk"><span class="nm" data-i="th_nav">Tiếng Hàn</span></div>
         <div class="lang">
-          <button class="on" onclick="lang('vi',this)">VI</button>
-          <button class="ko" onclick="lang('ko',this)">한</button>
+          <button class="on" onclick="setLang('vi',this)">VI</button>
+          <button class="ko" onclick="setLang('ko',this)">한</button>
         </div>
       </div>
       <div class="sec">
@@ -613,8 +613,8 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
       <div class="topbar">
         <div class="blk"><span class="nm" data-i="ch_t">Chợ Hàn – Việt</span></div>
         <div class="lang">
-          <button class="on" onclick="lang('vi',this)">VI</button>
-          <button class="ko" onclick="lang('ko',this)">한</button>
+          <button class="on" onclick="setLang('vi',this)">VI</button>
+          <button class="ko" onclick="setLang('ko',this)">한</button>
         </div>
       </div>
       <div class="sec">
@@ -631,8 +631,8 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
       <div class="topbar">
         <div class="blk"><span class="nm" data-i="me_nav">Tôi</span></div>
         <div class="lang">
-          <button class="on" onclick="lang('vi',this)">VI</button>
-          <button class="ko" onclick="lang('ko',this)">한</button>
+          <button class="on" onclick="setLang('vi',this)">VI</button>
+          <button class="ko" onclick="setLang('ko',this)">한</button>
         </div>
       </div>
       <div class="me">
@@ -1008,7 +1008,9 @@ function tog(b,el){var on=!b.classList.contains('on');
   document.getElementById(el).classList.toggle('off',!on); return on;}
 window.togSori=function(b){ if(!tog(b,'sori')) document.getElementById('sheet').classList.remove('on'); };
 window.togMic=function(b){ tog(b,'micbtn'); };
-window.lang=function(l,b){
+/* Tên phải khác 'lang': onclick nội tuyến tra phạm vi theo thứ tự phần tử -> document -> window,
+   mà HTMLElement.lang là thuộc tính chuỗi có sẵn, nên 'lang' không bao giờ tới được window.lang. */
+window.setLang=function(l,b){
   L=l;document.querySelectorAll('.lang').forEach(function(g){
     g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',(x.textContent==='VI')===(l==='vi'))});});
   repaint();};
