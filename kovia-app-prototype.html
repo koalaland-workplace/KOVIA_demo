@@ -376,7 +376,7 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
 .expitem .ic{width:44px;height:44px;border-radius:15px;background:var(--chip);flex:none;
   display:flex;align-items:center;justify-content:center;color:var(--brand)}
 .expitem .lb{font-size:var(--f4);font-weight:600;color:var(--ink);text-align:center;line-height:1.25}
-.expitem .kr{font-family:var(--ko);font-size:calc(var(--f4) - 1px);color:var(--muted);
+.expitem .kr{font-size:calc(var(--f4) - 1px);color:var(--muted);
   text-align:center;line-height:1.2;margin-top:-3px}
 .expitem.soon .ic{opacity:.74}.expitem.soon .lb{color:var(--muted)}
 
@@ -476,7 +476,7 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
             <h3 data-i="kp_h">Bị trừ lương sai, hỏi lại thế nào</h3>
             <p data-i="kp_p">Có phụ đề · nói được ngay hôm nay</p>
           </span>
-          <span class="credit">nguồn: YouTube</span>
+          <span class="credit" data-i="credit">nguồn: YouTube</span>
         </div>
 
         <div class="rowhead"><div><h2 class="sec" data-i="r1_t">Xem 60 giây</h2><p class="sub" style="margin:0" data-i="r1_s">Chạm để mở toàn màn hình</p></div><span class="more" data-i="all">Tất cả</span></div>
@@ -744,7 +744,7 @@ p.sub{margin:0 0 11px;font-size:var(--f3);color:var(--muted)}
     <nav class="tabs" id="tabs" aria-label="Điều hướng chính"></nav>
   </div>
   </div>
-  <p class="hint">Prototype BETA 1.0 · đổi giao diện và cỡ chữ trong tab Tôi · nút VI / 한 ở đầu mỗi màn</p>
+  <p class="hint" data-i="hint">Prototype BETA 1.0 · đổi giao diện và cỡ chữ trong tab Tôi · nút VI / 한 ở đầu mỗi màn</p>
 </div>
 
 <script>
@@ -778,7 +778,11 @@ vi:{kp_eb:'Khám phá · 탐색',kp_t1:'Mỗi ngày',kp_t2:'một câu thật',
  sori_p:'Cần nói gấp mà chưa biết nói sao? Hỏi mình.',
  ex_t:'Tiện ích',ex_t2:'편의 기능',ex_n:'Chạm một lần là tới đúng thứ đang cần. Mục để mờ sẽ mở ở giai đoạn sau.',
  set_as:'Trợ lý trên màn hình',sw_sori:'Trợ lý SORI',sw_sori_s:'Bong bóng hỏi nhanh ở góc phải',
- sw_mic:'Nút micro nhanh',sw_mic_s:'Bấm là vào luyện nói ngay'},
+ sw_mic:'Nút micro nhanh',sw_mic_s:'Bấm là vào luyện nói ngay',
+ credit:'nguồn: YouTube',
+ hint:'Prototype BETA 1.0 · đổi giao diện và cỡ chữ trong tab Tôi · nút VI / 한 ở đầu mỗi màn',
+ title:'KOVIA APP — Prototype BETA 1.0',
+ a_mic:'Nói nhanh',a_close:'Đóng',a_nav:'Điều hướng chính',a_sori:'Trợ lý SORI',a_hon:'Kính ngữ'},
 ko:{kp_eb:'탐색 · KHÁM PHÁ',kp_t1:'매일',kp_t2:'진짜 한 문장',
  kp_strip:'프로필 기반 — <b>안산, 제조 근로자</b>',kp_live:'신규 · 90초',
  kp_eb2:'주요 상황',kp_h:'급여가 잘못 공제됐을 때 묻는 법',kp_p:'자막 있음 · 오늘 바로 쓸 수 있어요',
@@ -807,7 +811,11 @@ ko:{kp_eb:'탐색 · KHÁM PHÁ',kp_t1:'매일',kp_t2:'진짜 한 문장',
  sori_p:'급한데 뭐라고 할지 모르겠나요? 저에게 물어보세요.',
  ex_t:'편의 기능',ex_t2:'Tiện ích',ex_n:'필요한 기능으로 한 번에 이동합니다. 흐리게 표시된 항목은 다음 단계에서 열립니다.',
  set_as:'화면 위 도우미',sw_sori:'SORI 도우미',sw_sori_s:'오른쪽 아래 빠른 질문 버튼',
- sw_mic:'빠른 마이크 버튼',sw_mic_s:'누르면 바로 말하기 연습'}};
+ sw_mic:'빠른 마이크 버튼',sw_mic_s:'누르면 바로 말하기 연습',
+ credit:'출처: YouTube',
+ hint:'프로토타입 BETA 1.0 · 테마와 글자 크기는 “나” 탭에서 · 각 화면 상단의 VI / 한 버튼',
+ title:'KOVIA APP — 프로토타입 BETA 1.0',
+ a_mic:'빠른 말하기',a_close:'닫기',a_nav:'주요 내비게이션',a_sori:'SORI 도우미',a_hon:'높임말'}};
 
 var L='vi', cur='v-kp';
 var IMG={
@@ -832,9 +840,9 @@ var R2=[['가사',['Nhạc chậm cho người mới','초보용 느린 곡'],'3
 var R3=[['김치',['Muối kimchi ở phòng trọ','자취방 김치'],'2:20',IMG.kim1],
  ['라면',['Nâng cấp gói mì','라면 업그레이드'],'1:35',IMG.jjigae],
  ['반찬',['3 món ăn kèm rẻ','저렴한 반찬 3가지'],'2:44',IMG.kim2]];
-var NW=[[['Visa','비자'],['Hạn nộp gia hạn D-2 năm nay đổi sang tháng 9','올해 D-2 연장 기한이 9월로 변경'],'2 giờ'],
- [['Lao động','노동'],['Mức lương tối thiểu 2027 vừa được công bố','2027년 최저임금 발표'],'6 giờ'],
- [['Đời sống','생활'],['Cách hoàn thuế cuối năm cho lao động nước ngoài','외국인 연말정산 환급 방법'],'Hôm qua']];
+var NW=[[['Visa','비자'],['Hạn nộp gia hạn D-2 năm nay đổi sang tháng 9','올해 D-2 연장 기한이 9월로 변경'],['2 giờ','2시간 전']],
+ [['Lao động','노동'],['Mức lương tối thiểu 2027 vừa được công bố','2027년 최저임금 발표'],['6 giờ','6시간 전']],
+ [['Đời sống','생활'],['Cách hoàn thuế cuối năm cho lao động nước ngoài','외국인 연말정산 환급 방법'],['Hôm qua','어제']]];
 var P=[{k:'반장',v:['Quản đốc','반장'],n:64,sel:1},{k:'집주인',v:['Chủ nhà','집주인'],n:38},
  {k:'의사',v:['Bác sĩ','의사'],n:29},{k:'교수님',v:['Giáo sư','교수님'],n:47},
  {k:'동료',v:['Đồng nghiệp','동료'],n:52},{k:'공무원',v:['Cơ quan','공무원'],n:41},
@@ -905,7 +913,7 @@ function marks(){document.querySelectorAll('.marks').forEach(function(el){
   var n=+el.dataset.hon, li=el.dataset.light;
   var on=li?'#E0A951':css('--accent'), off=li?'rgba(214,222,238,.3)':css('--line'), s='';
   for(var i=0;i<5;i++) s+='<svg width="10" height="10" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 46 L32 18 L52 46" fill="none" stroke="'+(i<n?on:off)+'" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  el.innerHTML=s; el.setAttribute('aria-label','Kính ngữ '+n+'/5');});}
+  el.innerHTML=s; el.setAttribute('aria-label',I[L].a_hon+' '+n+'/5');});}
 
 function ph(src){return '<img class="ph" alt="" loading="lazy" src="'+src+'" onload="this.classList.add(\'ok\')" onerror="this.remove()">'}
 function vcards(el,D,j){
@@ -919,7 +927,7 @@ function lists(){
   var j=L==='vi'?0:1;
   vcards('rail1',R1,j); vcards('rail2',R2,j); vcards('rail3',R3,j);
   document.getElementById('news').innerHTML=NW.map(function(n){
-    return '<button class="news"><span style="flex:1"><span class="k">'+n[0][j]+'</span><h4>'+n[1][j]+'</h4></span><span class="d">'+n[2]+'</span></button>';}).join('');
+    return '<button class="news"><span style="flex:1"><span class="k">'+n[0][j]+'</span><h4>'+n[1][j]+'</h4></span><span class="d">'+n[2][j]+'</span></button>';}).join('');
   document.getElementById('people').innerHTML=P.map(function(p){
     return '<button class="person" onclick="go(\'v-scene\')"><span class="pbox'+(p.sel?' sel':'')+'"><span class="kw">'+p.k+'</span></span>'+
       '<span class="lb">'+p.v[j]+'</span><span class="cnt">'+p.n+'</span></button>';}).join('');
@@ -947,13 +955,13 @@ function lists(){
       return '<button class="expitem'+(it[3]?' soon':'')+'" onclick="expGo(this)">'+
         '<span class="ic t-'+it[4]+'"><svg width="23" height="23" viewBox="0 0 64 64" aria-hidden="true">'+EIC[it[0]]+'</svg></span>'+
         '<span class="lb">'+(L==='vi'?it[1]:it[2])+'</span>'+
-        (L==='vi'?'<span class="kr">'+it[2]+'</span>':'')+'</button>';}).join('')+'</div>';}).join('');
+        '<span class="kr'+(L==='vi'?' ko':'')+'">'+(L==='vi'?it[2]:it[1])+'</span></button>';}).join('')+'</div>';}).join('');
 }
 function tabs(c2){
   var ink=css('--ink'), mut=css('--muted'), acc=css('--accent'), br=css('--brand');
   document.getElementById('tabs').innerHTML=TB.map(function(t){
     if(t.fab){var eo=document.getElementById('exp').classList.contains('on');
-      return '<button class="fab'+(eo?' open':'')+'" onclick="toggleExp()" aria-label="Tiện ích" aria-expanded="'+eo+'">'+
+      return '<button class="fab'+(eo?' open':'')+'" onclick="toggleExp()" aria-label="'+I[L].ex_t+'" aria-expanded="'+eo+'">'+
       '<svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 15 V49 M15 32 H49" stroke="#fff" stroke-width="6.5" stroke-linecap="round"/></svg></button>';}
     var on=t.id===c2, c=on?(t.t==='logo'?br:ink):mut;
     if(t.t==='logo'&&!on) c=mut;
@@ -962,7 +970,14 @@ function tabs(c2){
 }
 function text(){var d=I[L];document.querySelectorAll('[data-i]').forEach(function(el){
   if(d[el.dataset.i]!==undefined) el.innerHTML=d[el.dataset.i];});}
-function repaint(){text();lists();marks();chev();tabs(cur);}
+function aria(){
+  var d=I[L], set=function(sel,k){var e=document.querySelector(sel); if(e&&d[k]) e.setAttribute('aria-label',d[k]);};
+  set('#micbtn','a_mic'); set('#sheet .x','a_close'); set('#exp','ex_t'); set('#tabs','a_nav'); set('#sori','a_sori');
+  var b=document.querySelectorAll('#segtheme button');
+  ['th1','th2','th3'].forEach(function(k,i){ if(b[i]) b[i].setAttribute('aria-label',d[k]); });
+  document.documentElement.lang=L; document.title=d.title;
+}
+function repaint(){text();lists();marks();chev();tabs(cur);aria();}
 
 window.go=function(id){
   document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===id)});
